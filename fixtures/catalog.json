@@ -1,0 +1,48 @@
+{
+  "title": "Relay — fewer missed handoffs",
+  "description": "Fictional product presentation for the HardStop demo. All people, results, and scenarios are invented. Narration is synthesized with a local text-to-speech voice. These eight immutable clips are a recorded source presentation, not real customer evidence.",
+  "fictional": true,
+  "narration": "Synthesized local text-to-speech; not a human speaker",
+  "segments": [
+    {
+      "id": "opening", "title": "Every handoff needs a next move", "slide_text": "Relay\nEvery handoff needs a next move.",
+      "transcript": "Meet Relay, a fictional product for teams whose work crosses too many tools. A project rarely fails because nobody cares. More often, the next action is hidden in a message, the owner is missing from a document, or everyone assumes someone else will follow up. Relay gives each handoff a clear owner, a clear next move, and one place to see whether that move actually happened. Today, we will walk through the problem, a simple workflow, and an illustrative pilot.",
+      "requires": [], "value": 5
+    },
+    {
+      "id": "problem", "title": "The work moves. The context stays behind.", "slide_text": "A request in chat.\nA decision in a document.\nA deadline in a calendar.\nWho owns the next move?",
+      "transcript": "Picture a small team preparing a customer launch. The designer says the final artwork is ready in chat. The account lead records a last minute change in a document. The producer moves the delivery date in a calendar. Each update is reasonable on its own, but nobody has a complete picture. The next morning, people spend the first meeting reconstructing yesterday. The problem is not a shortage of messages. It is that responsibility disappears when work moves between those messages and tools.",
+      "requires": [], "value": 4
+    },
+    {
+      "id": "workflow", "title": "One handoff. Three explicit steps.", "slide_text": "Notice the change → Name the owner → Confirm the next move\nPeople approve consequential actions.",
+      "transcript": "Relay's proposed workflow has three steps. First, notice a change that affects a handoff, such as a revised deadline or a missing deliverable. Second, connect that change to a named owner and the source that supports it. Third, ask the owner to confirm a concrete next move. The system keeps a link to the original evidence so the team can check its reasoning. In this concept, consequential actions require a person's approval, and uncertain ownership stays visible instead of being guessed away.",
+      "requires": [], "value": 10
+    },
+    {
+      "id": "pilot_context", "title": "An illustration, not a customer study", "slide_text": "Fictional pilot\n12 simulated handoffs · One invented team\nIllustrative counts, not measured customer outcomes",
+      "transcript": "The following pilot is entirely fictional. It models twelve handoffs for one invented team. The counts illustrate how this concept might be evaluated; they are not measured customer outcomes or evidence of product effectiveness.",
+      "requires": [], "value": 8
+    },
+    {
+      "id": "result", "title": "An illustrative change: 5 to 2", "slide_text": "5 → 2\nUnresolved handoffs in the fictional scenario\nInterpret only with the pilot context.",
+      "transcript": "Within that fictional scenario, unresolved handoffs fell from five to two after the proposed workflow was applied. This is an illustrative change, not a real world performance claim. The pilot context must accompany this result.",
+      "requires": ["pilot_context"], "value": 9
+    },
+    {
+      "id": "rollout", "title": "Start small. Check what changed.", "slide_text": "One team → One recurring handoff → One week\nReview evidence before expanding.",
+      "transcript": "A sensible first rollout would focus on one team and one recurring kind of handoff for a single week. The team would decide what a successful handoff means before starting. We would record missed ownership, incorrect suggestions, and time spent checking the system, as well as any time saved. At the end of the week, the team would review the evidence and decide whether to adjust the workflow, expand it, or stop. A useful system should earn adoption through observable results.",
+      "requires": [], "value": 3
+    },
+    {
+      "id": "disclaimer", "title": "Fictional demonstration", "slide_text": "Invented product, scenario, and outcomes.\nSynthesized narration.\nNo customer claims or promised results.",
+      "transcript": "This presentation is a fictional demonstration with synthesized narration. The product, scenario, and outcomes are invented. No customer claims or promised results are being made.",
+      "requires": [], "value": 1
+    },
+    {
+      "id": "call_to_action", "title": "Make the next move visible", "slide_text": "Choose one recurring handoff.\nName its owner.\nAgree what done means.",
+      "transcript": "For a real pilot, choose one recurring handoff, name its owner, and agree what done means. Then test whether making the next move visible helps your team.",
+      "requires": [], "value": 7
+    }
+  ]
+}

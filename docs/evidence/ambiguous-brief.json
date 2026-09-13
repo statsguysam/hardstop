@@ -1,0 +1,142 @@
+{
+  "schema_version": 1,
+  "evidence_kind": "saved_run_receipt",
+  "label": "ambiguous-brief",
+  "local_run_id": "20260913T204910-873095a5",
+  "status": "needs_review",
+  "started_at": "2026-09-13T20:49:10.181000+00:00",
+  "finished_at": "2026-09-13T20:49:22.202000+00:00",
+  "brief": {
+    "text_included": true,
+    "body_sha256": "46f3a7b9523b7e7255fb609e01394e5bc85c1edd518720d6b6b9b6a3fee5d2e3",
+    "source_fingerprint": "27540576eb1ea5fd0577f5a99426c07cb18a7b2d1adbc89f8dc986ea51e58324",
+    "fixture": "ambiguous",
+    "subject": "[HardStop Demo] Relay launch presentation — unclear producer request",
+    "body": "FICTIONAL DEMO BRIEF — this Gmail draft is a test fixture, not a received customer email.\n\nMake the presentation much shorter. Keep the important part and remove anything unnecessary. The slot may be one minute or two minutes; I have not confirmed it. Preserve the original narration. Do not send anything."
+  },
+  "events": [
+    {
+      "at": "2026-09-13T20:49:10.182000+00:00",
+      "stage": "reading",
+      "message": "Reading the current Gmail brief, Google Slides source, and Dropbox catalog"
+    },
+    {
+      "at": "2026-09-13T20:49:12.933000+00:00",
+      "stage": "interpreting",
+      "message": "The model is extracting the deadline, mandatory content, exclusions, and evidence quotes"
+    },
+    {
+      "at": "2026-09-13T20:49:22.200000+00:00",
+      "stage": "blocked",
+      "message": "Resolve the brief before creating an output: The duration is unconfirmed: the brief gives both one minute and two minutes as possibilities.; Resolve the brief before creating an output: \"Keep the important part and remove anything unnecessary.\" does not identify which clips or content must be kept or excluded.; Resolve the brief before creating an output: A single duration between 1 and 3600 seconds is required.; Resolve the brief before creating an output: A keep/remove instruction does not unambiguously name a source clip.; Resolve the brief before creating an output: No explicit active upper time bound was recognized; review the timing."
+    }
+  ],
+  "checks": [
+    {
+      "name": "catalog_integrity",
+      "passed": true,
+      "detail": "Dropbox catalog matches the registered source SHA-256"
+    },
+    {
+      "name": "source_deck",
+      "passed": true,
+      "detail": "Source deck content and slide order match the registered recording"
+    },
+    {
+      "name": "resolved_brief",
+      "passed": false,
+      "detail": "The brief contains unresolved ambiguities."
+    }
+  ],
+  "limitations": [
+    "This is a saved receipt, not a new live run or independently signed provider attestation.",
+    "The exporter does not independently establish whether a report used live providers or test doubles; live provenance is documented separately.",
+    "Private provider object IDs, URLs, paths, response IDs, and temporary download links are omitted.",
+    "Fixture content is fictional and narration is synthesized. Gmail operations create or update unsent drafts only.",
+    "Verification covers explicit requirements and declared prerequisites, not general semantic preservation."
+  ],
+  "plan": {
+    "duration_ms": 0,
+    "minimum_required_ms": 0,
+    "status": "needs_review",
+    "selected_ids": [],
+    "required_closure": [],
+    "removed_ids": [
+      "opening",
+      "problem",
+      "workflow",
+      "pilot_context",
+      "result",
+      "rollout",
+      "disclaimer",
+      "call_to_action"
+    ],
+    "reasons": [
+      "Resolve the brief before creating an output: The duration is unconfirmed: the brief gives both one minute and two minutes as possibilities.",
+      "Resolve the brief before creating an output: \"Keep the important part and remove anything unnecessary.\" does not identify which clips or content must be kept or excluded.",
+      "Resolve the brief before creating an output: A single duration between 1 and 3600 seconds is required.",
+      "Resolve the brief before creating an output: A keep/remove instruction does not unambiguously name a source clip.",
+      "Resolve the brief before creating an output: No explicit active upper time bound was recognized; review the timing."
+    ],
+    "checks": [
+      {
+        "name": "resolved_brief",
+        "passed": false,
+        "detail": "The brief contains unresolved ambiguities."
+      }
+    ]
+  },
+  "constraints": {
+    "required_ids": [],
+    "excluded_ids": [],
+    "max_duration_ms": 1000,
+    "priorities": {
+      "opening": 5,
+      "problem": 4,
+      "workflow": 10,
+      "pilot_context": 8,
+      "result": 9,
+      "rollout": 3,
+      "disclaimer": 6,
+      "call_to_action": 7
+    },
+    "ambiguities": [
+      "The duration is unconfirmed: the brief gives both one minute and two minutes as possibilities.",
+      "\"Keep the important part and remove anything unnecessary.\" does not identify which clips or content must be kept or excluded.",
+      "A single duration between 1 and 3600 seconds is required.",
+      "A keep/remove instruction does not unambiguously name a source clip.",
+      "No explicit active upper time bound was recognized; review the timing."
+    ],
+    "evidence": [
+      {
+        "kind": "duration",
+        "segment_id": null,
+        "quote": "The slot may be one minute or two minutes; I have not confirmed it."
+      }
+    ]
+  },
+  "model": {
+    "usage": {
+      "input_tokens": 1392,
+      "output_tokens": 421,
+      "total_tokens": 1813,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens_details": {
+        "reasoning_tokens": 0
+      }
+    },
+    "name": "gpt-6-astra",
+    "elapsed_ms": 9262
+  },
+  "output_verification": {
+    "delivery_promoted": false,
+    "copied_deck_verified": false,
+    "video_sha256_recorded": false,
+    "dropbox_readback_verified": false,
+    "handoff_draft_readback_verified": false,
+    "inputs_rechecked_before_promotion": false,
+    "final_output_revisions_verified": false
+  }
+}

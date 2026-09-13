@@ -1,0 +1,22 @@
+{
+  "original": {
+    "label": "Original brief · 2 minutes",
+    "subject": "[HardStop Demo] Relay launch presentation — producer brief",
+    "body": "FICTIONAL DEMO BRIEF — this Gmail draft is a test fixture, not a received customer email.\n\nPlease make a cut of the Relay launch presentation that is no longer than 120 seconds. Keep the pilot result, the disclaimer and the final call to action. If we show the result, retain the pilot context before it. Favor the workflow demonstration over the rollout discussion. Keep the original narration and the original order of retained sections.\n\nDelivery: a playable video in the project Dropbox folder, a matching copied Google Slides deck, and an unsent handoff draft. Do not send anything."
+  },
+  "amendment": {
+    "label": "Slot cut · 90 seconds",
+    "subject": "[HardStop Demo] Relay launch presentation — producer amendment",
+    "body": "FICTIONAL DEMO BRIEF — this Gmail draft is a test fixture, not a received customer email.\n\nThe slot has changed. The complete recorded presentation must now be no longer than 90 seconds. The pilot result, disclaimer and final call to action are mandatory. Keep the pilot context before the result. The rollout discussion must be removed. Favor the workflow demonstration over the opening and problem discussion when space allows. Preserve the original narration and source order.\n\nThis replaces the previous timing instruction. Delivery: a playable video in the project Dropbox folder, a matching copied Google Slides deck, and an unsent handoff draft. Do not send anything."
+  },
+  "impossible": {
+    "label": "Impossible request · 30 seconds",
+    "subject": "[HardStop Demo] Relay launch presentation — impossible timing request",
+    "body": "FICTIONAL DEMO BRIEF — this Gmail draft is a test fixture, not a received customer email.\n\nThe complete recorded presentation must fit within 30 seconds. The pilot result, disclaimer and final call to action are still mandatory. Keep the pilot context before the result. Do not rewrite, accelerate, or truncate any retained recording. Keep the original section order.\n\nThis replaces all previous timing instructions. If these requirements cannot all be met, report the conflict and preserve the previous approved deliverables. Do not send anything."
+  },
+  "ambiguous": {
+    "label": "Unclear request · needs review",
+    "subject": "[HardStop Demo] Relay launch presentation — unclear producer request",
+    "body": "FICTIONAL DEMO BRIEF — this Gmail draft is a test fixture, not a received customer email.\n\nMake the presentation much shorter. Keep the important part and remove anything unnecessary. The slot may be one minute or two minutes; I have not confirmed it. Preserve the original narration. Do not send anything."
+  }
+}

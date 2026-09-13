@@ -1,0 +1,9 @@
+{
+  "seed": 20260914,
+  "random_catalogs": 250,
+  "oracle": "independent combinations search, objective value and shorter-duration tie break",
+  "max_catalog_segments": 18,
+  "max_catalog_seconds": 0.2781,
+  "elapsed_seconds": 0.3378,
+  "result": "passed"
+}

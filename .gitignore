@@ -1,0 +1,11 @@
+.credentials/
+.env
+__pycache__/
+*.pyc
+.state/
+output/
+.venv/
+assets/generated/
+node_modules/
+.DS_Store
+/AGENTS.md

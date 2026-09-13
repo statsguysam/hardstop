@@ -1,0 +1,23 @@
+{
+  "run_id": "live-stale-brief",
+  "started_at": "2026-09-13T19:43:58.375+00:00",
+  "before_ready_id": "20260913T194144-e2540c8a",
+  "runtime_hook_label": "Real OpenAI interpretation followed by real Gmail draft mutation before workflow freshness check",
+  "fault_description": "The authorized dedicated Gmail producer-brief draft is changed from the custom brief to the impossible 30-second fixture immediately after the real model response. No provider or renderer is mocked.",
+  "actual_outcome": "stale",
+  "after_ready_id": "20260913T194144-e2540c8a",
+  "ready_pointer_preserved": true,
+  "stale_detected": true,
+  "no_output_resources_created": true,
+  "finished_at": "2026-09-13T19:44:22.619+00:00",
+  "previous_outputs_readback": {
+    "read_at": "2026-09-13T19:44:22.619+00:00",
+    "run_id": "20260913T194144-e2540c8a",
+    "download_sha256": "6578e7d6c62e9ae0d2405f31de27c900f887ce1a831c1b33ee95a7f3db01e856",
+    "expected_sha256": "6578e7d6c62e9ae0d2405f31de27c900f887ce1a831c1b33ee95a7f3db01e856",
+    "sha256_unchanged": true,
+    "dropbox_revision_unchanged": true,
+    "deck_fingerprint_unchanged": true,
+    "slide_order_unchanged": true
+  }
+}

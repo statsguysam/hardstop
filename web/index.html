@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="description" content="Shorten a recorded presentation, keep its required clips, and check the finished video and slides.">
+  <title>HardStop — Your next cut</title>
+  <link rel="stylesheet" href="/app.css">
+  <script defer src="/app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#page-title">Skip to workspace</a>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="HardStop home">HardStop</a>
+      <div class="topbar-right"><span id="connection-status" class="connection-status">Opening your workspace</span><button id="focus-workspace" class="focus-button" type="button" aria-pressed="false">Compact view</button></div>
+    </header>
+
+    <main>
+      <section class="intro" aria-labelledby="page-title">
+        <div><h1 id="page-title">A shorter slot,<br><span>handled.</span></h1><p class="intro-copy">Tell us the new limit and what has to stay. Get a video and matching slides,<br class="desktop-break"> or a clear explanation if it won’t fit.</p></div>
+        <div class="intro-action"><button id="run-button" class="primary-button" type="button" disabled>Make this cut</button><p class="run-caption">Uses your current Gmail brief</p></div>
+      </section>
+
+      <div id="global-error" class="notice error-notice" role="alert" hidden></div>
+      <div id="initial-loading" class="notice">Opening your workspace…</div>
+
+      <div class="workspace-grid">
+        <div class="main-column">
+          <section class="panel monitor-panel" aria-labelledby="monitor-title">
+            <div class="panel-heading"><h2 id="monitor-title">Your cut</h2><div id="run-status" class="status-tag neutral">Ready to begin</div></div>
+            <div id="result-banner" aria-live="polite"></div>
+            <div id="metrics" class="metrics"><div class="primary-metric"><span class="metric-label">Checked duration</span><div class="timer">—:—</div><span class="metric-detail">Your finished video will appear here.</span></div><div class="secondary-metrics"><div><span class="metric-label">Time limit</span><strong>—</strong></div><div><span class="metric-label">Original</span><strong>—</strong></div></div></div>
+            <div id="budget-meter" class="budget-area"></div>
+            <div class="video-shell"><video id="output-video" controls preload="metadata" aria-label="Verified presentation video" hidden></video><div id="video-empty" class="video-empty"><strong>Ready for a new cut.</strong><span>Choose a brief, then make the cut.<br>We’ll keep each selected recording intact.</span></div></div>
+            <div id="output-links" class="output-links"><span class="muted">The video and slides appear here once they’ve been checked.</span></div>
+          </section>
+
+          <section class="panel timeline-panel" aria-labelledby="timeline-title">
+            <div class="panel-heading"><h2 id="timeline-title">What stays in</h2><span id="selection-count" class="small-label">Complete clips only</span></div>
+            <div id="source-title" class="source-title">Loading source clips</div>
+            <div id="timeline" class="clip-timeline" aria-label="Source clips and selection"></div>
+            <div id="selection-note" class="section-note">Selected clips keep their original order and any required context.</div>
+          </section>
+
+          <section class="panel checks-panel" aria-labelledby="checks-title"><div class="panel-heading"><h2 id="checks-title">Before delivery</h2><span id="check-count" class="small-label">No checks yet</span></div><p class="panel-description">The time limit, required clips, rendered video, slides and uploaded file all need to pass.</p><details class="verification-details"><summary>See the checks</summary><div id="checks" class="checks-grid"><p class="empty-copy">Checks appear here as the work progresses.</p></div></details></section>
+        </div>
+
+        <aside class="side-column" aria-label="Producer brief and progress">
+          <section class="panel brief-panel" aria-labelledby="brief-title">
+            <div class="panel-heading"><h2 id="brief-title">The brief</h2><span class="fixture-tag">Gmail draft</span></div>
+            <p class="panel-description">Choose an example or write your own. Each change is saved to the same draft.</p>
+            <div id="scenarios" class="scenario-grid" aria-label="Choose a producer brief example"></div>
+            <details id="custom-brief" class="custom-brief"><summary>Write your own brief</summary><p class="panel-description">Set the time limit and name the clips that must stay or go.</p><label for="custom-subject">Subject</label><input id="custom-subject" maxlength="200" type="text" value="[HardStop Demo] Producer challenge"><label for="custom-body">Instructions</label><textarea id="custom-body" maxlength="20000" rows="7" placeholder="Fit within 75 seconds. Keep the result, disclaimer and call to action. Remove the workflow."></textarea><button id="save-custom-brief" type="button" class="output-link">Save brief to Gmail</button><span id="custom-brief-status" role="status"></span></details>
+            <div id="brief-change-notice" class="inline-note" hidden>Changing the brief now will stop this cut if the updated instructions arrive before delivery.</div>
+            <div class="email-card"><h3 id="brief-subject">No brief loaded yet</h3><div id="brief-body" class="email-body">Set up the source presentation, recordings and Gmail draft to get started.</div></div>
+          </section>
+
+          <section class="panel requirements-panel" aria-labelledby="requirements-title"><div class="panel-heading"><h2 id="requirements-title">What the brief requires</h2></div><div id="requirements"><p class="empty-copy">We’ll read the brief and show what must stay and what must go.</p></div></section>
+
+          <section class="panel activity-panel" aria-labelledby="activity-title"><div class="panel-heading"><h2 id="activity-title">Progress</h2><span id="activity-indicator" class="activity-indicator" aria-hidden="true"></span></div><ol id="activity" class="activity-list"><li class="empty-activity">Choose a brief and start your first cut.</li></ol></section>
+        </aside>
+      </div>
+
+      <section id="history-section" class="history-section" hidden aria-labelledby="history-title"><div class="history-heading"><h2 id="history-title">Earlier cuts</h2><span>Verified videos stay available when a new request cannot be completed.</span></div><div id="history" class="history-list"></div></section>
+    </main>
+
+    <footer><span>HardStop. Less time, with the essentials intact.</span><p class="disclosure">Local workspace. Sample content is fictional and narration is synthesized. Gmail messages remain unsent drafts. Only explicit requirements and declared context dependencies are checked.</p></footer>
+  </div>
+</body>
+</html>

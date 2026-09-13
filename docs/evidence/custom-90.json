@@ -1,0 +1,350 @@
+{
+  "schema_version": 1,
+  "evidence_kind": "saved_run_receipt",
+  "label": "custom-90",
+  "local_run_id": "20260913T194144-e2540c8a",
+  "status": "ready",
+  "started_at": "2026-09-13T19:41:44.588000+00:00",
+  "finished_at": "2026-09-13T19:42:38.589000+00:00",
+  "brief": {
+    "text_included": false,
+    "body_sha256": "725579b108c55fd8ff7c6306663c0b0802b1294f5a9274a30eb05b153e155f2c",
+    "source_fingerprint": "00829f3838c69b688c44c903f73db47ce638a5483a23ea18cc50c3efa0e79707",
+    "note": "Brief content omitted because it does not exactly match a labeled, checked-in fictional fixture."
+  },
+  "events": [
+    {
+      "at": "2026-09-13T19:41:44.589000+00:00",
+      "stage": "reading",
+      "message": "[redacted: custom brief text]"
+    },
+    {
+      "at": "2026-09-13T19:41:47.146000+00:00",
+      "stage": "interpreting",
+      "message": "[redacted: custom brief text]"
+    },
+    {
+      "at": "2026-09-13T19:41:54.165000+00:00",
+      "stage": "downloading",
+      "message": "[redacted: custom brief text]"
+    },
+    {
+      "at": "2026-09-13T19:42:03.447000+00:00",
+      "stage": "rendering",
+      "message": "[redacted: custom brief text]"
+    },
+    {
+      "at": "2026-09-13T19:42:11.079000+00:00",
+      "stage": "deck",
+      "message": "[redacted: custom brief text]"
+    },
+    {
+      "at": "2026-09-13T19:42:19.739000+00:00",
+      "stage": "uploading",
+      "message": "[redacted: custom brief text]"
+    },
+    {
+      "at": "2026-09-13T19:42:30.766000+00:00",
+      "stage": "handoff",
+      "message": "[redacted: custom brief text]"
+    },
+    {
+      "at": "2026-09-13T19:42:38.587000+00:00",
+      "stage": "ready",
+      "message": "[redacted: custom brief text]"
+    }
+  ],
+  "checks": [
+    {
+      "name": "catalog_integrity",
+      "passed": true,
+      "detail": "[redacted: custom brief text]"
+    },
+    {
+      "name": "source_deck",
+      "passed": true,
+      "detail": "[redacted: custom brief text]"
+    },
+    {
+      "name": "nonempty_cut",
+      "passed": true,
+      "detail": "[redacted: custom brief text]"
+    },
+    {
+      "name": "known_ids",
+      "passed": true,
+      "detail": "[redacted: custom brief text]"
+    },
+    {
+      "name": "unique_ids",
+      "passed": true,
+      "detail": "[redacted: custom brief text]"
+    },
+    {
+      "name": "source_order",
+      "passed": true,
+      "detail": "[redacted: custom brief text]"
+    },
+    {
+      "name": "required_closure",
+      "passed": true,
+      "detail": "[redacted: custom brief text]"
+    },
+    {
+      "name": "excluded_absent",
+      "passed": true,
+      "detail": "[redacted: custom brief text]"
+    },
+    {
+      "name": "dependencies",
+      "passed": true,
+      "detail": "[redacted: custom brief text]"
+    },
+    {
+      "name": "duration_budget",
+      "passed": true,
+      "detail": "[redacted: custom brief text]"
+    },
+    {
+      "name": "resolved_brief",
+      "passed": true,
+      "detail": "[redacted: custom brief text]"
+    },
+    {
+      "name": "independent_selection",
+      "passed": true,
+      "detail": "[redacted: custom brief text]"
+    },
+    {
+      "name": "source_workflow",
+      "passed": true,
+      "detail": "[redacted: custom brief text]"
+    },
+    {
+      "name": "source_pilot_context",
+      "passed": true,
+      "detail": "[redacted: custom brief text]"
+    },
+    {
+      "name": "source_result",
+      "passed": true,
+      "detail": "[redacted: custom brief text]"
+    },
+    {
+      "name": "source_disclaimer",
+      "passed": true,
+      "detail": "[redacted: custom brief text]"
+    },
+    {
+      "name": "source_call_to_action",
+      "passed": true,
+      "detail": "[redacted: custom brief text]"
+    },
+    {
+      "name": "measured_deadline",
+      "passed": true,
+      "detail": "[redacted: custom brief text]"
+    },
+    {
+      "name": "decode_verified",
+      "passed": true,
+      "detail": "[redacted: custom brief text]"
+    },
+    {
+      "name": "output_sha256",
+      "passed": true,
+      "detail": "[redacted: custom brief text]"
+    },
+    {
+      "name": "matching_deck",
+      "passed": true,
+      "detail": "[redacted: custom brief text]"
+    },
+    {
+      "name": "handoff_readback",
+      "passed": true,
+      "detail": "[redacted: custom brief text]"
+    },
+    {
+      "name": "final_outputs",
+      "passed": true,
+      "detail": "[redacted: custom brief text]"
+    },
+    {
+      "name": "fresh_inputs",
+      "passed": true,
+      "detail": "[redacted: custom brief text]"
+    }
+  ],
+  "limitations": [
+    "This is a saved receipt, not a new live run or independently signed provider attestation.",
+    "The exporter does not independently establish whether a report used live providers or test doubles; live provenance is documented separately.",
+    "Private provider object IDs, URLs, paths, response IDs, and temporary download links are omitted.",
+    "Fixture content is fictional and narration is synthesized. Gmail operations create or update unsent drafts only.",
+    "Verification covers explicit requirements and declared prerequisites, not general semantic preservation."
+  ],
+  "plan": {
+    "duration_ms": 86203,
+    "minimum_required_ms": 53969,
+    "status": "feasible",
+    "selected_ids": [
+      "workflow",
+      "pilot_context",
+      "result",
+      "disclaimer",
+      "call_to_action"
+    ],
+    "required_closure": [
+      "pilot_context",
+      "result",
+      "disclaimer",
+      "call_to_action"
+    ],
+    "removed_ids": [
+      "opening",
+      "problem",
+      "rollout"
+    ],
+    "reasons": [
+      "[redacted: custom brief text]",
+      "[redacted: custom brief text]",
+      "[redacted: custom brief text]"
+    ],
+    "checks": [
+      {
+        "name": "nonempty_cut",
+        "passed": true,
+        "detail": "[redacted: custom brief text]"
+      },
+      {
+        "name": "known_ids",
+        "passed": true,
+        "detail": "[redacted: custom brief text]"
+      },
+      {
+        "name": "unique_ids",
+        "passed": true,
+        "detail": "[redacted: custom brief text]"
+      },
+      {
+        "name": "source_order",
+        "passed": true,
+        "detail": "[redacted: custom brief text]"
+      },
+      {
+        "name": "required_closure",
+        "passed": true,
+        "detail": "[redacted: custom brief text]"
+      },
+      {
+        "name": "excluded_absent",
+        "passed": true,
+        "detail": "[redacted: custom brief text]"
+      },
+      {
+        "name": "dependencies",
+        "passed": true,
+        "detail": "[redacted: custom brief text]"
+      },
+      {
+        "name": "duration_budget",
+        "passed": true,
+        "detail": "[redacted: custom brief text]"
+      },
+      {
+        "name": "resolved_brief",
+        "passed": true,
+        "detail": "[redacted: custom brief text]"
+      }
+    ]
+  },
+  "constraints": {
+    "required_ids": [
+      "result",
+      "disclaimer",
+      "call_to_action"
+    ],
+    "excluded_ids": [
+      "opening",
+      "problem",
+      "rollout"
+    ],
+    "max_duration_ms": 90000,
+    "priorities": {
+      "workflow": 10,
+      "pilot_context": 8
+    },
+    "ambiguities": [],
+    "evidence": [
+      {
+        "kind": "duration",
+        "segment_id": null,
+        "quote": "[redacted: custom brief text]"
+      },
+      {
+        "kind": "required",
+        "segment_id": "result",
+        "quote": "[redacted: custom brief text]"
+      },
+      {
+        "kind": "required",
+        "segment_id": "disclaimer",
+        "quote": "[redacted: custom brief text]"
+      },
+      {
+        "kind": "required",
+        "segment_id": "call_to_action",
+        "quote": "[redacted: custom brief text]"
+      },
+      {
+        "kind": "excluded",
+        "segment_id": "opening",
+        "quote": "[redacted: custom brief text]"
+      },
+      {
+        "kind": "excluded",
+        "segment_id": "problem",
+        "quote": "[redacted: custom brief text]"
+      },
+      {
+        "kind": "excluded",
+        "segment_id": "rollout",
+        "quote": "[redacted: custom brief text]"
+      }
+    ]
+  },
+  "media": {
+    "duration_ms": 86203,
+    "expected_duration_ms": 86203,
+    "width": 1280,
+    "height": 720,
+    "decode_verified": true,
+    "has_audio": true,
+    "has_video": true,
+    "sha256": "6578e7d6c62e9ae0d2405f31de27c900f887ce1a831c1b33ee95a7f3db01e856"
+  },
+  "model": {
+    "usage": {
+      "input_tokens": 1401,
+      "output_tokens": 389,
+      "total_tokens": 1790,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens_details": {
+        "reasoning_tokens": 55
+      }
+    },
+    "name": "gpt-6-astra",
+    "elapsed_ms": 7014
+  },
+  "output_verification": {
+    "delivery_promoted": true,
+    "copied_deck_verified": true,
+    "video_sha256_recorded": true,
+    "dropbox_readback_verified": true,
+    "handoff_draft_readback_verified": true,
+    "inputs_rechecked_before_promotion": true,
+    "final_output_revisions_verified": true
+  }
+}
