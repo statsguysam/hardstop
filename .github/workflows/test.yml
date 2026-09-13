@@ -19,7 +19,7 @@ jobs:
     timeout-minutes: 15
     env:
       # CI uses isolated synthetic credentials; no provider secrets are required.
-      HARDSTOP_CREDENTIALS_DIR: ${{ runner.temp }}/hardstop-ci-credentials
+      HARDSTOP_CREDENTIALS_DIR: .state/ci-credentials
       PYTHONUNBUFFERED: "1"
     steps:
       - name: Check out source
