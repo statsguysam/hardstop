@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "checked_at": "2026-09-13T22:50:41.281115+00:00",
+  "release": "v0.3.0",
+  "authentication": "none",
+  "source_commit": "cd756c60db1f167f3a560c6ec848d4af3438d7d5",
+  "viewing_page_commit": "85633b7b22881fcdb42b5efea834518ec9bf619c",
+  "resources": [
+    {
+      "url": "https://statsguysam.github.io/hardstop/",
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "sha256": "fdeb49e3208f0384fd59aec9c2fa2796df6efb6c6a05335e6b35d6cc3140b724",
+      "matches_local": true
+    },
+    {
+      "url": "https://statsguysam.github.io/hardstop/explore.html",
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "sha256": "f29ddc08c39686e031f6cc4e35ba3041f84fa49752bc252fd6bff3aa259736ae",
+      "matches_local": true
+    },
+    {
+      "url": "https://statsguysam.github.io/hardstop/demo-captions.vtt",
+      "status": 200,
+      "content_type": "text/vtt; charset=utf-8",
+      "sha256": "2cf144962387635dcce8c785fa6033daa0f9c4522d6ecf3ec1325930a44d53c2",
+      "matches_local": true
+    },
+    {
+      "url": "https://statsguysam.github.io/hardstop/images/hardstop.png",
+      "status": 200,
+      "content_type": "image/png",
+      "sha256": "b787f0a572e44bda376aca9e51eb191cc468cf32bb03db0dbfe449afd0a3d8c6",
+      "matches_local": true
+    }
+  ],
+  "browser_check": {
+    "video_played_to_end": true,
+    "displayed_end_time": "1:50 / 1:50",
+    "english_captions_default": true,
+    "english_captions_visibly_displayed": true,
+    "uses_released_v3_video": true,
+    "four_recorded_cases_inspected": true,
+    "inspector_saved_run_label_visible": true
+  },
+  "ci": {
+    "source_run": "https://github.com/statsguysam/hardstop/actions/runs/34787479634",
+    "viewing_page_run": "https://github.com/statsguysam/hardstop/actions/runs/34787783332",
+    "both_completed_successfully": true,
+    "source_test_count": 216,
+    "skipped_tests": 0
+  },
+  "submission": {
+    "original_form_confirmed_at": "2026-09-13T21:06:33+00:00",
+    "same_repository_and_demo_urls": true,
+    "additional_form_submissions": 0,
+    "confirmation_rechecked_during_final_review": true
+  },
+  "limitations": [
+    "Point-in-time public access and browser checks do not guarantee future availability.",
+    "All source content is fictional; narration uses a stock synthetic voice.",
+    "Judging reviews are hypothetical preparation exercises, not actual judge opinions."
+  ],
+  "downloads": {
+    "receipt": "public-downloads-v3.json",
+    "artifacts_verified": 8,
+    "all_matched": true
+  },
+  "source_reproduction": {
+    "receipt": "public-source-reproduction-v3.json",
+    "bundles_verified": 2,
+    "credentials_used": false,
+    "provider_api_calls": 0
+  }
+}

@@ -93,3 +93,15 @@ Only two finishing steps are justified by this review:
 2. **Make recovery evidence reviewable.** Export the interrupted-to-completed registration facts with hashes and timestamps while omitting private paths and application IDs. State precisely what was reconciled; retain the broader limitation that unknown writes can need human attention.
 
 **Resolved for the inspected version:** easy inspection of representative saved results, concise runtime disclosure, and visible source-declaration boundaries. **Partly addressed:** evaluation breadth and recovery evidence. **Open:** customer value, setup effort, arbitrary content understanding and verification of the next public release. These are concrete limits, not reasons to invent another feature or award the project a simulated winning score.
+
+## Round 4: coherent public release
+
+The v0.3.0 release closes the two publication tasks from the prior review. The current buyer and operator recordings measure 87.868 and 88.368 seconds; Harbor measures 44.701 seconds. The [independent provider readbacks](evidence/delivery-readbacks-v3.json) passed 32 checks, including the preserved operator delivery after the impossible request. The [sanitized registration receipt](evidence/registration-recovery-v3.json) records the uncertain upload's reconciliation. Both the earlier operator download failure and initial Harbor review outcome remain inspectable.
+
+The durable recorded-result tests now run with the ordinary suite. All 216 tests passed locally and in [Linux CI for the release commit](https://github.com/statsguysam/hardstop/actions/runs/34787479634), with no skipped tests. The public inspector was checked in the browser across all four cases and displays the new release's receipts, video identities and later readbacks. The 110.022-second public demo played to its end, and English captions were visibly checked on a fresh viewing with captions enabled by default. [Publication checks](evidence/publication-v3.json).
+
+The presentation now uses cleaner text, plain numbered slide content, stock neural narration and synchronized captions. Optional identifying video metadata has been removed. Truthful source, narration and model disclosures, third-party attribution and earlier evidence remain intact.
+
+The five hypothetical lenses now have clearer, accessible evidence for technical execution, failure containment, model contribution and reproducibility. Their remaining product objections still stand: no outside-producer adoption test, no measured preparation-inclusive time saving, and no guarantee of semantic preservation beyond supplied declarations. This is a stronger and better evidenced entry. It is not an actual judge endorsement or a guarantee of winning.
+
+The final [anonymous release-download check](evidence/public-downloads-v3.json) verified all eight assets. The [public-source reproduction](evidence/public-source-reproduction-v3.json) imported and fully decoded both packages from the exact downloaded release source, with no credentials or provider calls. This closes the release-reproducibility gate; it does not add a customer or broaden the semantic claims.

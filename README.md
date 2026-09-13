@@ -65,7 +65,7 @@ source .venv/bin/activate
 python3 -m unittest discover -s tests -v
 ```
 
-The current local suite passed **216 tests**, including FFmpeg media, loopback checks, and the recorded-result inspector; JavaScript syntax also passed. The [earlier v0.2.0 GitHub Linux CI](https://github.com/statsguysam/hardstop/actions/runs/34784957386) passed 213 tests on source commit `90654b7`, with no skipped tests. That remote result does not validate later source changes. A separate planner stress check matched an independent combinations-search oracle on **250 generated catalogs**; those cases are not included in the unit-test count. Tests do not need API credentials. They use controlled provider responses and local media fixtures; media tests are skipped when FFmpeg tools are unavailable. A passing unit suite is separate from a successful live API run.
+The current local suite and [GitHub Linux CI](https://github.com/statsguysam/hardstop/actions/runs/34787479634) both passed **216 tests**, including FFmpeg media, loopback checks and the recorded-result inspector; JavaScript syntax also passed. The remote run tested release source commit `cd756c6`, with no skipped tests. A separate planner stress check matched an independent combinations-search oracle on **250 generated catalogs**; those cases are not included in the unit-test count. Tests do not need API credentials. They use controlled provider responses and local media fixtures; media tests are skipped when FFmpeg tools are unavailable. A passing unit suite is separate from a successful live API run.
 
 For a fresh sample on macOS:
 

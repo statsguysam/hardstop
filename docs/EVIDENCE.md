@@ -25,7 +25,7 @@ Source registration encountered a separate unknown Dropbox upload outcome. Setup
 
 The [current demonstration](evidence/demo-recording-v3.json) measures **110.022 seconds**, with full decode, audio-level and caption checks recorded.
 
-The current local suite passed **216 tests**, including the durable public-inspector checks and the Harbor holdout evaluator tests. Eight offline inspector scenarios cover the four actual recorded cases, mismatched release hashes, missing preservation proof, unsafe markup and unavailable receipts. These tests use saved data and do not constitute additional provider runs. [Release artifact hashes](evidence/release-v3.json) identify the prepared files; anonymous publication checks are recorded separately after upload.
+The current local suite passed **216 tests**, including the durable public-inspector checks and the Harbor holdout evaluator tests. Eight offline inspector scenarios cover the four actual recorded cases, mismatched release hashes, missing preservation proof, unsafe markup and unavailable receipts. These tests use saved data and do not constitute additional provider runs. [Release artifact hashes](evidence/release-v3.json) identify the prepared files; anonymous publication checks are recorded in [the download receipt](evidence/public-downloads-v3.json) and [final publication checks](evidence/publication-v3.json).
 
 ## Original observed live runs (v0.1.0)
 
@@ -199,3 +199,7 @@ The original repository release and its assets were fetched without authenticati
 The actual public source archive at release commit `90654b7` and the released Harbor ZIP were also fetched without authentication. The downloaded implementation loaded the CLI and independently imported and fully decoded all six Harbor recordings; all measured durations, clip hashes and ten bundle checksums matched. This is a local reproduction from public files, separate from the live three-app run. [Public-source reproduction](evidence/public-source-reproduction-v2.json).
 
 The existing repository and Pages URLs remain the submission entry points. The revised public video played through to **1:50 / 1:50**, and English captions were enabled and visibly displayed. The page, caption file and poster matched the reviewed local bytes when fetched without authentication. [Final publication check](evidence/publication-v2.json). No second form submission was created.
+
+## Current release CI
+
+[The v0.3.0 Linux CI run](https://github.com/statsguysam/hardstop/actions/runs/34787479634) passed all 216 tests in 5.844 seconds, with FFmpeg installed and no skipped tests, at source commit `cd756c60db1f167f3a560c6ec848d4af3438d7d5`. The caption-default page update also [passed CI](https://github.com/statsguysam/hardstop/actions/runs/34787783332).

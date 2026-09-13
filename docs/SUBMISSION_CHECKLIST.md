@@ -2,11 +2,11 @@
 
 One solo-team submission was confirmed at 21:06 UTC on September 13, 2026, before the 23:00 UTC deadline. The original v0.1.0 publication and strengthened v0.2.0 revision were checked publicly. The same submitted repository and Pages URLs remain the entry points. The form still showed its recorded-response confirmation when checked at 22:35 UTC; no second response was submitted. Confirmation details remain private.
 
-The current v0.3.0 work has passed the local and live gates below, including new synthetic-voice source workspaces, 216 local tests, recorded-result inspection and fresh provider readbacks. Its public upload, playback and CI checks remain pending until recorded separately.
+The current v0.3.0 release has passed all local, live and public gates below: 216 local and Linux CI tests, 32 independent provider readback checks, eight anonymous release downloads, both public-source imports, captioned playback and all four inspector cases. [Final publication checks](evidence/publication-v3.json).
 
 The official event page lists a submission deadline of **September 13, 2026, 23:00 UTC**, which is **September 14, 2026, 04:30 IST**. The form was completed before that cutoff; the same submitted URLs continue to identify this entry. The [event page](https://multiappagenthackathon.com/) is the authority if the organizers announce another change.
 
-Entry points: [repository](https://github.com/statsguysam/hardstop), [demo](https://statsguysam.github.io/hardstop/), [recorded-result inspector](https://statsguysam.github.io/hardstop/explore.html). The [v0.3.0 release URL](https://github.com/statsguysam/hardstop/releases/tag/v0.3.0) is the current publication target; public access is checked below. Historical verification: [v0.2.0 files](https://github.com/statsguysam/hardstop/releases/tag/v0.2.0), [213-test Linux CI run](https://github.com/statsguysam/hardstop/actions/runs/34784957386).
+Entry points: [repository](https://github.com/statsguysam/hardstop), [demo](https://statsguysam.github.io/hardstop/), [recorded-result inspector](https://statsguysam.github.io/hardstop/explore.html). The [v0.3.0 release](https://github.com/statsguysam/hardstop/releases/tag/v0.3.0) is published and publicly verified. Historical verification: [v0.2.0 files](https://github.com/statsguysam/hardstop/releases/tag/v0.2.0), [213-test Linux CI run](https://github.com/statsguysam/hardstop/actions/runs/34784957386).
 
 ## Current v0.3.0 local and live gates
 
@@ -24,12 +24,12 @@ Entry points: [repository](https://github.com/statsguysam/hardstop), [demo](http
 
 ## Current v0.3.0 publication gates
 
-- [ ] Publish the final source snapshot and confirm its current Linux CI result.
-- [ ] Publish the new demo, captions, output videos, source bundles and checksum file; verify anonymous downloads against local hashes.
-- [ ] Confirm the public demo completes within two minutes with visible English captions.
-- [ ] Confirm the public recorded-result inspector loads all four cases, matching videos and the impossible-request preservation evidence.
-- [ ] Reproduce the current CLI and source import using anonymously downloaded public source and release files.
-- [ ] Confirm the already-submitted repository and Pages URLs serve the new revision. Preserve the original form confirmation without another submission.
+- [x] Publish the final source snapshot and confirm its current Linux CI result.
+- [x] Publish the new demo, captions, output videos, source bundles and checksum file; verify anonymous downloads against local hashes.
+- [x] Confirm the public demo completes within two minutes with visible English captions.
+- [x] Confirm the public recorded-result inspector loads all four cases, matching videos and the impossible-request preservation evidence.
+- [x] Reproduce the current CLI and source import using anonymously downloaded public source and release files.
+- [x] Confirm the already-submitted repository and Pages URLs serve the new revision. Preserve the original form confirmation without another submission.
 
 ## Original submitted package
 

@@ -1,0 +1,131 @@
+{
+  "schema_version": 1,
+  "result": "passed",
+  "started_at": "2026-09-13T22:50:42.395480+00:00",
+  "release": "v0.3.0",
+  "commit": "cd756c60db1f167f3a560c6ec848d4af3438d7d5",
+  "download_authentication": "none",
+  "credentials_used": false,
+  "provider_api_calls": 0,
+  "bundles": [
+    {
+      "name": "hardstop-relay-source.zip",
+      "sha256": "6059905bd1bd02770832ebbe21980da81b53296f7f9edc82dc3300ca1ac00220",
+      "checksum_entries_verified": 14,
+      "clip_count": 8,
+      "source_duration_ms": 177036,
+      "all_clip_bytes_match_registered_source": true,
+      "all_measured_durations_match_registered_source": true,
+      "all_clips_fully_decoded": true,
+      "clips": [
+        {
+          "id": "opening",
+          "duration_ms": 27734,
+          "sha256": "90f8d5d2829f8f4b2a4bf49d14f4f0113edb119b6c21e674299bdbe430f5ca7e",
+          "decode_verified": true
+        },
+        {
+          "id": "problem",
+          "duration_ms": 32767,
+          "sha256": "423a4adfd141194930b82119db75507c597c28030da4cb657bb3c016698ddf81",
+          "decode_verified": true
+        },
+        {
+          "id": "workflow",
+          "duration_ms": 33267,
+          "sha256": "ade7b9e45ce3d6db48d8e3cc6c8bd82bfb93cca89aa65143e74f2c18cdcb5272",
+          "decode_verified": true
+        },
+        {
+          "id": "pilot_context",
+          "duration_ms": 15500,
+          "sha256": "f1c99e3ffb9ef4abbb1802abb8d0474b4a0c939a80efce99db2ebf35bb1195e5",
+          "decode_verified": true
+        },
+        {
+          "id": "result",
+          "duration_ms": 16167,
+          "sha256": "ad3763b8ee3f8cc82feb038fc6afb751844767f2c7564b310fe931e830779827",
+          "decode_verified": true
+        },
+        {
+          "id": "rollout",
+          "duration_ms": 28167,
+          "sha256": "ea7364c3435ee31a830e3a2c9d1839cebbe4a62d552cf2be4ca8152963a13a4e",
+          "decode_verified": true
+        },
+        {
+          "id": "disclaimer",
+          "duration_ms": 12967,
+          "sha256": "d83f7540bc967b2adff89f8d3c1067accb90ea98fff8c4c65e2fb6011be980b9",
+          "decode_verified": true
+        },
+        {
+          "id": "call_to_action",
+          "duration_ms": 10467,
+          "sha256": "eaf888402ca5e9a02b574283e2646540b01ad25bba87e1492a4e99c73724a61c",
+          "decode_verified": true
+        }
+      ]
+    },
+    {
+      "name": "hardstop-harbor-source.zip",
+      "sha256": "dfb3e2714ad246b1a32ce93ad1ebcde43b1285106e21bd04c7356c53bbaeda5b",
+      "checksum_entries_verified": 12,
+      "clip_count": 6,
+      "source_duration_ms": 83202,
+      "all_clip_bytes_match_registered_source": true,
+      "all_measured_durations_match_registered_source": true,
+      "all_clips_fully_decoded": true,
+      "clips": [
+        {
+          "id": "introduction",
+          "duration_ms": 17767,
+          "sha256": "8168ced6f94bf1b57fa016a60485f64d271719498d9bfbb3176ac67090f6fc08",
+          "decode_verified": true
+        },
+        {
+          "id": "setting",
+          "duration_ms": 12967,
+          "sha256": "d288f41502cdf34b56641ad164709b84c11fb93ea85b460973221cc30701cf8e",
+          "decode_verified": true
+        },
+        {
+          "id": "finding",
+          "duration_ms": 11034,
+          "sha256": "2b69dbe46143e1ab24144d891c91551232ddf43a5005939e580a8d9ac5730919",
+          "decode_verified": true
+        },
+        {
+          "id": "walkthrough",
+          "duration_ms": 20734,
+          "sha256": "08110b843cb7dc068f2bb8fc77f560fa68cde67affce08f51b8cee93008c44ed",
+          "decode_verified": true
+        },
+        {
+          "id": "limitations",
+          "duration_ms": 10900,
+          "sha256": "d215cab3287f670f6252a69edbbacc51dccc676749b54a100647ed42e7229194",
+          "decode_verified": true
+        },
+        {
+          "id": "next_step",
+          "duration_ms": 9800,
+          "sha256": "66361cd290e49e373154173d3502f533379a021f5d89fccacc54459896d62561",
+          "decode_verified": true
+        }
+      ]
+    }
+  ],
+  "scope": "Public-source CLI loading and the actual local source importer are reproduced. This check does not register cloud workspaces or recreate Gmail, Slides, or Dropbox deliveries.",
+  "source_archive": {
+    "url": "https://codeload.github.com/statsguysam/hardstop/zip/cd756c60db1f167f3a560c6ec848d4af3438d7d5",
+    "http_status": 200,
+    "bytes": 773390,
+    "sha256": "14f77837a6e0563e6622384e04369f27aeca5050981820364874ab65b04c0b9f"
+  },
+  "cli_help": "passed",
+  "source_command_help": "passed",
+  "completed_at": "2026-09-13T22:50:45.161992+00:00",
+  "importer_loaded_from_downloaded_public_source": true
+}
