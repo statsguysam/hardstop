@@ -197,9 +197,9 @@ class Workflow:
     @staticmethod
     def _validate_brief(subject, body):
         if not isinstance(subject, str) or not subject.strip() or len(subject) > 200 or any(c in subject for c in ('\r', '\n', '\x00')):
-            raise ValueError('Use a single-line subject of 1–200 characters')
+            raise ValueError('Use a single-line subject of 1 to 200 characters')
         if not isinstance(body, str) or not body.strip() or len(body) > 20000 or '\x00' in body:
-            raise ValueError('Use a brief of 1–20000 characters')
+            raise ValueError('Use a brief of 1 to 20000 characters')
 
     def set_custom_brief(self, subject, body):
         self._validate_brief(subject, body)

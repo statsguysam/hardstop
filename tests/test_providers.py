@@ -117,14 +117,14 @@ class ProviderTests(unittest.TestCase):
             payload = json.loads(request.data)
             encoded = payload["message"]["raw"]
             message = BytesParser(policy=policy.default).parsebytes(base64.urlsafe_b64decode(encoded + "=" * (-len(encoded) % 4)))
-            self.assertEqual(str(message["Subject"]), "Fictional brief ✓")
+            self.assertEqual(str(message["Subject"]), "Fictional café brief")
             self.assertEqual(message.get_content().strip(), "Keep the result.")
             for name in ("To", "Cc", "Bcc", "From"):
                 self.assertIsNone(message[name])
             return Response({"id": "draft1"})
 
-        opener = QueueOpener(created, Response(draft(subject="Fictional brief ✓")))
-        result = Providers(opener=opener).create_draft("Fictional brief ✓", "Keep the result.")
+        opener = QueueOpener(created, Response(draft(subject="Fictional café brief")))
+        result = Providers(opener=opener).create_draft("Fictional café brief", "Keep the result.")
         self.assertFalse(result["has_recipients"])
         self.assertEqual(result["draft_id"], "draft1")
         self.assertEqual(len(opener.requests), 2)
@@ -314,7 +314,7 @@ class ProviderTests(unittest.TestCase):
             self.assertEqual(ids, ["hs_" + item for item in CATALOG_IDS])
             text = [item["insertText"]["text"] for item in requests if "insertText" in item]
             self.assertIn("A short fictional statement.", text)
-            self.assertIn("FICTIONAL FIXTURE · SYNTHESIZED NARRATION", text)
+            self.assertIn("Fictional sample. Synthesized narration.", text)
             self.assertFalse(any("createImage" in item for item in requests))
             return Response({})
 
@@ -342,8 +342,8 @@ class ProviderTests(unittest.TestCase):
             requests = json.loads(request.data)["requests"]
             self.assertEqual([item["createSlide"]["objectId"] for item in requests if "createSlide" in item], ["hs_lesson"])
             text = [item["insertText"]["text"] for item in requests if "insertText" in item]
-            self.assertIn("SOURCE RECORDINGS · Recorded human speaker", text)
-            self.assertFalse(any("FICTIONAL" in item or "SYNTHESIZED" in item for item in text))
+            self.assertIn("Source recordings. Recorded human speaker", text)
+            self.assertFalse(any("FICTIONAL" in item.upper() or "SYNTHESIZED" in item.upper() for item in text))
             return Response({})
         opener = QueueOpener(Response(deck("created1", [], title="Workshop")), populate,
                              Response(deck("created1", ["hs_lesson"], title="Workshop")))
@@ -355,8 +355,8 @@ class ProviderTests(unittest.TestCase):
         source.update(fictional=False, narration="Recorded workshop speaker", source_kind="user_recordings")
         def populate(request):
             text = [item["insertText"]["text"] for item in json.loads(request.data)["requests"] if "insertText" in item]
-            self.assertIn("SOURCE RECORDINGS · Recorded workshop speaker", text)
-            self.assertNotIn("FICTIONAL FIXTURE · SYNTHESIZED NARRATION", text)
+            self.assertIn("Source recordings. Recorded workshop speaker", text)
+            self.assertNotIn("Fictional sample. Synthesized narration.", text)
             return Response({})
         opener = QueueOpener(Response(deck("created1", [], title=source["title"])), populate, Response(source_deck()))
         Providers(opener=opener).create_source_deck(source)

@@ -9,3 +9,4 @@ assets/generated/
 node_modules/
 .DS_Store
 /AGENTS.md
+/:memory:.ses

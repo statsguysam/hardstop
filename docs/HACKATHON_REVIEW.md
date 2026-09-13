@@ -29,7 +29,7 @@ The separate predeclared model evaluation passed 6/6 on six first calls, consumi
 
 ## Boundaries to explain
 
-The model interprets wording and ranks optional clips; code checks recognized directives and solves the selection problem. The language audit is deliberately limited and can require review. Source owners provide accurate transcripts, labels and declared dependencies for 1–18 prepared recordings. The importer generates the source deck from `slide_text`; it does not import an existing designed deck. The agent cannot transcribe or split arbitrary footage, rewrite narration, accelerate playback, edit inside a clip or establish arbitrary semantic equivalence.
+The model interprets wording and ranks optional clips; code checks recognized directives and solves the selection problem. The language audit is deliberately limited and can require review. Source owners provide accurate transcripts, labels and declared dependencies for 1 to 18 prepared recordings. The importer generates the source deck from `slide_text`; it does not import an existing designed deck. The agent cannot transcribe or split arbitrary footage, rewrite narration, accelerate playback, edit inside a clip or establish arbitrary semantic equivalence.
 
 Google Slides checks compare structured source and copied content, not pixel-identical rendering. Cloud operations are not one atomic transaction: a later failure can leave private unpromoted artifacts for reconciliation. An unaddressed handoff draft is created, and no email is sent.
 

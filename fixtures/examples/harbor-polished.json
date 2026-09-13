@@ -1,0 +1,64 @@
+{
+  "title": "Harbor: inventory handoff training",
+  "description": "A fictional sample presentation for evaluating complete-clip selection and matched delivery. All scenarios and outcomes are invented.",
+  "fictional": true,
+  "narration": "Synthetic voice: Kokoro af_heart",
+  "segments": [
+    {
+      "id": "introduction",
+      "title": "Start the next shift with the facts",
+      "transcript": "Welcome to Harbor, a fictional training concept for inventory handoffs. At the end of a shift, the incoming team needs to know what was counted, which items still need checking, and who owns each open question. This short example introduces a shared handoff record.",
+      "slide_text": "Harbor\nWhat was counted?\nWhat needs checking?\nWho owns the next check?",
+      "requires": [],
+      "value": 4,
+      "media_path": "introduction.mp4"
+    },
+    {
+      "id": "setting",
+      "title": "One invented stockroom",
+      "transcript": "This example uses one invented stockroom and ten simulated handoffs. Every count and outcome is made up for training. The finding that follows applies only to this fictional setting.",
+      "slide_text": "10 simulated handoffs\nOne invented stockroom\nIllustrative counts only",
+      "requires": [],
+      "value": 6,
+      "media_path": "setting.mp4"
+    },
+    {
+      "id": "finding",
+      "title": "An illustrative finding",
+      "transcript": "In the fictional exercise, three unassigned stock questions became one after the handoff record was completed. This is an illustrative finding. Keep its setting.",
+      "slide_text": "Unassigned stock questions\n3 before; 1 after\nOnly in the fictional setting",
+      "requires": [
+        "setting"
+      ],
+      "value": 9,
+      "media_path": "finding.mp4"
+    },
+    {
+      "id": "walkthrough",
+      "title": "Record the count and the open question",
+      "transcript": "To use the proposed record, enter the item, the counted quantity, and the location checked. Add any unresolved question and name the person who will check it next. The incoming shift reads the open items before accepting the handoff. If a count looks wrong, keep the uncertainty visible and ask for another check.",
+      "slide_text": "Item, quantity, location\nOpen question and owner\nRead before accepting",
+      "requires": [],
+      "value": 10,
+      "media_path": "walkthrough.mp4"
+    },
+    {
+      "id": "limitations",
+      "title": "Fictional training example",
+      "transcript": "Harbor is a fictional demonstration with synthesized narration. These examples are not operating instructions or evidence of inventory accuracy.",
+      "slide_text": "Invented product and outcomes\nSynthesized narration\nNo customer claims",
+      "requires": [],
+      "value": 2,
+      "media_path": "limitations.mp4"
+    },
+    {
+      "id": "next_step",
+      "title": "Evaluate one routine handoff",
+      "transcript": "For a real evaluation, choose one routine handoff, agree on required fields, then compare effort and accuracy with your current process.",
+      "slide_text": "Choose one routine handoff\nAgree on the required fields\nReview effort and accuracy",
+      "requires": [],
+      "value": 7,
+      "media_path": "next_step.mp4"
+    }
+  ]
+}

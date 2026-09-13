@@ -1,27 +1,73 @@
-# HardStop: one presentation, two audiences
+# HardStop demonstration script
 
-Final video: **110.022 seconds**, 1920×1080. Narration: 215 words, synthesized locally.
+110-second edited montage of actual captured app states, with five seconds of silent playback from the verified operator output. This is not an uninterrupted screen recording.
 
-This is an edited montage of actual captured app states from completed API runs, with four seconds of actual output playback. It is not an uninterrupted screen recording. All source content is fictional. Harbor is a second synthetic fixture, not a customer submission. Its first brief required review; a clarified brief then succeeded.
+Narration uses the stock Kokoro af_heart synthetic voice. All source material is fictional. The persistent footer reads: Recorded runs; waits shortened. Synthetic voice; fictional samples.
 
-Persistent disclosure: Recorded API runs. Waiting time shortened. Fictional sources. Synthesized narration.
+## Recorded sequence
 
-| Time | Actual picture | Exact narration |
-| --- | --- | --- |
-| 0:00–0:08 | Actual buyer delivery and brief. | One presentation. Two audiences. A buyer and an operator. Both have ninety seconds. |
-| 0:08–0:19 | The changed operator brief; the buyer delivery is still available. | The buyer needs the problem explained. The operator needs to see the workflow. I change the Gmail brief, while the required result and disclaimer stay. |
-| 0:19–0:32 | Actual Why these clips panel, showing the model explanation and change from the buyer selection. | HardStop's model turns the request into ranked preferences. It favors the problem for the buyer, and the workflow for the operator. Required context stays with the result. |
-| 0:32–0:40 | Buyer delivery: problem plus the same four required clips. | Here's the buyer cut: eighty-five point six seconds, with its own matching deck. |
-| 0:40–0:48 | Operator delivery: workflow plus the same four required clips. | The operator cut is eighty-six point two seconds. Same limit. Different content. Here's a short excerpt. |
-| 0:48–0:52 | Four seconds from the actual operator video; source audio alone. | *Source audio only.* |
-| 0:52–1:02 | Native copied Google Slides deck with five retained slides. | The recordings come from Dropbox. For each cut, HardStop copies the Google Slides deck and checks that its pages match the selected clips. |
-| 1:02–1:12 | Native unaddressed Gmail handoff, cropped to the delivery summary. | Saved videos are downloaded again and checked. This Gmail draft brings the video and deck together for review. Nothing is sent. |
-| 1:12–1:26 | Thirty-second Relay request blocked; operator delivery remains available. | Now ask for thirty seconds. The required recordings alone need almost fifty-four. HardStop explains why they cannot fit, and preserves the last working delivery. |
-| 1:26–1:42 | Independent six-recording Harbor source, after a clarified brief completed through all three apps. | Harbor uses six new recordings, different section names, and a new dependency. After clarifying the brief, it produces a forty-three point six-second cut through the same three apps. This is a second fictional example. |
-| 1:42–1:50 | Close on the operator delivery. | HardStop. Change the audience or the time limit, and get a video and matching deck you can review together. |
+### 00:00 to 00:07: One presentation. Two audiences.
 
-The buyer, operator, Harbor and impossible outcomes were checked against their actual saved reports. Independent provider readbacks passed for the buyer, operator after the impossible request, and Harbor. The operator receipt identifies gpt-6-astra; the additional reports preserve their own recorded model provenance.
+Visual: buyer-ready.png.
 
-Captions match the exact narration and measured clip timing, with estimated phrase boundaries within each clip. The source excerpt uses the beginning of the unmodified operator recording.
+> You've got one presentation, two audiences, and ninety seconds. Which parts do you keep?
 
-[Verification evidence](EVIDENCE.md) | [Final captions](demo-captions.vtt)
+### 00:07 to 00:19: Same time limit. A different audience.
+
+Visual: operator-brief.png.
+
+> A buyer needs to understand the problem. An operator needs the walkthrough. I change the audience in the Gmail brief, keeping the result and disclaimer required.
+
+### 00:19 to 00:33: The audience changes what stays.
+
+Visual: operator-decisions.png.
+
+> HardStop reads the brief and uses the model to rank what's relevant. The buyer gets the problem. The operator gets the workflow. The result keeps its required context.
+
+### 00:33 to 00:40: The buyer's version.
+
+Visual: buyer-ready.png.
+
+> Here's the buyer's version. Under ninety seconds, with a deck that follows the same selection.
+
+### 00:40 to 00:46: The operator's version.
+
+Visual: operator-ready.png.
+
+> For the operator, we get a different cut, still inside the same limit.
+
+### 00:46 to 00:51: The finished video, playing silently.
+
+Visual: Silent playback of the actual operator cut.
+
+> This is the finished video, playing silently.
+
+### 00:51 to 01:02: The slides follow the chosen recordings.
+
+Visual: operator-deck.png.
+
+> The clips live in Dropbox. HardStop copies the Google Slides deck, then checks that every recording has the right slide, in the right order.
+
+### 01:02 to 01:12: The delivery is ready for review.
+
+Visual: operator-handoff.png.
+
+> It downloads the saved video to check it again. Then it prepares this Gmail handoff, ready for review. Nothing is sent.
+
+### 01:12 to 01:26: Can you make it thirty seconds?
+
+Visual: impossible-v2.png.
+
+> But what if someone asks for thirty seconds? The required recordings alone already run past that. HardStop stops, shows what's blocking the request, and keeps the last working version.
+
+### 01:26 to 01:42: A different source. The same checks.
+
+Visual: harbor-ready.png.
+
+> To try a different source, I imported Harbor: six new recordings with their own section names and dependency. After clarifying the brief, the same workflow delivered a cut under sixty seconds. Another fictional example.
+
+### 01:42 to 01:50: A version for each audience.
+
+Visual: operator-ready.png.
+
+> HardStop gives each audience the version they need, with the video and slides ready to review together.

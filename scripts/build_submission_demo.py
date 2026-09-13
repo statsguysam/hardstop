@@ -3,6 +3,8 @@
 
 No app UI is fabricated. Missing captures stop rendering. --prepare generates
 only narration, editorial frames and a shot list; --render needs every capture.
+Preparation needs kokoro-onnx, soundfile, Pillow and separately downloaded local
+Kokoro model/voice files. This script makes no speech API calls or downloads.
 """
 from __future__ import annotations
 
@@ -22,41 +24,42 @@ from hardstop.media import probe, sha256_file, verify_decode
 W, H = 1920, 1080
 NAVY, TEXT, MUTED = "#10131B", "#F6F6F3", "#B0B4BE"
 FONT = "/System/Library/Fonts/Avenir Next.ttc"
-FOOTER = "Recorded API runs. Waiting time shortened. Fictional sources. Synthesized narration."
+FOOTER = "Recorded runs; waits shortened. Synthetic voice; fictional samples."
 
 SHOTS = [
-    {"id": "01_hook", "seconds": 8, "image": "buyer-ready.png",
+    {"id": "01_hook", "seconds": 7, "image": "buyer-ready.png",
      "title": "One presentation. Two audiences.", "focus": "1082:700:0:190",
-     "speech": "One presentation. Two audiences. A buyer and an operator. Both have ninety seconds."},
-    {"id": "02_brief", "seconds": 11, "image": "operator-brief.png",
+     "speech": "You've got one presentation, two audiences, and ninety seconds. Which parts do you keep?"},
+    {"id": "02_brief", "seconds": 12, "image": "operator-brief.png",
      "title": "Same time limit. A different audience.", "focus": "1082:700:0:190",
-     "speech": "The buyer needs the problem explained. The operator needs to see the workflow. I change the Gmail brief, while the required result and disclaimer stay."},
-    {"id": "03_decisions", "seconds": 13, "image": "operator-decisions.png",
-     "title": "The audience changes what stays.", "focus": "432:366:635:57",
-     "speech": "HardStop's model turns the request into ranked preferences. It favors the problem for the buyer, and the workflow for the operator. Required context stays with the result."},
-    {"id": "04_buyer", "seconds": 8, "image": "buyer-ready.png",
-     "title": "For the buyer: 85.603 seconds.", "focus": "1082:700:0:190",
-     "speech": "Here's the buyer cut: eighty-five point six seconds, with its own matching deck."},
-    {"id": "05_operator", "seconds": 8, "image": "operator-ready.png",
-     "title": "For the operator: 86.203 seconds.", "focus": "1082:700:0:190",
-     "speech": "The operator cut is eighty-six point two seconds. Same limit. Different content. Here's a short excerpt."},
-    {"id": "06_source", "seconds": 4, "video": True,
-     "title": "From the operator's finished video.", "speech": ""},
-    {"id": "07_deck", "seconds": 10, "image": "operator-deck.png", "focus": "984:570:0:114",
+     "speech": "A buyer needs to understand the problem. An operator needs the walkthrough. I change the audience in the Gmail brief, keeping the result and disclaimer required."},
+    {"id": "03_decisions", "seconds": 14, "image": "operator-decisions.png",
+     "title": "The audience changes what stays.", "focus": "432:392:635:94",
+     "speech": "HardStop reads the brief and uses the model to rank what's relevant. The buyer gets the problem. The operator gets the workflow. The result keeps its required context."},
+    {"id": "04_buyer", "seconds": 7, "image": "buyer-ready.png",
+     "title": "The buyer's version.", "focus": "1082:700:0:190",
+     "speech": "Here's the buyer's version. Under ninety seconds, with a deck that follows the same selection."},
+    {"id": "05_operator", "seconds": 6, "image": "operator-ready.png",
+     "title": "The operator's version.", "focus": "1082:700:0:190",
+     "speech": "For the operator, we get a different cut, still inside the same limit."},
+    {"id": "06_source", "seconds": 5, "video": True,
+     "title": "The finished video, playing silently.",
+     "speech": "This is the finished video, playing silently."},
+    {"id": "07_deck", "seconds": 11, "image": "operator-deck.png", "focus": "984:570:0:114",
      "title": "The slides follow the chosen recordings.",
-     "speech": "The recordings come from Dropbox. For each cut, HardStop copies the Google Slides deck and checks that its pages match the selected clips."},
+     "speech": "The clips live in Dropbox. HardStop copies the Google Slides deck, then checks that every recording has the right slide, in the right order."},
     {"id": "08_handoff", "seconds": 10, "image": "operator-handoff.png", "focus": "980:274:150:40",
      "title": "The delivery is ready for review.",
-     "speech": "Saved videos are downloaded again and checked. This Gmail draft brings the video and deck together for review. Nothing is sent."},
+     "speech": "It downloads the saved video to check it again. Then it prepares this Gmail handoff, ready for review. Nothing is sent."},
     {"id": "09_impossible", "seconds": 14, "image": "impossible-v2.png",
-     "title": "“Can you make it thirty seconds?”", "focus": "1082:700:0:190",
-     "speech": "Now ask for thirty seconds. The required recordings alone need almost fifty-four. HardStop explains why they cannot fit, and preserves the last working delivery."},
+     "title": "Can you make it thirty seconds?", "focus": "1026:455:28:181",
+     "speech": "But what if someone asks for thirty seconds? The required recordings alone already run past that. HardStop stops, shows what's blocking the request, and keeps the last working version."},
     {"id": "10_harbor", "seconds": 16, "image": "harbor-ready.png",
-     "title": "A different source. The same checks.", "focus": "1082:700:0:190",
-     "speech": "Harbor uses six new recordings, different section names, and a new dependency. After clarifying the brief, it produces a forty-three point six-second cut through the same three apps. This is a second fictional example."},
+     "title": "A different source. The same checks.", "focus": "1188:525:46:181",
+     "speech": "To try a different source, I imported Harbor: six new recordings with their own section names and dependency. After clarifying the brief, the same workflow delivered a cut under sixty seconds. Another fictional example."},
     {"id": "11_close", "seconds": 8, "image": "operator-ready.png",
      "title": "A version for each audience.", "focus": "595:695:24:195",
-     "speech": "HardStop. Change the audience or the time limit, and get a video and matching deck you can review together."},
+     "speech": "HardStop gives each audience the version they need, with the video and slides ready to review together."},
 ]
 
 
@@ -141,8 +144,16 @@ def write_captions(storyboard, destination):
         total = sum(weights)
         start = shot["start_seconds"] + 0.1
         duration = shot["speech_duration_ms"] / 1000
-        for phrase, weight in zip(phrases, weights):
-            end = start + duration * weight / total
+        aligned = shot.get("caption_intervals", [])
+        for index, (phrase, weight) in enumerate(zip(phrases, weights)):
+            if aligned:
+                interval = aligned[index]
+                if interval["text"] != phrase:
+                    raise RuntimeError("Caption alignment does not match the prepared text")
+                start = shot["start_seconds"] + 0.1 + interval["start"]
+                end = shot["start_seconds"] + 0.1 + interval["end"]
+            else:
+                end = start + duration * weight / total
             words, lines, line = phrase.split(), [], ""
             for word in words:
                 if line and len(line + " " + word) > 42:
@@ -157,26 +168,53 @@ def write_captions(storyboard, destination):
             start = end
     destination.write_text("\n".join(cues))
 
-def prepare(output, caption_destination):
+def prepare(output, caption_destination, voice_model, voice_pack, voice, speed):
+    import onnxruntime
+    onnxruntime.disable_telemetry_events()
+    from kokoro_onnx import Kokoro
+    import soundfile
+
     output.mkdir(parents=True, exist_ok=True)
+    for asset in (voice_model, voice_pack):
+        if not asset.is_file():
+            raise RuntimeError("Local Kokoro asset is missing: " + str(asset))
+    voice_config = {"engine": "kokoro-onnx", "voice": voice, "speed": speed,
+                    "model_sha256": sha256_file(voice_model),
+                    "voice_pack_sha256": sha256_file(voice_pack),
+                    "voice_type": "stock synthetic voice; no impersonation"}
+    previous_config = output / "voice.json"
+    voice_changed = not previous_config.exists() or json.loads(previous_config.read_text()) != voice_config
+    engine = None
+    alignment_path = output / "caption-alignment.json"
+    alignments = json.loads(alignment_path.read_text()) if alignment_path.exists() else {}
     position = 0
     storyboard = []
     for shot in SHOTS:
         background(shot, output / (shot["id"] + ".png"))
-        audio = output / (shot["id"] + ".aiff")
+        audio = output / (shot["id"] + ".wav")
         transcript = output / (shot["id"] + ".txt")
         changed = not transcript.exists() or transcript.read_text() != shot["speech"]
         transcript.write_text(shot["speech"])
-        if shot["speech"] and (not audio.exists() or changed):
-            run(["say", "-v", "Samantha", "-r", "166", "-f", str(transcript), "-o", str(audio)])
+        if shot["speech"] and (not audio.exists() or changed or voice_changed):
+            if engine is None:
+                engine = Kokoro(str(voice_model), str(voice_pack))
+            spoken_text = shot["speech"].replace("HardStop", "Hard Stop")
+            samples, sample_rate = engine.create(spoken_text, voice=voice, speed=speed, lang="en-us")
+            soundfile.write(str(audio), samples, sample_rate, subtype="PCM_16")
         spoken_ms = probe(audio)["duration_ms"] if shot["speech"] else 0
         if spoken_ms + 250 > shot["seconds"] * 1000:
             raise RuntimeError(f"Narration too long for {shot['id']}: {spoken_ms} ms for {shot['seconds']}s")
-        storyboard.append({**shot, "start_seconds": position, "speech_duration_ms": spoken_ms})
+        entry = {**shot, "start_seconds": position, "speech_duration_ms": spoken_ms}
+        aligned = alignments.get(shot["id"], {})
+        if (aligned.get("speech") == shot["speech"] and
+                aligned.get("audio_sha256") == sha256_file(audio)):
+            entry["caption_intervals"] = aligned["phrases"]
+        storyboard.append(entry)
         position += shot["seconds"]
     if not 100 <= position <= 114:
         raise RuntimeError(f"Demo duration {position}s is outside its requested range")
     (output / "storyboard.json").write_text(json.dumps({"duration_seconds": position, "shots": storyboard}, indent=2) + "\n")
+    previous_config.write_text(json.dumps(voice_config, indent=2) + "\n")
     write_captions(storyboard, caption_destination)
     print(json.dumps({"prepared": True, "seconds": position, "narration_words": sum(len(s['speech'].split()) for s in SHOTS)}))
 
@@ -202,28 +240,31 @@ def verify_captions(storyboard, duration_seconds, caption_path):
         raise RuntimeError("Caption text does not exactly match the final narration")
     return {"cues": len(cues), "exact_narration_text": True, "maximum_lines": 2,
             "speech_file_timing_verified": True,
-            "phrase_timing": "estimated within each measured narration clip",
+            "phrase_timing": ("matched to local speech-recognition word times"
+                              if all(s.get("caption_intervals") for s in storyboard)
+                              else "estimated within each measured narration clip"),
             "sha256": sha256_file(caption_path)}
 
 
 def verify_run_evidence(buyer_report, harbor_report, impossible_report, harbor_review_report):
     evidence, inputs = {}, {}
     expectations = [
-        ("buyer", buyer_report, "ready", 85603,
+        ("buyer", buyer_report, "ready", 90000,
          ["problem", "pilot_context", "result", "disclaimer", "call_to_action"]),
-        ("harbor", harbor_report, "ready", 43601,
+        ("harbor", harbor_report, "ready", 60000,
          ["setting", "finding", "limitations", "next_step"]),
         ("impossible", impossible_report, "infeasible", None, []),
         ("harbor_clarification", harbor_review_report, "needs_review", None, []),
     ]
-    for label, path, status, duration, selected in expectations:
+    for label, path, status, maximum_duration, selected in expectations:
         receipt = json.loads(path.read_text())
         inputs[path] = sha256_file(path)
         if receipt.get("status") != status or receipt.get("plan", {}).get("selected_ids") != selected:
             raise RuntimeError(f"The {label} run does not support the final narration")
         if status == "ready":
             media = path.parent / "cut.mp4"
-            if (receipt.get("media", {}).get("duration_ms") != duration or
+            duration = receipt.get("media", {}).get("duration_ms")
+            if (not isinstance(duration, int) or not 0 < duration <= maximum_duration or
                     probe(media)["duration_ms"] != duration or
                     sha256_file(media) != receipt["media"].get("sha256") or
                     not all(receipt.get("outputs", {}).get(key)
@@ -232,8 +273,10 @@ def verify_run_evidence(buyer_report, harbor_report, impossible_report, harbor_r
             inputs[media] = sha256_file(media)
         elif receipt.get("outputs"):
             raise RuntimeError(f"The {label} blocked run unexpectedly contains outputs")
-        elif status == "infeasible" and receipt.get("plan", {}).get("minimum_required_ms") != 53969:
+        elif status == "infeasible" and receipt.get("plan", {}).get("minimum_required_ms", 0) <= 30000:
             raise RuntimeError("The impossible run does not match the recorded thirty-second conflict")
+        else:
+            duration = None
         evidence[label] = {"run_id": receipt["id"], "status": status,
                            "model": receipt.get("model", {}).get("model"),
                            "duration_ms": duration, "selected_ids": selected,
@@ -241,7 +284,7 @@ def verify_run_evidence(buyer_report, harbor_report, impossible_report, harbor_r
     return evidence, inputs
 
 
-def render(capture, output, source_video, destination, buyer_report, harbor_report, impossible_report, harbor_review_report):
+def render(capture, output, source_video, destination, buyer_report, harbor_report, impossible_report, harbor_review_report, readbacks_path):
     missing = [shot["image"] for shot in SHOTS if "image" in shot and not (capture / shot["image"]).is_file()]
     if missing:
         raise RuntimeError("Actual captures still needed: " + ", ".join(sorted(set(missing))))
@@ -249,7 +292,7 @@ def render(capture, output, source_video, destination, buyer_report, harbor_repo
         raise RuntimeError("Actual verified source output is missing")
     evidence, evidence_inputs = verify_run_evidence(buyer_report, harbor_report, impossible_report, harbor_review_report)
     source_info = probe(source_video)
-    if source_info["duration_ms"] != 86203:
+    if not 0 < source_info["duration_ms"] <= 90000:
         raise RuntimeError("Update the demo script to match the measured final ninety-second cut")
     source_before = sha256_file(source_video)
     source_receipt = source_video.parent / "report.json"
@@ -257,11 +300,11 @@ def render(capture, output, source_video, destination, buyer_report, harbor_repo
         raise RuntimeError("A real ready-run report is required beside the source video")
     receipt = json.loads(source_receipt.read_text())
     evidence_inputs[source_receipt] = sha256_file(source_receipt)
-    if receipt.get("status") != "ready" or receipt.get("media", {}).get("sha256") != source_before:
+    if (receipt.get("status") != "ready" or receipt.get("media", {}).get("sha256") != source_before or
+            receipt.get("media", {}).get("duration_ms") != source_info["duration_ms"]):
         raise RuntimeError("The source recording does not match its verified live run")
     if receipt.get("plan", {}).get("selected_ids") != ["workflow", "pilot_context", "result", "disclaimer", "call_to_action"]:
         raise RuntimeError("The operator recording does not contain the narrated selection")
-    readbacks_path = ROOT / "docs/evidence/delivery-readbacks-v2.json"
     readbacks = json.loads(readbacks_path.read_text())
     observed = {item["label"]: item for item in readbacks.get("results", [])}
     for label, run_id in [("buyer", evidence["buyer"]["run_id"]),
@@ -279,6 +322,8 @@ def render(capture, output, source_video, destination, buyer_report, harbor_repo
     if [{key: shot[key] for key in ("id", "seconds", "speech")} for shot in info["shots"]] != [
             {key: shot[key] for key in ("id", "seconds", "speech")} for shot in SHOTS]:
         raise RuntimeError("Prepare the final narration before rendering this shot list")
+    narration_hashes = {shot["id"] + ".wav": sha256_file(output / (shot["id"] + ".wav"))
+                        for shot in SHOTS if shot["speech"]}
     captured_files = {}
     for shot in SHOTS:
         inputs = [(capture / shot["image"])] if "image" in shot else []
@@ -311,8 +356,8 @@ def render(capture, output, source_video, destination, buyer_report, harbor_repo
         else:
             args += ["-loop", "1", "-framerate", "30", "-i", str(capture / shot["image"])]
         if shot["speech"]:
-            args += ["-i", str(output / (shot["id"] + ".aiff"))]
-            audio = "[2:a]adelay=100:all=1,apad,alimiter=limit=0.94[a]"
+            args += ["-i", str(output / (shot["id"] + ".wav"))]
+            audio = "[2:a]loudnorm=I=-18:TP=-2:LRA=11,adelay=100:all=1,apad,alimiter=limit=0.94[a]"
         else:
             audio = "[1:a]apad,alimiter=limit=0.94[a]"
         crop = "crop=" + shot["focus"] + "," if shot.get("focus") else ""
@@ -339,6 +384,7 @@ def render(capture, output, source_video, destination, buyer_report, harbor_repo
         raise RuntimeError("Final demo failed duration or media verification")
     verify_decode(destination)
     metadata = json.loads(run(["ffprobe", "-v", "error", "-show_format", "-show_streams", "-of", "json", str(destination)]))
+    (output / "metadata.json").write_text(json.dumps(metadata, indent=2) + "\n")
     tags = [metadata.get("format", {}).get("tags", {})] + [s.get("tags", {}) for s in metadata.get("streams", [])]
     unwanted = {"encoder", "comment", "artist", "author", "creator", "title", "creation_time"}
     if any(key.lower() in unwanted and value for group in tags for key, value in group.items()):
@@ -352,6 +398,7 @@ def render(capture, output, source_video, destination, buyer_report, harbor_repo
         raise RuntimeError("The narration is silent, too quiet, or clips")
     if (sha256_file(source_video) != source_before or
             any(sha256_file(capture / name) != value for name, value in captured_files.items()) or
+            any(sha256_file(output / name) != value for name, value in narration_hashes.items()) or
             any(sha256_file(path) != value for path, value in evidence_inputs.items())):
         raise RuntimeError("An input recording or capture changed during rendering")
     captions = verify_captions(info["shots"], measured["duration_ms"] / 1000, destination.with_suffix(".vtt"))
@@ -361,9 +408,23 @@ def render(capture, output, source_video, destination, buyer_report, harbor_repo
               "additional_run_evidence": evidence,
               "independent_delivery_readbacks": readbacks,
               "capture_hashes": captured_files, "recording_disclosure": FOOTER,
+              "narration": json.loads((output / "voice.json").read_text()),
+              "narration_hashes": narration_hashes,
+              "source_excerpt_audio": "muted under synthetic narration",
               "optional_identifying_metadata_removed": True, "mean_volume_db": mean,
               "peak_volume_db": peak, "captions": captions}
     (output / "verification.json").write_text(json.dumps(report, indent=2) + "\n")
+    script = ["# HardStop demonstration script", "",
+              "110-second edited montage of actual captured app states, with five seconds of silent playback from the verified operator output. This is not an uninterrupted screen recording.", "",
+              "Narration uses the stock Kokoro af_heart synthetic voice. All source material is fictional. The persistent footer reads: " + FOOTER, "",
+              "## Recorded sequence", ""]
+    for shot in info["shots"]:
+        start = int(shot["start_seconds"])
+        end = int(start + shot["seconds"])
+        script += [f"### {start // 60:02d}:{start % 60:02d} to {end // 60:02d}:{end % 60:02d}: {shot['title']}", "",
+                   "Visual: " + (shot.get("image") or "Silent playback of the actual operator cut") + ".", "",
+                   "> " + shot["speech"], ""]
+    (output / "DEMO_SCRIPT.md").write_text("\n".join(script))
     print(json.dumps(report, indent=2))
 
 
@@ -371,22 +432,28 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--prepare", action="store_true")
     parser.add_argument("--render", action="store_true")
-    parser.add_argument("--capture-dir", type=Path, default=ROOT / ".state/demo-capture-v2")
-    parser.add_argument("--work-dir", type=Path, default=ROOT / "output/demo-build-v2")
+    parser.add_argument("--capture-dir", type=Path, default=ROOT / ".state/demo-capture-v3")
+    parser.add_argument("--work-dir", type=Path, default=ROOT / "output/demo-build-v3")
+    parser.add_argument("--voice-model", type=Path, default=ROOT / "output/demo-build-v3/kokoro-v1.0.onnx")
+    parser.add_argument("--voice-pack", type=Path, default=ROOT / "output/demo-build-v3/voices-v1.0.bin")
+    parser.add_argument("--voice", default="af_heart")
+    parser.add_argument("--voice-speed", type=float, default=.95)
     parser.add_argument("--source-video", type=Path)
     parser.add_argument("--buyer-report", type=Path)
     parser.add_argument("--harbor-report", type=Path)
     parser.add_argument("--impossible-report", type=Path)
     parser.add_argument("--harbor-review-report", type=Path)
-    parser.add_argument("--output", type=Path, default=ROOT / "output/hardstop-demo-v2.mp4")
+    parser.add_argument("--readbacks", type=Path, default=ROOT / "docs/evidence/delivery-readbacks-v3.json")
+    parser.add_argument("--output", type=Path, default=ROOT / "output/hardstop-demo-v3.mp4")
     args = parser.parse_args()
     if args.prepare:
-        prepare(args.work_dir, args.output.with_suffix(".vtt"))
+        prepare(args.work_dir, args.output.with_suffix(".vtt"), args.voice_model, args.voice_pack,
+                args.voice, args.voice_speed)
     if args.render:
         if not all((args.source_video, args.buyer_report, args.harbor_report, args.impossible_report, args.harbor_review_report)):
             parser.error("--render requires --source-video, --buyer-report, --harbor-report, --impossible-report and --harbor-review-report")
         render(args.capture_dir, args.work_dir, args.source_video, args.output,
-               args.buyer_report, args.harbor_report, args.impossible_report, args.harbor_review_report)
+               args.buyer_report, args.harbor_report, args.impossible_report, args.harbor_review_report, args.readbacks)
     if not args.prepare and not args.render:
         parser.error("Choose --prepare or --render")
 

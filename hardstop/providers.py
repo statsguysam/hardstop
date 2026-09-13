@@ -395,8 +395,8 @@ class Providers:
 
         shape("edge", 0, 0, 8, 405, fill=cobalt)
         brand = "HARDSTOP  /  DEMO DELIVERY" if legacy_demo else "HARDSTOP  /  SOURCE RECORDINGS"
-        footer = "FICTIONAL FIXTURE · SYNTHESIZED NARRATION" if legacy_demo else (
-            ("FICTIONAL SOURCE · " if fictional else "SOURCE RECORDINGS · ") + narration)
+        footer = "Fictional sample. Synthesized narration." if legacy_demo else (
+            ("Fictional source. " if fictional else "Source recordings. ") + narration)
         title_size = 35 if legacy_demo or len(segment["title"]) <= 65 else 28 if len(segment["title"]) <= 100 else 24
         body_size = 23 if legacy_demo or len(segment["slide_text"]) <= 140 else 18 if len(segment["slide_text"]) <= 240 else 15
         shape("brand", 34, 27, 550, 27, brand, size=11, color=citrus, bold=True)

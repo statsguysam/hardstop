@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="dark">
   <meta name="description" content="Shorten a recorded presentation, keep its required clips, and check the finished video and slides.">
-  <title>HardStop — Your next cut</title>
+  <title>HardStop: Your next cut</title>
   <link rel="stylesheet" href="/app.css">
   <script defer src="/app.js"></script>
 </head>
@@ -24,14 +24,14 @@
       </section>
 
       <div id="global-error" class="notice error-notice" role="alert" hidden></div>
-      <div id="initial-loading" class="notice">Opening your workspace…</div>
+      <div id="initial-loading" class="notice">Opening your workspace</div>
 
       <div class="workspace-grid">
         <div class="main-column">
           <section class="panel monitor-panel" aria-labelledby="monitor-title">
             <div class="panel-heading"><h2 id="monitor-title">Your cut</h2><div id="run-status" class="status-tag neutral">Ready to begin</div></div>
             <div id="result-banner" aria-live="polite"></div>
-            <div id="metrics" class="metrics"><div class="primary-metric"><span class="metric-label">Checked duration</span><div class="timer">—:—</div><span class="metric-detail">Your finished video will appear here.</span></div><div class="secondary-metrics"><div><span class="metric-label">Time limit</span><strong>—</strong></div><div><span class="metric-label">Original</span><strong>—</strong></div></div></div>
+            <div id="metrics" class="metrics"><div class="primary-metric"><span class="metric-label">Checked duration</span><div class="timer">--:--</div><span class="metric-detail">Your finished video will appear here.</span></div><div class="secondary-metrics"><div><span class="metric-label">Time limit</span><strong>Not set</strong></div><div><span class="metric-label">Original</span><strong>--:--</strong></div></div></div>
             <div id="budget-meter" class="budget-area"></div>
             <div class="video-shell"><video id="output-video" controls preload="metadata" aria-label="Verified presentation video" hidden></video><div id="video-empty" class="video-empty"><strong>Ready for a new cut.</strong><span>Choose a brief, then make the cut.<br>We’ll keep each selected recording intact.</span></div></div>
             <div id="output-links" class="output-links"><span class="muted">The video and slides appear here once they’ve been checked.</span></div>

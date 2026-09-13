@@ -21,7 +21,7 @@ MAX_CLIP_MS = 600_000
 MAX_TOTAL_MS = 3_600_000
 CATALOG_FIELDS = {"title", "description", "fictional", "narration", "segments"}
 SEGMENT_FIELDS = {"id", "title", "transcript", "slide_text", "requires", "value", "media_path"}
-# Slides IDs are 5–50 characters; reserve space for hs_ and _footer.
+# Slides IDs are 5 to 50 characters; reserve space for hs_ and _footer.
 ID_PATTERN = re.compile(r"[a-z][a-z0-9_]{1,39}\Z")
 SHAPE_SUFFIXES = ("edge", "brand", "number", "title", "rule", "body", "footer")
 
@@ -34,7 +34,7 @@ def _text(value, label, limit, *, single_line=False):
     if (not isinstance(value, str) or not value.strip() or len(value) > limit or
             any(ord(char) < 32 and char not in ("\n", "\t") for char in value) or
             (single_line and any(char in value for char in ("\n", "\t")))):
-        raise SourceError(f"{label} must contain 1–{limit} characters of valid text")
+        raise SourceError(f"{label} must contain 1 to {limit} characters of valid text")
     return value
 
 
@@ -51,14 +51,14 @@ def validate_catalog_metadata(catalog, *, require_media_paths=True):
         raise SourceError("Declare fictional explicitly as true or false")
     segments = catalog.get("segments")
     if not isinstance(segments, list) or not 1 <= len(segments) <= 18:
-        raise SourceError("A source catalog must contain 1–18 recordings")
+        raise SourceError("A source catalog must contain 1 to 18 recordings")
     known, object_ids = set(), set()
     for segment in segments:
         if not isinstance(segment, dict) or (require_media_paths and set(segment) != SEGMENT_FIELDS):
             raise SourceError("Each segment must declare id, title, transcript, slide_text, requires, value and media_path")
         sid = segment.get("id")
         if not isinstance(sid, str) or not ID_PATTERN.fullmatch(sid) or sid in known:
-            raise SourceError("Segment IDs must be unique snake_case names of 2–40 characters")
+            raise SourceError("Segment IDs must be unique snake_case names of 2 to 40 characters")
         generated_ids = {"hs_" + sid} | {"hs_" + sid + "_" + suffix for suffix in SHAPE_SUFFIXES}
         if generated_ids & object_ids:
             raise SourceError("Segment names collide with generated slide or shape IDs")
@@ -210,7 +210,7 @@ def _install_directory(parent_fd, staged_name, destination_name):
 
 
 def import_source(catalog_path, output_dir):
-    """Copy, measure and fully decode 1–18 clips into a new source directory.
+    """Copy, measure and fully decode 1 to 18 clips into a new source directory.
 
     Paths in the input JSON are relative to its directory. Fiction/narration,
     transcripts and slide text are declarations by the user, not independently

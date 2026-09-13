@@ -35,7 +35,7 @@ Put a JSON catalog beside the MP4 files, or use relative paths to files below th
 }
 ```
 
-The array defines the immutable source order. Each `requires` entry names an earlier clip that must accompany this one; dependencies are transitive. IDs are unique, 2–40 characters, start with a lowercase letter, and contain only lowercase letters, digits and underscores. Names that collide with generated Slides object IDs are rejected. `value` is an integer from 1 to 10 used as the default optional-clip priority. The model may supply a different priority from the brief; mandatory content still takes precedence.
+The array defines the immutable source order. Each `requires` entry names an earlier clip that must accompany this one; dependencies are transitive. IDs are unique, 2 to 40 characters, start with a lowercase letter, and contain only lowercase letters, digits and underscores. Names that collide with generated Slides object IDs are rejected. `value` is an integer from 1 to 10 used as the default optional-clip priority. The model may supply a different priority from the brief; mandatory content still takes precedence.
 
 Transcripts, fictional-content declarations, narration labels and dependencies are **source-owner declarations**. HardStop validates their format, not whether the spoken content or real-world claims match them. Review them before use. A transcript may contain up to 12,000 characters; a clip title up to 120; `slide_text` up to 320. The application generates one simple native Google slide from the title and `slide_text` for each clip. It does not import an existing deck's design or infer slides from the video.
 
@@ -48,7 +48,7 @@ Harbor also completed a real import-and-delivery run in a separate workspace: fo
 | Input | Supported bound |
 | --- | --- |
 | Catalog | UTF-8 JSON, at most 256 KiB; no duplicate JSON keys |
-| Recordings | 1–18 complete, self-contained MP4 files |
+| Recordings | 1 to 18 complete, self-contained MP4 files |
 | Streams | Exactly one video and one audio stream per recording |
 | Geometry | Shared dimensions across clips, even width and height, from 16 pixels up to 3840 × 2160 |
 | Duration | At most 10 minutes per clip and 60 minutes in total |

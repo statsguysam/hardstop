@@ -2,7 +2,32 @@
 
 HardStop has completed real API runs across Gmail, Google Slides, Dropbox, and the runtime model. The Relay source presentation and outcomes are fictional and its narration is synthesized. Preset Gmail briefs are labeled fixtures; additional authored audience briefs were saved to the dedicated draft. Full deliveries, a model-and-planner evaluation, and isolated automated tests are described separately below.
 
-## Observed live runs
+## Current release runs
+
+The v0.3.0 presentation uses new, dedicated source workspaces and regenerated fictional recordings with a stock synthetic voice. Relay has eight recordings totaling **177.036 seconds**; Harbor has six totaling **83.202 seconds**. The previous recordings and receipts below remain unchanged. The new [source bundles](evidence/source-bundles-v3.json) were extracted, imported, fully decoded and compared with their registered source hashes.
+
+| Recorded case | Result | Measured delivery | Checks during the run |
+| --- | --- | ---: | --- |
+| [Buyer audience, 90-second cap](evidence/buyer-polished.json) | Ready; optional `problem` | 87.868 seconds | 25 passed |
+| [Operator audience, 90-second cap](evidence/operator-polished.json) | Ready; optional `workflow` | 88.368 seconds | 25 passed |
+| [Impossible 30-second revision](evidence/impossible-polished.json) | Infeasible; no new outputs | No render | Required minimum is 55.101 seconds |
+| [Harbor, 60-second cap](evidence/harbor-polished.json) | Ready; required clips and context | 44.701 seconds | 24 passed |
+| [Earlier Harbor wording](evidence/harbor-review-polished.json) | Needs review; no delivery | No render | An instruction did not unambiguously name a clip |
+| [Earlier operator attempt](evidence/operator-download-failure-polished.json) | Failed while downloading a source clip; no outputs | No render | 16 checks completed before the failed download |
+
+The buyer and operator retain the same `pilot_context`, `result`, `disclaimer` and `call_to_action` clips in source order. Their only selected optional clips differ. The successful runs took **60.215**, **64.619** and **54.018 seconds** respectively for buyer, operator and Harbor, including app transfers, model interpretation, rendering and verification. Their reported model usage was **1,824**, **1,862** and **1,371 tokens**. These are observations on one machine and connection, not speed guarantees or measured user time savings.
+
+A [separate provider readback](evidence/delivery-readbacks-v3.json) passed **10 buyer checks, 12 operator checks and 10 Harbor checks**. It compared downloaded video bytes/revisions, copied deck content/order and the exact unaddressed handoff drafts with the saved run records. The operator readback happened after the impossible request and additionally confirmed no new outputs and an unchanged last-ready reference. The [recorded-result inspector](https://statsguysam.github.io/hardstop/explore.html) shows these cases without account setup; it performs no live actions.
+
+The successful operator result followed a failed attempt. That [earlier attempt](evidence/operator-download-failure-polished.json) stopped after **142.261 seconds** during a Dropbox source download, before rendering or publishing outputs. Its **1,832 reported model tokens** are retained separately from the successful-run totals. The initial Harbor wording also required clarification before the successful run. The receipts include the exact labeled fictional briefs; these outcomes are not presented as uninterrupted first-attempt success.
+
+Source registration encountered a separate unknown Dropbox upload outcome. Setup kept the pending path in its private journal. When resumed, the pending-upload code downloaded that exact existing file and checked its hash before continuing; it did not blindly repeat the upload. The [reconciliation receipt](evidence/registration-recovery-v3.json) compares the interruption and completed journals, confirms the same registration identity, matching recording bytes and all eight uploads recorded, and notes that it is not a complete provider request trace.
+
+The [current demonstration](evidence/demo-recording-v3.json) measures **110.022 seconds**, with full decode, audio-level and caption checks recorded.
+
+The current local suite passed **216 tests**, including the durable public-inspector checks and the Harbor holdout evaluator tests. Eight offline inspector scenarios cover the four actual recorded cases, mismatched release hashes, missing preservation proof, unsafe markup and unavailable receipts. These tests use saved data and do not constitute additional provider runs. [Release artifact hashes](evidence/release-v3.json) identify the prepared files; anonymous publication checks are recorded separately after upload.
+
+## Original observed live runs (v0.1.0)
 
 | Request | Saved local run | Observed result | Actual rendered duration | Recorded checks |
 | --- | --- | --- | --- | --- |
@@ -22,6 +47,8 @@ The later ambiguous brief left the slot at one or two minutes and referred to an
 
 ## Live audience versions
 
+These are the earlier v0.2.0 audience deliveries on the original Relay recordings. The current release results are above.
+
 Two further completed runs used the same Relay recordings, **90-second cap**, explicit required IDs (`result`, `disclaimer`, `call_to_action`), empty exclusion list and declared `pilot_context` dependency. The briefs described their audiences without naming the preferred optional clip.
 
 | Audience | Saved local run | Selected optional clip | Actual rendered duration | Result |
@@ -36,6 +63,8 @@ The [subsequent 30-second request](evidence/impossible-after-operator.json), run
 This demonstrates an audience-dependent choice within one authored scenario. It does not demonstrate customer demand, time savings, automatic discovery of all needed context, or superiority to other editing products. [Producer use case and market-evidence limits](USE_CASE.md).
 
 ## Imported source: Harbor
+
+This section records the earlier v0.2.0 Harbor source and deliveries. The regenerated source has different measured durations, listed above.
 
 A separate six-clip fictional inventory-training package exercised the general source importer and a new three-app workspace. Its recordings were synthesized beforehand and supplied as local MP4s; the importer itself did not synthesize media. The source declared `finding` dependent on earlier `setting`, with unrelated IDs and content from the Relay catalog. [Source metadata](../fixtures/examples/harbor-catalog.json) and [both authored briefs](../fixtures/examples/harbor-briefs.json) are public.
 
@@ -73,6 +102,37 @@ python3 scripts/evaluate_briefs.py --live --source .state/demo-assets/manifest.j
 ```
 
 The first command lists cases without any API calls. The second saves a new checkpointed report and refuses to overwrite an existing output file. It requires the measured Relay manifest produced by generation or portable-bundle import; it is not an evaluation of arbitrary source packages. Preserve later reports separately from the original evidence.
+
+## Separate Harbor holdout
+
+The [Harbor holdout report](evidence/harbor-holdout.json) extends the check to the original six-recording Harbor catalog and a new 65-second cap. Its cases and exact expected selections were [declared at 22:15:47 UTC](evidence/harbor-holdout-declaration.json) before any attempt. The case SHA-256 is `fdbd887fce03d2e813ac1fa07baba8a407173236ee333aff57e9eba7529fdc13`; the declaration also records the catalog and implementation hashes. The original Relay evaluation was not modified.
+
+This is an authored holdout, developed after reviewing the earlier Relay evaluation and Harbor deliveries. It is not an independently sampled or blinded benchmark. The catalog, cap and wording differ; the sample remains small and intentionally bounded.
+
+| Fixed case | Expected outcome | Observed model-and-planner outcome |
+| --- | --- | --- |
+| Newcomer audience | Optional introduction | Passed; 61.535-second plan |
+| Experienced operator audience | Optional walkthrough | Passed; 64.535-second plan |
+| Explicit walkthrough exclusion | Introduction and required closure | Passed; 61.535-second plan, no walkthrough |
+| Impossible 30-second request | Infeasible | Passed; 43.601-second mandatory minimum, no selection |
+| Unconfirmed 45- or 65-second slot | Needs review | Passed; no selection |
+| Rewrite the finding narration | Needs review | Passed; no selection |
+
+**6/6 responded model cases passed**, using `gpt-6-astra`. Removing only the model's optional priorities while retaining extracted hard constraints passed **5/6**; the newcomer selection distinguishes the model ranking from the fixed catalog baseline here. Responses reported **5,822 input + 2,392 output = 8,214 tokens** across the six completed calls. These were plans, not rendered or delivered outputs. No Gmail, Slides or Dropbox calls occurred.
+
+There were **12 client attempts across two batches**. The [first six attempts](evidence/harbor-holdout-transport.json) all failed in 0 to 3 milliseconds without a Responses result under restricted network permissions. Their usage is unknown; the report's empty aggregate of known usage is not evidence of zero cost. A [separate operational rerun declaration](evidence/harbor-holdout-rerun-declaration.json), saved at 22:17:44 UTC, records that failure and authorizes one full rerun with network permission. All six unchanged prompts and expectations were then attempted once, from 22:17:51 to 22:18:45 UTC. No case was selectively retried or rewritten, and no model, interpreter or planner change was made between these batches. This operational exception is disclosed rather than described as six first attempts.
+
+The evaluator is [`scripts/evaluate_harbor_holdout.py`](../scripts/evaluate_harbor_holdout.py). It requires the original measured Harbor catalog, verifies the saved declaration against the current cases, source and implementation before live calls, and refuses to replace existing reports. The original v0.2 Harbor source is used for these numbers; later regenerated recordings may have different durations.
+
+```sh
+python3 scripts/evaluate_harbor_holdout.py --source .state/harbor-workspace/source.json \
+  --declaration .state/evaluations/my-harbor-declaration.json
+python3 scripts/evaluate_harbor_holdout.py --live --source .state/harbor-workspace/source.json \
+  --declaration .state/evaluations/my-harbor-declaration.json \
+  --output .state/evaluations/my-harbor-result.json
+```
+
+The first command makes no model calls. The second requires the user's configured Responses credentials. Two additional offline tests check predeclaration before calls, exact duration boundaries, baseline differences, and retention of a failed request while later cases continue. Those tests use controlled responses; they are distinct from the recorded live result.
 
 ## Independent preservation readback
 
@@ -114,13 +174,13 @@ python3 -m unittest discover -s tests -v
 node --check web/app.js
 ```
 
-The current local suite passed **213 tests**, including FFmpeg operations and loopback-server checks. JavaScript syntax passed. A separate planner stress check compared **250 generated catalogs** against an independent combinations-search oracle, including objective value and the shorter-duration tie break. It passed; those cases are **not** included in the unit-test count. The recorded stress check also exercised the 18-segment boundary. [Read the oracle summary](evidence/planner-stress.json). This is a sampled local test, not an exhaustive proof over all inputs or a live provider check.
+The current local suite passed **216 tests**, including FFmpeg operations, loopback-server checks and the recorded-result inspector. JavaScript syntax passed. A separate planner stress check compared **250 generated catalogs** against an independent combinations-search oracle, including objective value and the shorter-duration tie break. It passed; those cases are **not** included in the unit-test count. The recorded stress check also exercised the 18-segment boundary. [Read the oracle summary](evidence/planner-stress.json). This is a sampled local test, not an exhaustive proof over all inputs or a live provider check.
 
 A fresh committed-source export imported the portable release bundle and loaded the CLI without credentials. The [earlier GitHub Linux CI run](https://github.com/statsguysam/hardstop/actions/runs/34782456480) also passed all 166 tests with FFmpeg installed and no media-test skips. That run tested commit `9c8ecf0`, before the general source importer, evaluation harness and additional UI checks. It does not validate those later changes.
 
 [GitHub Linux CI for the strengthened release](https://github.com/statsguysam/hardstop/actions/runs/34784957386) passed **213 tests** in 5.541 seconds with FFmpeg installed and no skipped tests. It tested source commit `90654b77e16710d4dbd7825d94f85d8f16709aa5`. JavaScript syntax also passed.
 
-The current suite adds source-import and registration cases, evaluation scoring/failure accounting, and offline interface replay using the recorded audience interpretations. Source tests verify real local media boundaries and use isolated provider responses for registration. The UI tests use synthetic delivery states around the saved model outputs; they are not further live deliveries. Rerun the complete suite for the current source revision.
+The current suite adds source-import and registration cases, evaluation scoring/failure accounting, offline interface replay using recorded audience interpretations, and public-inspector identity and failure checks. Source tests verify real local media boundaries and use isolated provider responses for registration. The UI tests use synthetic delivery states around the saved model outputs; they are not further live deliveries. Rerun the complete suite for the current source revision.
 
 The suite covers deterministic planning, model-output validation, provider adapters, workflow failures, review-server access controls, OAuth flows, and private credential handling. Adversarial cases include omitted or reversed clip directives, unsupported edits hidden alongside a known clip, per-clip timing mistaken for a total limit, changed source content immediately before copying, altered copied content before readback or during trimming, malformed write identities, missing upload revisions, interrupted runs, and corrupt output readback. The media tests generate and decode real short videos with FFmpeg. Other external provider responses are isolated test doubles; they do not prove live credentials or remote app behavior.
 

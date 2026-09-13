@@ -34,7 +34,7 @@ flowchart LR
 
 ## Source contract
 
-There are two onboarding paths. `seed` uses the eight fictional segments in `fixtures/catalog.json`, with synthesized narration. `source` accepts 1–18 prepared local MP4 recordings and their source-owner catalog in a new workspace. Both register stable IDs, titles, transcripts, slide text, declared `requires` and default values. IDs contain 2–40 lowercase letters, digits or underscores and begin with a letter. Source import rejects generated slide-object name collisions. [Exact format and limits](SOURCE_GUIDE.md).
+There are two onboarding paths. `seed` uses the eight fictional segments in `fixtures/catalog.json`, with synthesized narration. `source` accepts 1 to 18 prepared local MP4 recordings and their source-owner catalog in a new workspace. Both register stable IDs, titles, transcripts, slide text, declared `requires` and default values. IDs contain 2 to 40 lowercase letters, digits or underscores and begin with a letter. Source import rejects generated slide-object name collisions. [Exact format and limits](SOURCE_GUIDE.md).
 
 Source import measures duration from the files and verifies full decoding; it does not estimate timing from transcript length. It checks sizes, common dimensions, audio/video streams, safe relative paths and file hashes before installing a new source directory. It does not generate narration or verify that a user-declared transcript accurately describes the audio. The Relay fixture's `result` dependency on earlier `pilot_context` is one declared example, not a built-in dependency for every presentation.
 

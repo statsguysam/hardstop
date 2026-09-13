@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Inspect four recorded HardStop results, their selected clips, and the saved delivery checks. No account setup needed.">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src https:; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>HardStop: Inspect recorded results</title>
+  <style>
+    :root{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#182632;background:#f4f3ed;--muted:#58646b;--line:#cdd2cd;--navy:#142431;--green:#dfe8bf}
+    *{box-sizing:border-box}body{margin:0}a{color:inherit;text-underline-offset:4px}button{font:inherit;cursor:pointer}button:focus-visible,a:focus-visible,summary:focus-visible,video:focus-visible{outline:3px solid #4777a0;outline-offset:4px}[hidden]{display:none!important}.wrap{max-width:1170px;margin:auto;padding:0 32px}.top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px;padding:26px 0;border-bottom:1px solid var(--line)}.brand{font:700 29px Georgia,serif;letter-spacing:-1px;text-decoration:none}.top nav{display:flex;gap:22px;font-size:13px}.intro{padding:48px 0 30px;max-width:780px}.eyebrow{font-size:12px;font-weight:650;letter-spacing:.02em;color:#536442;margin:0 0 15px}h1{font-size:clamp(34px,5vw,55px);line-height:1.09;letter-spacing:-1.9px;font-weight:550;margin:0 0 20px}.intro p:last-child{font-size:16px;line-height:1.7;color:var(--muted);max-width:680px;margin:0}.cases{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:0 0 24px}.cases button{background:transparent;border:1px solid #9ba7a8;border-radius:5px;color:#263741;padding:15px;text-align:left;font-size:13px;font-weight:550;min-height:54px}.cases button[aria-pressed=true]{background:var(--navy);border-color:var(--navy);color:#fff}.cases button:disabled{cursor:wait;opacity:.6}.notice{padding:18px;border:1px solid #a8b6bc;background:#e7ecec;border-radius:5px;line-height:1.65;margin-bottom:24px}.notice.error{background:#f2e5db;border-color:#a98166}.layout{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(290px,1fr);gap:24px}.result{background:var(--navy);color:#f4f3ec;border-radius:8px;overflow:hidden;min-width:0}.result-head{padding:26px 26px 20px;display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:20px}h2{font-size:23px;line-height:1.3;letter-spacing:-.6px;font-weight:550;margin:0}.status{font-size:11px;border-bottom:2px solid var(--green);padding:5px 0;color:var(--green);white-space:nowrap}.status.blocked{border-color:#e8bd91;color:#e8bd91}.metrics{display:flex;gap:30px;align-items:flex-end;padding:2px 26px 24px}.primary{flex:1;min-width:0}.metric-label{display:block;font-size:11px;line-height:1.5;color:#b3c0c7}.duration{font-size:clamp(38px,5vw,61px);font-weight:450;letter-spacing:-2px;line-height:1.2;margin-top:5px;font-variant-numeric:tabular-nums}.secondary{display:flex;flex-direction:column;gap:14px}.secondary strong{font-size:20px;font-weight:500;display:block;margin-top:3px;font-variant-numeric:tabular-nums}.media{padding:0 26px}video{display:block;width:100%;aspect-ratio:16/9;background:#0a141e;border:1px solid #455563;border-radius:4px}.video-label{font-size:12px;line-height:1.6;color:#cbd5d9;margin:16px 0 10px}.media-note{font-size:11px;line-height:1.7;color:#adbdc7;margin:12px 0 0}.result-links{display:flex;flex-wrap:wrap;gap:20px;padding:22px 26px;font-size:12px}.case-panel{padding:24px;border:1px solid var(--line);border-radius:8px;background:#fff;align-self:start}.case-panel p{font-size:13px;line-height:1.8;color:#4e5f69;margin:14px 0}.case-panel h3{font-size:14px;font-weight:600;margin:26px 0 10px}.clip-list{margin:14px 0 0;padding-left:24px}.clip-list li{font-size:13px;line-height:1.65;padding:5px 0 5px 5px}.clip-list .tag{font-size:10px;color:#5f7055;display:inline-block;margin-left:9px}.required{font-size:12px;line-height:1.8;margin:0;padding-left:18px}.small-link{font-size:12px}.section{border-top:1px solid var(--line);margin-top:32px;padding-top:27px}.section-intro{color:var(--muted);font-size:13px;line-height:1.8;margin:12px 0 22px;max-width:790px}.comparison{display:grid;grid-template-columns:1fr 1fr;gap:18px}.comparison article{padding:22px;border:1px solid var(--line);border-radius:6px;background:#fff}.comparison h3{font-size:17px;font-weight:550;margin:0 0 8px}.comparison p{font-size:13px;line-height:1.7;color:var(--muted);margin:8px 0}.comparison .optional{font-weight:600;color:#345137}.comparison ol{font-size:12px;line-height:1.9;padding-left:20px;margin:10px 0 0}.checks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 30px;list-style:none;margin:0;padding:0}.checks li{display:flex;justify-content:space-between;align-items:baseline;gap:20px;border-top:1px solid #d8ddda;padding:12px 0;font-size:12px;line-height:1.6}.checks strong{font-size:10px;font-weight:600;color:#476038;white-space:nowrap}.checks strong.failed{color:#9a502f}details{margin-top:21px}summary{cursor:pointer;font-size:13px;line-height:1.6}.receipt-date{font-size:11px;line-height:1.7;color:var(--muted);margin:16px 0}footer{border-top:1px solid var(--line);padding:26px 0 34px;margin-top:34px;color:var(--muted);font-size:12px;line-height:1.85}footer p{margin:7px 0;max-width:860px}.skip{position:absolute;left:16px;top:-50px;background:white;padding:10px}.skip:focus{top:10px}.empty-selection{font-size:13px;line-height:1.8;color:#78533b;margin-top:16px}
+    @media(max-width:800px){.wrap{padding:0 20px}.layout{grid-template-columns:1fr}.intro{padding-top:34px}.cases{grid-template-columns:1fr 1fr}.comparison{grid-template-columns:1fr}.checks{grid-template-columns:1fr}.top nav{gap:14px;font-size:12px}.metrics{gap:20px}}
+    @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+  </style>
+</head>
+<body>
+  <a class="skip" href="#case-buttons">Skip to recorded cases</a>
+  <div class="wrap">
+    <header class="top"><a class="brand" href="index.html">HardStop</a><nav aria-label="Main navigation"><a href="index.html">Watch the demo</a><a href="https://github.com/statsguysam/hardstop">Source code</a></nav></header>
+    <main>
+      <section class="intro"><p class="eyebrow">Recorded runs. No live actions.</p><h1>See what each brief produced.</h1><p>Compare two audiences, inspect a different source, and see why a shorter deadline was refused. These are saved results from connected Gmail, Google Slides and Dropbox runs.</p></section>
+      <div id="case-buttons" class="cases" role="group" aria-label="Choose a recorded case">
+        <button type="button" data-case="buyer" aria-pressed="true" disabled>Buyer audience</button>
+        <button type="button" data-case="operator" aria-pressed="false" disabled>Operator audience</button>
+        <button type="button" data-case="harbor" aria-pressed="false" disabled>Harbor source</button>
+        <button type="button" data-case="impossible" aria-pressed="false" disabled>Too little time</button>
+      </div>
+      <div id="load-status" class="notice" role="status">Loading the published receipts.</div>
+      <noscript><p>This inspector needs JavaScript to read the saved JSON receipts. You can <a href="evidence/buyer-polished.json">read the buyer receipt</a>, <a href="evidence/operator-polished.json">operator receipt</a>, <a href="evidence/harbor-polished.json">Harbor receipt</a>, or <a href="evidence/impossible-polished.json">impossible-request receipt</a> directly.</p></noscript>
+      <div id="results" hidden>
+        <div class="layout">
+          <section class="result" aria-labelledby="case-title">
+            <div class="result-head"><h2 id="case-title"></h2><span id="case-status" class="status"></span></div>
+            <div class="metrics"><div class="primary"><span id="duration-label" class="metric-label"></span><div id="duration" class="duration"></div></div><div class="secondary"><div><span class="metric-label">Time limit</span><strong id="budget"></strong></div><div><span class="metric-label">Required with context</span><strong id="minimum"></strong></div></div></div>
+            <div class="media"><p id="video-label" class="video-label"></p><video id="video" controls playsinline preload="metadata" aria-describedby="video-label media-note"></video><p id="media-note" class="media-note">Fictional sample. Synthetic voice. Saved release video.</p></div>
+            <div class="result-links"><a id="video-download" download>Download this video</a><a id="receipt-link">Read the saved receipt</a></div>
+          </section>
+          <section class="case-panel" aria-labelledby="context-title"><h2 id="context-title">The recorded case</h2><p id="context"></p><p id="outcome"></p><h3 id="selection-title">Order in the finished cut</h3><ol id="selected" class="clip-list"></ol><p id="empty-selection" class="empty-selection" hidden>No new cut was created.</p><h3>Required clips and context</h3><ul id="required" class="required"></ul><p id="omitted"></p><a id="brief-link" class="small-link">Request evidence</a></section>
+        </div>
+        <section class="section" aria-labelledby="comparison-title"><h2 id="comparison-title">Same time limit. Different optional clip.</h2><p id="comparison-summary" class="section-intro"></p><div id="comparison" class="comparison"></div><p class="section-intro">The model ranks optional clips for the audience. The planner selects a feasible combination around required content. These examples show two completed choices; they do not establish that every audience judgment will be right. <a href="evidence/audience-evaluation.json">Read the separate six-case model evaluation.</a></p></section>
+        <section class="section" aria-labelledby="checks-title"><h2 id="checks-title">What was checked</h2><p id="checks-summary" class="section-intro"></p><ul id="readback-checks" class="checks"></ul><p id="readback-date" class="receipt-date"></p><a id="readback-link" class="small-link" href="evidence/delivery-readbacks-v3.json">Read the later provider readback</a><details><summary id="all-checks-title">All checks recorded during the run</summary><ul id="run-checks" class="checks"></ul></details><p id="run-date" class="receipt-date"></p></section>
+      </div>
+    </main>
+    <footer><p>Fictional sample. Synthetic voice. Gmail messages remain unsent drafts.</p><p>These saved application receipts describe the files at the time of each check. They are not signed provider attestations. Checks cover explicit requirements, declared dependencies, measured media and matching delivery files. Source labels and transcripts are supplied by the source owner.</p><p>Choosing a case on this page only displays a recorded result. To use your own recordings, <a href="https://github.com/statsguysam/hardstop/blob/main/docs/SOURCE_GUIDE.md">set up HardStop locally</a>.</p></footer>
+  </div>
+  <script>
+    "use strict";
+    (() => {
+      const publication = {release:"v0.3.0", readback:"delivery-readbacks-v3.json", artifacts:"release-v3.json"};
+      const release = "https://github.com/statsguysam/hardstop/releases/download/" + publication.release + "/";
+      const cases = {
+        buyer: {title:"Buyer audience", receipt:"buyer-polished.json", video:"hardstop-buyer-cut.mp4", readback:"buyer", context:"A buyer-focused version of the Relay presentation. The time limit is 90 seconds; the result, disclaimer and call to action must stay, with the result's declared pilot context."},
+        operator: {title:"Operator audience", receipt:"operator-polished.json", video:"hardstop-operator-cut.mp4", readback:"operator_after_impossible", context:"An operator-focused version of the same Relay material, with the same 90-second limit and required clips. The audience needs the workflow explanation."},
+        harbor: {title:"Harbor source", receipt:"harbor-polished.json", video:"hardstop-harbor-cut.mp4", readback:"harbor", context:"Six separate Harbor recordings were imported through the source catalog. The brief gives 60 seconds and requires the finding, limitations and next step. The finding also needs its setting."},
+        impossible: {title:"Too little time", receipt:"impossible-polished.json", video:"hardstop-operator-cut.mp4", readback:"operator_after_impossible", context:"The Relay time limit changes to 30 seconds, while the result, disclaimer, call to action and pilot context remain mandatory. Whole recordings must stay intact."}
+      };
+      const checkLabels = {
+        local_and_download_sha256_match_recorded:"Downloaded video matches the saved SHA-256",
+        dropbox_revision_matches_recorded:"Dropbox revision is unchanged",
+        deck_fingerprint_matches_recorded:"Copied deck content matches the saved fingerprint",
+        slide_order_matches_selection:"Slide order matches the selected clips",
+        handoff_has_no_recipients:"Gmail handoff has no recipients",
+        handoff_identity_matches_recorded:"Gmail handoff matches the saved draft",
+        handoff_contains_duration:"Handoff includes the measured duration",
+        handoff_contains_selected_clips:"Handoff includes the selected clips",
+        impossible_created_no_outputs:"Impossible request created no new outputs",
+        ready_pointer_unchanged:"Previous verified delivery remains selected",
+        saved_run_ready:"Saved delivery was marked ready",
+        all_delivery_checks_passed:"All delivery checks passed",
+        copied_source_content:"Copied source content",
+        required_closure:"Required clips and declared context",
+        output_sha256:"Uploaded video byte hash",
+        measured_deadline:"Finished video fits the deadline",
+        decode_verified:"Complete audio and video decode",
+        matching_deck:"Slides match the selected clips",
+        handoff_readback:"Gmail handoff readback",
+        final_outputs:"Final output revisions",
+        fresh_inputs:"Source inputs still current",
+        mandatory_duration:"Required clips fit the deadline"
+      };
+      const $ = id => document.getElementById(id);
+      const human = value => String(value).replace(/_/g," ").replace(/^./, letter => letter.toUpperCase());
+      const seconds = value => (value / 1000).toFixed(3).replace(/\.?0+$/, "") + "s";
+      const when = value => new Date(value).toLocaleString(undefined, {dateStyle:"medium",timeStyle:"short",timeZoneName:undefined});
+      const set = (id, value) => { $(id).textContent = value; };
+      const add = (parent, tag, text, className) => {
+        const element = document.createElement(tag);
+        if (text !== undefined) element.textContent = text;
+        if (className) element.className = className;
+        parent.appendChild(element);
+        return element;
+      };
+      const list = value => Array.isArray(value) && value.every(id => typeof id === "string" && /^[a-z][a-z0-9_]{1,39}$/.test(id));
+      const positive = value => Number.isInteger(value) && value > 0;
+      const same = (left,right) => JSON.stringify([...left].sort()) === JSON.stringify([...right].sort());
+      let records, readbacks;
+
+      function validate(receipts, readback, assets) {
+        if (!Array.isArray(readback.results) || !Array.isArray(assets.artifacts)) throw new Error("Missing evidence index");
+        for (const [key, config] of Object.entries(cases)) {
+          const record = receipts[key];
+          if (record.evidence_kind !== "saved_run_receipt" || !list(record.plan?.selected_ids) || !list(record.plan?.required_closure) ||
+              !list(record.plan?.removed_ids) || !positive(record.constraints?.max_duration_ms) || !positive(record.plan?.minimum_required_ms) ||
+              !Array.isArray(record.checks) || !record.checks.every(item => typeof item.name === "string" && typeof item.passed === "boolean") ||
+              !Number.isFinite(Date.parse(record.finished_at))) throw new Error("Receipt has an unsupported shape");
+          const check = readback.results.find(item => item.label === config.readback);
+          if (!check || check.status !== "passed" || !check.checks || !Number.isFinite(Date.parse(check.checked_at))) throw new Error("Readback is unavailable");
+          const videoRecord = key === "impossible" ? receipts.operator : record;
+          const asset = assets.artifacts.find(item => item.name === config.video);
+          if (!asset || !/^[a-f0-9]{64}$/.test(videoRecord.media?.sha256 || "") || asset.sha256 !== videoRecord.media.sha256 || check.media_sha256 !== videoRecord.media.sha256 ||
+              check.run_id !== videoRecord.local_run_id || check.duration_ms !== videoRecord.media?.duration_ms) throw new Error("Video evidence does not match the saved run");
+          if (key === "impossible") {
+            if (record.status !== "infeasible" || record.plan.selected_ids.length || record.output_verification?.delivery_promoted !== false ||
+                record.plan.minimum_required_ms <= record.constraints.max_duration_ms || check.checks.impossible_created_no_outputs !== true ||
+                check.checks.ready_pointer_unchanged !== true || Date.parse(check.checked_at) < Date.parse(record.finished_at)) throw new Error("Preservation evidence is incomplete");
+          } else if (record.status !== "ready" || record.plan.status !== "feasible" || !positive(record.media?.duration_ms) ||
+              record.media.duration_ms > record.constraints.max_duration_ms || record.output_verification?.delivery_promoted !== true ||
+              !record.plan.required_closure.every(id => record.plan.selected_ids.includes(id)) ||
+              !record.checks.every(item => item.passed) || !Object.values(check.checks).every(value => value === true)) throw new Error("Delivery evidence is incomplete");
+        }
+        if (receipts.buyer.constraints.max_duration_ms !== receipts.operator.constraints.max_duration_ms ||
+            !same(receipts.buyer.plan.required_closure,receipts.operator.plan.required_closure) ||
+            [receipts.buyer,receipts.operator].some(record => record.plan.selected_ids.filter(id => !record.plan.required_closure.includes(id)).length !== 1)) throw new Error("Audience comparison no longer has matching requirements");
+      }
+
+      function showChecks(target, checks) {
+        const container = $(target);
+        container.replaceChildren();
+        for (const [name, passed] of checks) {
+          const row = add(container,"li");
+          add(row,"span",checkLabels[name] || human(name));
+          add(row,"strong",passed ? "Passed" : "Did not pass",passed ? "" : "failed");
+        }
+      }
+
+      function showComparison() {
+        const target = $("comparison");
+        target.replaceChildren();
+        set("comparison-summary", "Both saved deliveries use a " + seconds(records.buyer.constraints.max_duration_ms) + " limit and keep the same required clips with context. Only the optional choice changes.");
+        for (const key of ["buyer","operator"]) {
+          const record = records[key];
+          const card = add(target,"article");
+          add(card,"h3",cases[key].title);
+          add(card,"p",seconds(record.media.duration_ms) + " measured");
+          const optional = record.plan.selected_ids.filter(id => !record.plan.required_closure.includes(id));
+          add(card,"p","Optional: " + optional.map(human).join(", "),"optional");
+          const clips = add(card,"ol");
+          for (const id of record.plan.selected_ids) add(clips,"li",human(id));
+        }
+      }
+
+      function showCase(key) {
+        const config = cases[key], record = records[key];
+        const blocked = key === "impossible";
+        const readback = readbacks.results.find(item => item.label === config.readback);
+        document.querySelectorAll("[data-case]").forEach(button => button.setAttribute("aria-pressed",String(button.dataset.case === key)));
+        set("case-title",config.title);
+        set("case-status",blocked ? "No new delivery" : "Verified recorded delivery");
+        $("case-status").className = "status" + (blocked ? " blocked" : "");
+        set("duration-label",blocked ? "Required clips exceed the limit" : "Finished video");
+        set("duration",blocked ? "Cannot fit" : seconds(record.media.duration_ms));
+        set("budget",seconds(record.constraints.max_duration_ms));
+        set("minimum",seconds(record.plan.minimum_required_ms));
+        set("context",config.context);
+        set("outcome",blocked ? "Required clips need " + seconds(record.plan.minimum_required_ms) + ". The request was stopped before a new video, deck or handoff was created." : "The cut contains " + record.plan.selected_ids.length + " complete clips. Its video, copied deck and unsent handoff draft passed the recorded delivery checks.");
+        set("video-label",blocked ? "Previous operator delivery, preserved after this request" : "Finished video from this recorded run");
+        const url = release + config.video;
+        if ($("video").getAttribute("src") !== url) {
+          $("video").pause();
+          $("video").setAttribute("src",url);
+          $("video").load();
+        }
+        $("video-download").href = url;
+        $("receipt-link").href = "evidence/" + config.receipt;
+        $("brief-link").href = "evidence/" + config.receipt;
+        $("brief-link").title = record.brief?.text_included === true ? "This saved receipt includes the original fictional brief." : "The request wording is redacted. The case description is a summary, not a verbatim quote.";
+        set("brief-link",record.brief?.text_included === true ? "Read the original request in the receipt" : "Read the receipt (request wording redacted)");
+        set("media-note","Fictional sample. Synthetic voice. This is the saved video from release " + publication.release + ".");
+        $("readback-link").href = "evidence/" + publication.readback;
+        const selected = $("selected"), required = $("required");
+        selected.replaceChildren(); required.replaceChildren();
+        for (const id of record.plan.selected_ids) {
+          const row = add(selected,"li",human(id));
+          add(row,"span",record.plan.required_closure.includes(id) ? "Required or context" : "Optional","tag");
+        }
+        for (const id of record.plan.required_closure) add(required,"li",human(id));
+        $("empty-selection").hidden = !blocked;
+        set("selection-title",blocked ? "No selection was delivered" : "Order in the finished cut");
+        set("omitted",blocked ? "The video on the left is the earlier verified operator version." : "Left out: " + record.plan.removed_ids.map(human).join(", ") + ".");
+        showChecks("readback-checks",Object.entries(readback.checks));
+        set("checks-summary",blocked ? "A later provider readback confirmed that the previous operator delivery was preserved and this impossible request created no outputs." : "A separate readback compared the connected-app outputs with this saved run after delivery. The checks below come from that published readback.");
+        set("readback-date","Provider readback recorded " + when(readback.checked_at) + ". This page does not recheck those apps.");
+        showChecks("run-checks",record.checks.map(item => [item.name,item.passed]));
+        set("all-checks-title","All " + record.checks.length + " checks recorded during this run");
+        set("run-date","Run completed " + when(record.finished_at) + ". Case descriptions are summaries, not verbatim request quotes.");
+      }
+
+      async function read(path) {
+        const response = await fetch("evidence/" + path,{credentials:"omit",cache:"no-cache"});
+        if (!response.ok) throw new Error("A published receipt could not be loaded");
+        return response.json();
+      }
+      async function start() {
+        try {
+          const [receiptList, readback, assets] = await Promise.all([
+            Promise.all(Object.values(cases).map(config => read(config.receipt))),
+            read(publication.readback),read(publication.artifacts)
+          ]);
+          const loaded = Object.fromEntries(Object.keys(cases).map((key,index) => [key,receiptList[index]]));
+          validate(loaded,readback,assets);
+          records = loaded; readbacks = readback;
+          showComparison(); showCase("buyer");
+          $("results").hidden = false; $("load-status").hidden = true;
+          document.querySelectorAll("[data-case]").forEach(button => {
+            button.disabled = false;
+            button.addEventListener("click",() => showCase(button.dataset.case));
+          });
+        } catch (_) {
+          $("results").hidden = true;
+          set("load-status","The saved results could not be verified for display. Please use the receipt links below or try again later.");
+          $("load-status").className = "notice error";
+          const links = add($("load-status"),"p");
+          for (const config of Object.values(cases)) {
+            const link = add(links,"a",config.title + " receipt ");
+            link.href = "evidence/" + config.receipt;
+          }
+        }
+      }
+      start();
+    })();
+  </script>
+</body>
+</html>

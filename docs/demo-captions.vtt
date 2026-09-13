@@ -1,119 +1,111 @@
 WEBVTT
 
-00:00:00.100 --> 00:00:01.277
-One presentation.
+00:00:00.100 --> 00:00:03.460
+You've got one presentation, two
+audiences, and ninety seconds.
 
-00:00:01.277 --> 00:00:02.247
-Two audiences.
+00:00:04.220 --> 00:00:05.100
+Which parts do you keep?
 
-00:00:02.247 --> 00:00:03.909
-A buyer and an operator.
+00:00:07.100 --> 00:00:09.200
+A buyer needs to understand the problem.
 
-00:00:03.909 --> 00:00:05.641
-Both have ninety seconds.
+00:00:09.960 --> 00:00:11.520
+An operator needs the walkthrough.
 
-00:00:08.100 --> 00:00:10.342
-The buyer needs the problem explained.
+00:00:12.240 --> 00:00:14.300
+I change the audience in the Gmail brief,
 
-00:00:10.342 --> 00:00:12.642
-The operator needs to see the workflow.
+00:00:14.780 --> 00:00:17.000
+keeping the result and disclaimer
+required.
 
-00:00:12.642 --> 00:00:16.890
-I change the Gmail brief, while the
-required result and disclaimer stay.
+00:00:19.100 --> 00:00:22.780
+HardStop reads the brief and uses the
+model to rank what's relevant.
 
-00:00:19.100 --> 00:00:22.564
-HardStop's model turns the request into
-ranked preferences.
+00:00:23.680 --> 00:00:24.740
+The buyer gets the problem.
 
-00:00:22.564 --> 00:00:26.733
-It favors the problem for the buyer, and
-the workflow for the operator.
+00:00:25.440 --> 00:00:26.620
+The operator gets the workflow.
 
-00:00:26.733 --> 00:00:29.023
-Required context stays with the result.
+00:00:27.520 --> 00:00:29.560
+The result keeps its required context.
 
-00:00:32.100 --> 00:00:35.200
-Here's the buyer cut: eighty-five point
-six seconds,
+00:00:33.100 --> 00:00:34.320
+Here's the buyer's version.
 
-00:00:35.200 --> 00:00:36.810
-with its own matching deck.
+00:00:35.120 --> 00:00:38.320
+Under ninety seconds, with a deck that
+follows the same selection.
 
-00:00:40.100 --> 00:00:43.209
-The operator cut is eighty-six point two
-seconds.
+00:00:40.100 --> 00:00:43.800
+For the operator, we get a different cut,
+still inside the same limit.
 
-00:00:43.209 --> 00:00:43.907
-Same limit.
+00:00:46.100 --> 00:00:48.140
+This is the finished video, playing
+silently.
 
-00:00:43.907 --> 00:00:45.049
-Different content.
+00:00:51.100 --> 00:00:52.160
+The clips live in Dropbox.
 
-00:00:45.049 --> 00:00:46.508
-Here's a short excerpt.
+00:00:53.280 --> 00:00:55.420
+HardStop copies the Google Slides deck,
 
-00:00:48.000 --> 00:00:52.000
-[Excerpt from the original recording]
+00:00:55.940 --> 00:00:59.620
+then checks that every recording has the
+right slide, in the right order.
 
-00:00:52.100 --> 00:00:54.095
-The recordings come from Dropbox.
+00:01:02.100 --> 00:01:04.460
+It downloads the saved video to check it
+again.
 
-00:00:54.095 --> 00:00:57.238
-For each cut, HardStop copies the Google
-Slides deck
+00:01:05.280 --> 00:01:08.200
+Then it prepares this Gmail handoff, ready
+for review.
 
-00:00:57.238 --> 00:01:00.321
-and checks that its pages match the
-selected clips.
-
-00:01:02.100 --> 00:01:04.673
-Saved videos are downloaded again and
-checked.
-
-00:01:04.673 --> 00:01:08.198
-This Gmail draft brings the video and deck
-together for review.
-
-00:01:08.198 --> 00:01:09.093
+00:01:08.960 --> 00:01:09.560
 Nothing is sent.
 
-00:01:12.100 --> 00:01:13.724
-Now ask for thirty seconds.
+00:01:12.100 --> 00:01:14.040
+But what if someone asks for thirty
+seconds?
 
-00:01:13.724 --> 00:01:16.912
-The required recordings alone need almost
-fifty-four.
+00:01:14.860 --> 00:01:17.620
+The required recordings alone already run
+past that.
 
-00:01:16.912 --> 00:01:19.198
-HardStop explains why they cannot fit,
+00:01:18.220 --> 00:01:21.040
+HardStop stops, shows what's blocking the
+request,
 
-00:01:19.198 --> 00:01:21.604
-and preserves the last working delivery.
+00:01:21.780 --> 00:01:23.320
+and keeps the last working version.
 
-00:01:26.100 --> 00:01:27.978
-Harbor uses six new recordings,
+00:01:26.100 --> 00:01:28.420
+To try a different source, I imported
+Harbor:
 
-00:01:27.978 --> 00:01:30.765
-different section names, and a new
-dependency.
+00:01:29.140 --> 00:01:32.460
+six new recordings with their own section
+names and dependency.
 
-00:01:30.765 --> 00:01:32.401
+00:01:33.440 --> 00:01:34.700
 After clarifying the brief,
 
-00:01:32.401 --> 00:01:36.945
-it produces a forty-three point six-second
-cut through the same three apps.
+00:01:35.240 --> 00:01:38.060
+the same workflow delivered a cut under
+sixty seconds.
 
-00:01:36.945 --> 00:01:39.065
-This is a second fictional example.
+00:01:38.740 --> 00:01:39.900
+Another fictional example.
 
-00:01:42.100 --> 00:01:42.602
-HardStop.
+00:01:42.100 --> 00:01:44.880
+HardStop gives each audience the version
+they need,
 
-00:01:42.602 --> 00:01:44.723
-Change the audience or the time limit,
-
-00:01:44.723 --> 00:01:47.960
-and get a video and matching deck you can
-review together.
+00:01:45.400 --> 00:01:47.920
+with the video and slides ready to review
+together.

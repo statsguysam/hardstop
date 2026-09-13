@@ -1,0 +1,87 @@
+{
+  "duration_ms": 110022,
+  "has_video": true,
+  "has_audio": true,
+  "width": 1920,
+  "height": 1080,
+  "sha256": "647664c69bc206c9808e2cb076953f1ea23ccec4b1ecd755ad0ca04f5fe25b9f",
+  "full_decode_verified": true,
+  "source_video_sha256": "846654aae23789246b16692fe7dc6ed64bd6362cba867e34ca16a69a4e0c1570",
+  "source_inputs_unchanged": true,
+  "source_run_id": "20260913T222852-b8ec10c6",
+  "source_model": "gpt-6-astra",
+  "additional_run_evidence": {
+    "buyer": {
+      "run_id": "20260913T222001-27bb14fd",
+      "status": "ready",
+      "model": "gpt-6-astra",
+      "duration_ms": 87868,
+      "selected_ids": [
+        "problem",
+        "pilot_context",
+        "result",
+        "disclaimer",
+        "call_to_action"
+      ],
+      "receipt_sha256": "9dd8790bbaf337fa077a34859606c4547a8afec0888a4dcbe065fb77a6de2710"
+    },
+    "harbor": {
+      "run_id": "20260913T222236-d49291ed",
+      "status": "ready",
+      "model": "gpt-6-astra",
+      "duration_ms": 44701,
+      "selected_ids": [
+        "setting",
+        "finding",
+        "limitations",
+        "next_step"
+      ],
+      "receipt_sha256": "f6a8990ffa9d14057abe2d56f6a18e423e4b96c9bd34ffb3eff62ca3d2082d41"
+    },
+    "impossible": {
+      "run_id": "20260913T223138-7b26153f",
+      "status": "infeasible",
+      "model": "gpt-6-astra",
+      "duration_ms": null,
+      "selected_ids": [],
+      "receipt_sha256": "790a8f2ab3bc56a2843f5bba8f1a41a3f1c30b8e51d5579bae7ec25e8295c212"
+    },
+    "harbor_clarification": {
+      "run_id": "20260913T222001-19fda436",
+      "status": "needs_review",
+      "model": "gpt-6-astra",
+      "duration_ms": null,
+      "selected_ids": [],
+      "receipt_sha256": "87ea0570e0ec8b6b47b95847f9c7e0687e77ceef1cc3df7b0d32579e0cb02b41"
+    }
+  },
+  "recording_disclosure": "Recorded runs; waits shortened. Synthetic voice; fictional samples.",
+  "narration": {
+    "engine": "kokoro-onnx",
+    "voice": "af_heart",
+    "speed": 0.95,
+    "model_sha256": "beb0d1848dee9a49da392cc3df26958d46cfa35d321edf434f52949153f0df3a",
+    "voice_pack_sha256": "bca610b8308e8d99f32e6fe4197e7ec01679264efed0cac9140fe9c29f1fbf7d",
+    "voice_type": "stock synthetic voice; no impersonation"
+  },
+  "source_excerpt_audio": "muted under synthetic narration",
+  "optional_identifying_metadata_removed": true,
+  "mean_volume_db": -20.8,
+  "peak_volume_db": -4.4,
+  "captions": {
+    "cues": 31,
+    "exact_narration_text": true,
+    "maximum_lines": 2,
+    "speech_file_timing_verified": true,
+    "phrase_timing": "matched to local speech-recognition word times",
+    "sha256": "2cf144962387635dcce8c785fa6033daa0f9c4522d6ecf3ec1325930a44d53c2",
+    "bytes": 2369
+  },
+  "bytes": 3687662,
+  "note": "Edited montage of actual captured app states and five seconds of silent output playback under stock synthetic narration. All source material is fictional. Harbor succeeded after clarification; the operator delivery succeeded after a failed download and rerun. No uninterrupted or first-try success is claimed.",
+  "independent_readbacks": {
+    "file": "delivery-readbacks-v3.json",
+    "sha256": "5ec9deacc8b267748854572cc262ae3d5e419787c72a19ac07a7466bba7826c6",
+    "all_32_checks_passed": true
+  }
+}

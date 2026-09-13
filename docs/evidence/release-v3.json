@@ -1,0 +1,72 @@
+{
+  "release": "v0.3.0",
+  "artifacts": [
+    {
+      "name": "hardstop-buyer-cut.mp4",
+      "bytes": 1806676,
+      "sha256": "be363c9aa57ab46af7a4223268aad6e27d540c99dde3e241d100db4a807fabaa"
+    },
+    {
+      "name": "hardstop-demo.mp4",
+      "bytes": 3687662,
+      "sha256": "647664c69bc206c9808e2cb076953f1ea23ccec4b1ecd755ad0ca04f5fe25b9f"
+    },
+    {
+      "name": "hardstop-demo.vtt",
+      "bytes": 2369,
+      "sha256": "2cf144962387635dcce8c785fa6033daa0f9c4522d6ecf3ec1325930a44d53c2"
+    },
+    {
+      "name": "hardstop-harbor-cut.mp4",
+      "bytes": 910391,
+      "sha256": "4d57683f89982cfd3e4bba00ddb10586656a97c9083527858f2d056e1d9541b1"
+    },
+    {
+      "name": "hardstop-harbor-source.zip",
+      "bytes": 1504141,
+      "sha256": "dfb3e2714ad246b1a32ce93ad1ebcde43b1285106e21bd04c7356c53bbaeda5b"
+    },
+    {
+      "name": "hardstop-operator-cut.mp4",
+      "bytes": 1818538,
+      "sha256": "846654aae23789246b16692fe7dc6ed64bd6362cba867e34ca16a69a4e0c1570"
+    },
+    {
+      "name": "hardstop-relay-source.zip",
+      "bytes": 3166661,
+      "sha256": "6059905bd1bd02770832ebbe21980da81b53296f7f9edc82dc3300ca1ac00220"
+    }
+  ],
+  "limitations": [
+    "Media uses fictional sample content and synthetic narration.",
+    "Hashes identify downloadable artifacts; they do not authenticate provider state."
+  ],
+  "demo_duration_ms": 110022,
+  "demo_frame_size": [
+    1920,
+    1080
+  ],
+  "full_demo_decode_verified": true,
+  "source_bundles": [
+    {
+      "name": "hardstop-relay-source.zip",
+      "sha256": "6059905bd1bd02770832ebbe21980da81b53296f7f9edc82dc3300ca1ac00220",
+      "bytes": 3166661,
+      "segments": 8,
+      "source_duration_ms": 177036,
+      "zip_integrity_verified": true,
+      "extracted_import_verified": true,
+      "matches_live_source_hashes": true
+    },
+    {
+      "name": "hardstop-harbor-source.zip",
+      "sha256": "dfb3e2714ad246b1a32ce93ad1ebcde43b1285106e21bd04c7356c53bbaeda5b",
+      "bytes": 1504141,
+      "segments": 6,
+      "source_duration_ms": 83202,
+      "zip_integrity_verified": true,
+      "extracted_import_verified": true,
+      "matches_live_source_hashes": true
+    }
+  ]
+}

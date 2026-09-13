@@ -1,0 +1,154 @@
+{
+  "schema_version": 1,
+  "evidence_kind": "saved_run_receipt",
+  "label": "impossible-polished",
+  "local_run_id": "20260913T223138-7b26153f",
+  "status": "infeasible",
+  "started_at": "2026-09-13T22:31:38.080000+00:00",
+  "finished_at": "2026-09-13T22:31:49.920000+00:00",
+  "brief": {
+    "text_included": true,
+    "body_sha256": "658d7ac32259ed92948a25293665feaea82ddd49041d4015ffa7c661b305ef08",
+    "source_fingerprint": "346c60611077e78733bb665590dec5006557b24c08a233c9c7cbc7087addaac1",
+    "fixture": "impossible",
+    "subject": "Relay: shorter slot",
+    "body": "FICTIONAL DEMO BRIEF: prepared sample material.\n\nFit within 30 seconds. Keep result, disclaimer and call to action. Preserve the original narration and source order. Do not send anything."
+  },
+  "events": [
+    {
+      "at": "2026-09-13T22:31:38.082000+00:00",
+      "stage": "reading",
+      "message": "Reading the current Gmail brief, Google Slides source, and Dropbox catalog"
+    },
+    {
+      "at": "2026-09-13T22:31:40.709000+00:00",
+      "stage": "interpreting",
+      "message": "The model is extracting the deadline, mandatory content, exclusions, and evidence quotes"
+    },
+    {
+      "at": "2026-09-13T22:31:49.918000+00:00",
+      "stage": "blocked",
+      "message": "Mandatory clips and prerequisites need 55.101 seconds, exceeding the 30-second limit by 25.101 seconds.; Required closure: pilot_context, result, disclaimer, call_to_action."
+    }
+  ],
+  "checks": [
+    {
+      "name": "catalog_integrity",
+      "passed": true,
+      "detail": "Dropbox catalog matches the registered source SHA-256"
+    },
+    {
+      "name": "source_deck",
+      "passed": true,
+      "detail": "Source deck content and slide order match the registered recording"
+    },
+    {
+      "name": "mandatory_duration",
+      "passed": false,
+      "detail": "Mandatory clips and prerequisites need 55.101 seconds, exceeding the 30-second limit by 25.101 seconds."
+    }
+  ],
+  "limitations": [
+    "This is a saved receipt, not a new live run or independently signed provider attestation.",
+    "The exporter does not independently establish whether a report used live providers or test doubles; live provenance is documented separately.",
+    "Private provider object IDs, URLs, paths, response IDs, and temporary download links are omitted.",
+    "Fixture content is fictional and narration is synthesized. Gmail operations create or update unsent drafts only.",
+    "Verification covers explicit requirements and declared prerequisites, not general semantic preservation."
+  ],
+  "plan": {
+    "duration_ms": 0,
+    "minimum_required_ms": 55101,
+    "status": "infeasible",
+    "selected_ids": [],
+    "required_closure": [
+      "pilot_context",
+      "result",
+      "disclaimer",
+      "call_to_action"
+    ],
+    "removed_ids": [
+      "opening",
+      "problem",
+      "workflow",
+      "pilot_context",
+      "result",
+      "rollout",
+      "disclaimer",
+      "call_to_action"
+    ],
+    "reasons": [
+      "Mandatory clips and prerequisites need 55.101 seconds, exceeding the 30-second limit by 25.101 seconds.",
+      "Required closure: pilot_context, result, disclaimer, call_to_action."
+    ],
+    "checks": [
+      {
+        "name": "mandatory_duration",
+        "passed": false,
+        "detail": "Mandatory clips and prerequisites need 55.101 seconds, exceeding the 30-second limit by 25.101 seconds."
+      }
+    ]
+  },
+  "constraints": {
+    "required_ids": [
+      "result",
+      "disclaimer",
+      "call_to_action"
+    ],
+    "excluded_ids": [],
+    "max_duration_ms": 30000,
+    "priorities": {
+      "opening": 5,
+      "problem": 4,
+      "workflow": 10,
+      "pilot_context": 8,
+      "rollout": 3
+    },
+    "ambiguities": [],
+    "evidence": [
+      {
+        "kind": "duration",
+        "segment_id": null,
+        "quote": "Fit within 30 seconds."
+      },
+      {
+        "kind": "required",
+        "segment_id": "result",
+        "quote": "Keep result, disclaimer and call to action."
+      },
+      {
+        "kind": "required",
+        "segment_id": "disclaimer",
+        "quote": "Keep result, disclaimer and call to action."
+      },
+      {
+        "kind": "required",
+        "segment_id": "call_to_action",
+        "quote": "Keep result, disclaimer and call to action."
+      }
+    ]
+  },
+  "model": {
+    "usage": {
+      "input_tokens": 1366,
+      "output_tokens": 464,
+      "total_tokens": 1830,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens_details": {
+        "reasoning_tokens": 117
+      }
+    },
+    "name": "gpt-6-astra",
+    "elapsed_ms": 9204
+  },
+  "output_verification": {
+    "delivery_promoted": false,
+    "copied_deck_verified": false,
+    "video_sha256_recorded": false,
+    "dropbox_readback_verified": false,
+    "handoff_draft_readback_verified": false,
+    "inputs_rechecked_before_promotion": false,
+    "final_output_revisions_verified": false
+  }
+}

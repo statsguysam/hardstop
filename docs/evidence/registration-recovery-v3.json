@@ -1,0 +1,26 @@
+{
+  "evidence_kind": "local_registration_reconciliation_receipt",
+  "checked_at": "2026-09-13T22:32:12.900439+00:00",
+  "initial_created_at": "2026-09-13T22:13:56.380+00:00",
+  "completed_at": "2026-09-13T22:18:34.723+00:00",
+  "interruption": "Dropbox source upload returned an unknown outcome; setup stopped with a pending path in its private journal.",
+  "initial_completed_uploads": 2,
+  "completed_uploads": 8,
+  "reconciled_segment_id": "workflow",
+  "reconciled_sha256": "ade7b9e45ce3d6db48d8e3cc6c8bd82bfb93cca89aa65143e74f2c18cdcb5272",
+  "status": "passed",
+  "checks": {
+    "same_registration_identity": true,
+    "pending_file_recorded_after_resume": true,
+    "reconciled_content_matches_source": true,
+    "all_source_uploads_recorded": true,
+    "pending_state_cleared": true,
+    "registration_completed": true
+  },
+  "limitations": [
+    "These facts compare the preserved local interruption journal with the completed journal and registered source.",
+    "The pending-upload code downloads and hashes the existing file before continuing; it does not blindly repeat that upload.",
+    "This receipt is not an independent provider request trace and does not count every network request.",
+    "Private registration IDs, provider IDs, remote paths, credentials and URLs are omitted."
+  ]
+}

@@ -1,0 +1,204 @@
+{
+  "format": "hardstop-harbor-holdout-v1",
+  "declared_at": "2026-09-13T22:17:44.651+00:00",
+  "suite_sha256": "fdbd887fce03d2e813ac1fa07baba8a407173236ee333aff57e9eba7529fdc13",
+  "catalog_sha256": "9b188373167221c3d633354a076a29f0a86b74c9f3404fa6a3e901a5a22d687e",
+  "implementation_sha256": {
+    "hardstop/interpret.py": "06e94ae906069c835d035058ae3e86e10d37f09fc4f8453ad08b9a078f0d81c9",
+    "hardstop/planner.py": "4d26b3cd31e1df797bc7f6e611e82b6288c172a32fb552f52edf3a03c6440f08",
+    "scripts/evaluate_harbor_holdout.py": "a3a8ddfb12d40d0f7ac67de7e11b3234b72f498d5c853caf6a4a0c80cb641d8f"
+  },
+  "cases": [
+    {
+      "id": "newcomer",
+      "brief": "Fit within 65 seconds. Keep finding, limitations and next step. The viewers have never seen the handoff concept. Use the spare time to establish what the incoming team needs to know and why open questions need owners; form-filling mechanics are secondary.",
+      "expected": {
+        "status": "feasible",
+        "max_duration_ms": 65000,
+        "required_ids": [
+          "finding",
+          "limitations",
+          "next_step"
+        ],
+        "excluded_ids": [],
+        "selected_allowlist": [
+          [
+            "introduction",
+            "setting",
+            "finding",
+            "limitations",
+            "next_step"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "experienced_operator",
+      "brief": "Fit within 65 seconds. Keep finding, limitations and next step. The viewers already understand the purpose of the handoff. The spare time should show which fields staff complete, how an unresolved question gets an owner, and what the next shift checks before accepting it; general orientation is secondary.",
+      "expected": {
+        "status": "feasible",
+        "max_duration_ms": 65000,
+        "required_ids": [
+          "finding",
+          "limitations",
+          "next_step"
+        ],
+        "excluded_ids": [],
+        "selected_allowlist": [
+          [
+            "setting",
+            "finding",
+            "walkthrough",
+            "limitations",
+            "next_step"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "exclude_walkthrough",
+      "brief": "No more than 65 seconds. Keep finding, limitations and next step. Exclude walkthrough. This is for incoming staff seeing the handoff idea for the first time.",
+      "expected": {
+        "status": "feasible",
+        "max_duration_ms": 65000,
+        "required_ids": [
+          "finding",
+          "limitations",
+          "next_step"
+        ],
+        "excluded_ids": [
+          "walkthrough"
+        ],
+        "selected_allowlist": [
+          [
+            "introduction",
+            "setting",
+            "finding",
+            "limitations",
+            "next_step"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "impossible_30",
+      "brief": "Fit within 30 seconds. Keep finding, limitations and next step.",
+      "expected": {
+        "status": "infeasible",
+        "max_duration_ms": 30000,
+        "required_ids": [
+          "finding",
+          "limitations",
+          "next_step"
+        ],
+        "excluded_ids": [],
+        "selected_allowlist": [
+          []
+        ]
+      }
+    },
+    {
+      "id": "unconfirmed_slot",
+      "brief": "The slot is either 45 seconds or 65 seconds; scheduling has not confirmed which. Keep finding, limitations and next step.",
+      "expected": {
+        "status": "needs_review",
+        "max_duration_ms": null,
+        "required_ids": [
+          "finding",
+          "limitations",
+          "next_step"
+        ],
+        "excluded_ids": [],
+        "selected_allowlist": [
+          []
+        ]
+      }
+    },
+    {
+      "id": "rewrite_narration",
+      "brief": "Fit within 65 seconds. Keep finding, limitations and next step. Rewrite the finding narration in plainer language.",
+      "expected": {
+        "status": "needs_review",
+        "max_duration_ms": 65000,
+        "required_ids": [
+          "finding",
+          "limitations",
+          "next_step"
+        ],
+        "excluded_ids": [],
+        "selected_allowlist": [
+          []
+        ]
+      }
+    }
+  ],
+  "catalog": [
+    {
+      "id": "introduction",
+      "title": "Start the next shift with the facts",
+      "transcript": "Welcome to Harbor, a fictional training concept for inventory handoffs. At the end of a shift, the incoming team needs to know what was counted, which items still need checking, and who owns each open question. This short example introduces a shared handoff record.",
+      "requires": [],
+      "duration_ms": 17934,
+      "value": 4
+    },
+    {
+      "id": "setting",
+      "title": "One invented stockroom",
+      "transcript": "This example uses one invented stockroom and ten simulated handoffs. Every count and outcome is made up for training. The finding that follows applies only to this fictional setting.",
+      "requires": [],
+      "duration_ms": 12334,
+      "value": 6
+    },
+    {
+      "id": "finding",
+      "title": "An illustrative finding",
+      "transcript": "In the fictional exercise, three unassigned stock questions became one after the handoff record was completed. This is an illustrative finding. Keep its setting.",
+      "requires": [
+        "setting"
+      ],
+      "duration_ms": 11300,
+      "value": 9
+    },
+    {
+      "id": "walkthrough",
+      "title": "Record the count and the open question",
+      "transcript": "To use the proposed record, enter the item, the counted quantity, and the location checked. Add any unresolved question and name the person who will check it next. The incoming shift reads the open items before accepting the handoff. If a count looks wrong, keep the uncertainty visible and ask for another check.",
+      "requires": [],
+      "duration_ms": 20934,
+      "value": 10
+    },
+    {
+      "id": "limitations",
+      "title": "Fictional training example",
+      "transcript": "Harbor is a fictional demonstration with synthesized narration. These examples are not operating instructions or evidence of inventory accuracy.",
+      "requires": [],
+      "duration_ms": 9967,
+      "value": 2
+    },
+    {
+      "id": "next_step",
+      "title": "Evaluate one routine handoff",
+      "transcript": "For a real evaluation, choose one routine handoff, agree on required fields, then compare effort and accuracy with your current process.",
+      "requires": [],
+      "duration_ms": 10000,
+      "value": 7
+    }
+  ],
+  "limitations": [
+    "Six authored holdout cases on a second fictional catalog extend coverage; they are not a general accuracy estimate or customer validation.",
+    "This set was authored after reviewing the Relay evaluation and existing Harbor runs, but before these six model calls. It is not an independently sampled or blinded benchmark.",
+    "Editorial selections are predeclared strict ground truth; a different defensible choice still fails the selection check.",
+    "No delivery, rendering, Gmail, Google Slides, or Dropbox calls occur. Only one Responses request is attempted per case.",
+    "The fixed-priority baseline reuses extracted hard constraints and removes model priorities. It does not remove all model contribution.",
+    "All attempts, including errors and missing usage, remain in the report. No prompt repair, retries or selective resampling."
+  ],
+  "original_declared_at": "2026-09-13T22:15:47.487+00:00",
+  "operational_rerun": {
+    "reason": "All six original client requests failed before any Responses result was received while running under restricted network permissions. A single full operational rerun of all unchanged cases is authorized with network permission. No prompt, expectation or implementation was changed to improve outcomes. No retries occur within this batch.",
+    "original_attempts": 6,
+    "original_responses_received": 0,
+    "original_usage": "unknown",
+    "original_report": "harbor-holdout-transport.json",
+    "original_report_sha256": "ede6a086c4da96d823e42a254773514447cdabdef131029b421b943910138f59"
+  }
+}

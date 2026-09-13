@@ -1,0 +1,1837 @@
+{
+  "format": "hardstop-harbor-holdout-v1",
+  "declared_at": "2026-09-13T22:17:44.651+00:00",
+  "suite_sha256": "fdbd887fce03d2e813ac1fa07baba8a407173236ee333aff57e9eba7529fdc13",
+  "catalog_sha256": "9b188373167221c3d633354a076a29f0a86b74c9f3404fa6a3e901a5a22d687e",
+  "implementation_sha256": {
+    "hardstop/interpret.py": "06e94ae906069c835d035058ae3e86e10d37f09fc4f8453ad08b9a078f0d81c9",
+    "hardstop/planner.py": "4d26b3cd31e1df797bc7f6e611e82b6288c172a32fb552f52edf3a03c6440f08",
+    "scripts/evaluate_harbor_holdout.py": "a3a8ddfb12d40d0f7ac67de7e11b3234b72f498d5c853caf6a4a0c80cb641d8f"
+  },
+  "cases": [
+    {
+      "id": "newcomer",
+      "brief": "Fit within 65 seconds. Keep finding, limitations and next step. The viewers have never seen the handoff concept. Use the spare time to establish what the incoming team needs to know and why open questions need owners; form-filling mechanics are secondary.",
+      "expected": {
+        "status": "feasible",
+        "max_duration_ms": 65000,
+        "required_ids": [
+          "finding",
+          "limitations",
+          "next_step"
+        ],
+        "excluded_ids": [],
+        "selected_allowlist": [
+          [
+            "introduction",
+            "setting",
+            "finding",
+            "limitations",
+            "next_step"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "experienced_operator",
+      "brief": "Fit within 65 seconds. Keep finding, limitations and next step. The viewers already understand the purpose of the handoff. The spare time should show which fields staff complete, how an unresolved question gets an owner, and what the next shift checks before accepting it; general orientation is secondary.",
+      "expected": {
+        "status": "feasible",
+        "max_duration_ms": 65000,
+        "required_ids": [
+          "finding",
+          "limitations",
+          "next_step"
+        ],
+        "excluded_ids": [],
+        "selected_allowlist": [
+          [
+            "setting",
+            "finding",
+            "walkthrough",
+            "limitations",
+            "next_step"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "exclude_walkthrough",
+      "brief": "No more than 65 seconds. Keep finding, limitations and next step. Exclude walkthrough. This is for incoming staff seeing the handoff idea for the first time.",
+      "expected": {
+        "status": "feasible",
+        "max_duration_ms": 65000,
+        "required_ids": [
+          "finding",
+          "limitations",
+          "next_step"
+        ],
+        "excluded_ids": [
+          "walkthrough"
+        ],
+        "selected_allowlist": [
+          [
+            "introduction",
+            "setting",
+            "finding",
+            "limitations",
+            "next_step"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "impossible_30",
+      "brief": "Fit within 30 seconds. Keep finding, limitations and next step.",
+      "expected": {
+        "status": "infeasible",
+        "max_duration_ms": 30000,
+        "required_ids": [
+          "finding",
+          "limitations",
+          "next_step"
+        ],
+        "excluded_ids": [],
+        "selected_allowlist": [
+          []
+        ]
+      }
+    },
+    {
+      "id": "unconfirmed_slot",
+      "brief": "The slot is either 45 seconds or 65 seconds; scheduling has not confirmed which. Keep finding, limitations and next step.",
+      "expected": {
+        "status": "needs_review",
+        "max_duration_ms": null,
+        "required_ids": [
+          "finding",
+          "limitations",
+          "next_step"
+        ],
+        "excluded_ids": [],
+        "selected_allowlist": [
+          []
+        ]
+      }
+    },
+    {
+      "id": "rewrite_narration",
+      "brief": "Fit within 65 seconds. Keep finding, limitations and next step. Rewrite the finding narration in plainer language.",
+      "expected": {
+        "status": "needs_review",
+        "max_duration_ms": 65000,
+        "required_ids": [
+          "finding",
+          "limitations",
+          "next_step"
+        ],
+        "excluded_ids": [],
+        "selected_allowlist": [
+          []
+        ]
+      }
+    }
+  ],
+  "catalog": [
+    {
+      "id": "introduction",
+      "title": "Start the next shift with the facts",
+      "transcript": "Welcome to Harbor, a fictional training concept for inventory handoffs. At the end of a shift, the incoming team needs to know what was counted, which items still need checking, and who owns each open question. This short example introduces a shared handoff record.",
+      "requires": [],
+      "duration_ms": 17934,
+      "value": 4
+    },
+    {
+      "id": "setting",
+      "title": "One invented stockroom",
+      "transcript": "This example uses one invented stockroom and ten simulated handoffs. Every count and outcome is made up for training. The finding that follows applies only to this fictional setting.",
+      "requires": [],
+      "duration_ms": 12334,
+      "value": 6
+    },
+    {
+      "id": "finding",
+      "title": "An illustrative finding",
+      "transcript": "In the fictional exercise, three unassigned stock questions became one after the handoff record was completed. This is an illustrative finding. Keep its setting.",
+      "requires": [
+        "setting"
+      ],
+      "duration_ms": 11300,
+      "value": 9
+    },
+    {
+      "id": "walkthrough",
+      "title": "Record the count and the open question",
+      "transcript": "To use the proposed record, enter the item, the counted quantity, and the location checked. Add any unresolved question and name the person who will check it next. The incoming shift reads the open items before accepting the handoff. If a count looks wrong, keep the uncertainty visible and ask for another check.",
+      "requires": [],
+      "duration_ms": 20934,
+      "value": 10
+    },
+    {
+      "id": "limitations",
+      "title": "Fictional training example",
+      "transcript": "Harbor is a fictional demonstration with synthesized narration. These examples are not operating instructions or evidence of inventory accuracy.",
+      "requires": [],
+      "duration_ms": 9967,
+      "value": 2
+    },
+    {
+      "id": "next_step",
+      "title": "Evaluate one routine handoff",
+      "transcript": "For a real evaluation, choose one routine handoff, agree on required fields, then compare effort and accuracy with your current process.",
+      "requires": [],
+      "duration_ms": 10000,
+      "value": 7
+    }
+  ],
+  "limitations": [
+    "Six authored holdout cases on a second fictional catalog extend coverage; they are not a general accuracy estimate or customer validation.",
+    "This set was authored after reviewing the Relay evaluation and existing Harbor runs, but before these six model calls. It is not an independently sampled or blinded benchmark.",
+    "Editorial selections are predeclared strict ground truth; a different defensible choice still fails the selection check.",
+    "No delivery, rendering, Gmail, Google Slides, or Dropbox calls occur. Only one Responses request is attempted per case.",
+    "The fixed-priority baseline reuses extracted hard constraints and removes model priorities. It does not remove all model contribution.",
+    "All attempts, including errors and missing usage, remain in the report. No prompt repair, retries or selective resampling."
+  ],
+  "original_declared_at": "2026-09-13T22:15:47.487+00:00",
+  "operational_rerun": {
+    "reason": "All six original client requests failed before any Responses result was received while running under restricted network permissions. A single full operational rerun of all unchanged cases is authorized with network permission. No prompt, expectation or implementation was changed to improve outcomes. No retries occur within this batch.",
+    "original_attempts": 6,
+    "original_responses_received": 0,
+    "original_usage": "unknown",
+    "original_report": "harbor-holdout-transport.json",
+    "original_report_sha256": "ede6a086c4da96d823e42a254773514447cdabdef131029b421b943910138f59"
+  },
+  "execution": "live Responses API",
+  "status": "completed",
+  "started_at": "2026-09-13T22:17:51.942+00:00",
+  "results": [
+    {
+      "id": "newcomer",
+      "started_at": "2026-09-13T22:17:51.942+00:00",
+      "passed": true,
+      "model_calls": [
+        {
+          "request_attempted": true,
+          "response_received": true,
+          "usage": {
+            "input_tokens": 987,
+            "output_tokens": 410,
+            "total_tokens": 1397,
+            "input_tokens_details": {
+              "cached_tokens": 0
+            },
+            "output_tokens_details": {
+              "reasoning_tokens": 104
+            }
+          },
+          "model": "gpt-6-astra",
+          "status": "completed",
+          "elapsed_ms": 9803
+        }
+      ],
+      "constraints": {
+        "max_duration_ms": 65000,
+        "required_ids": [
+          "finding",
+          "limitations",
+          "next_step"
+        ],
+        "excluded_ids": [],
+        "priorities": {
+          "introduction": 10,
+          "setting": 6,
+          "walkthrough": 3
+        },
+        "evidence": [
+          {
+            "kind": "duration",
+            "segment_id": null,
+            "quote": "Fit within 65 seconds."
+          },
+          {
+            "kind": "required",
+            "segment_id": "finding",
+            "quote": "Keep finding, limitations and next step."
+          },
+          {
+            "kind": "required",
+            "segment_id": "limitations",
+            "quote": "Keep finding, limitations and next step."
+          },
+          {
+            "kind": "required",
+            "segment_id": "next_step",
+            "quote": "Keep finding, limitations and next step."
+          }
+        ],
+        "ambiguities": []
+      },
+      "interpretation": {
+        "max_duration_seconds": 65,
+        "duration_quote": "Fit within 65 seconds.",
+        "required": [
+          {
+            "segment_id": "finding",
+            "quote": "Keep finding, limitations and next step."
+          },
+          {
+            "segment_id": "limitations",
+            "quote": "Keep finding, limitations and next step."
+          },
+          {
+            "segment_id": "next_step",
+            "quote": "Keep finding, limitations and next step."
+          }
+        ],
+        "excluded": [],
+        "priorities": [
+          {
+            "segment_id": "introduction",
+            "value": 10,
+            "reason": "Strongly preferred because viewers are unfamiliar with the concept and this clip explains what the incoming team needs to know and ownership of open questions."
+          },
+          {
+            "segment_id": "setting",
+            "value": 6,
+            "reason": "Establishes the fictional scope of the finding; also a declared dependency of the required finding clip."
+          },
+          {
+            "segment_id": "walkthrough",
+            "value": 3,
+            "reason": "Provides useful details about unresolved questions and owners, but focuses on form-filling mechanics, which the brief makes secondary."
+          }
+        ],
+        "ambiguities": [],
+        "summary": "Keep finding, limitations and next step within 65 seconds, prioritizing introductory context over form-filling mechanics."
+      },
+      "plan": {
+        "status": "feasible",
+        "selected_ids": [
+          "introduction",
+          "setting",
+          "finding",
+          "limitations",
+          "next_step"
+        ],
+        "duration_ms": 61535,
+        "minimum_required_ms": 43601,
+        "required_closure": [
+          "setting",
+          "finding",
+          "limitations",
+          "next_step"
+        ],
+        "removed_ids": [
+          "walkthrough"
+        ],
+        "reasons": [
+          "Selected 5 complete clips totaling 61.535 seconds within the 65-second limit.",
+          "All explicit required clips and declared prerequisites are preserved in source order.",
+          "Optional clips maximize the configured priority score; duration and source order break ties."
+        ],
+        "checks": [
+          {
+            "name": "nonempty_cut",
+            "passed": true,
+            "detail": "The output contains at least one complete clip."
+          },
+          {
+            "name": "known_ids",
+            "passed": true,
+            "detail": "Every selected ID exists in the source catalog."
+          },
+          {
+            "name": "unique_ids",
+            "passed": true,
+            "detail": "Each selected clip appears once."
+          },
+          {
+            "name": "source_order",
+            "passed": true,
+            "detail": "Selected clips retain their original presentation order."
+          },
+          {
+            "name": "required_closure",
+            "passed": true,
+            "detail": "All mandatory clips and their prerequisites are selected."
+          },
+          {
+            "name": "excluded_absent",
+            "passed": true,
+            "detail": "No excluded clip is selected."
+          },
+          {
+            "name": "dependencies",
+            "passed": true,
+            "detail": "Every selected clip has its declared prerequisites."
+          },
+          {
+            "name": "duration_budget",
+            "passed": true,
+            "detail": "Measured clip sum is 61535 ms; budget is 65000 ms."
+          },
+          {
+            "name": "resolved_brief",
+            "passed": true,
+            "detail": "The brief has no unresolved ambiguities."
+          }
+        ]
+      },
+      "checks": [
+        {
+          "name": "plan_status",
+          "passed": true,
+          "actual": "feasible",
+          "expected": "feasible"
+        },
+        {
+          "name": "required_ids",
+          "passed": true,
+          "actual": [
+            "finding",
+            "limitations",
+            "next_step"
+          ],
+          "expected": [
+            "finding",
+            "limitations",
+            "next_step"
+          ]
+        },
+        {
+          "name": "excluded_ids",
+          "passed": true,
+          "actual": [],
+          "expected": []
+        },
+        {
+          "name": "duration_constraint",
+          "passed": true,
+          "actual": 65000,
+          "expected": 65000
+        },
+        {
+          "name": "selected_allowlist",
+          "passed": true,
+          "actual": [
+            "introduction",
+            "setting",
+            "finding",
+            "limitations",
+            "next_step"
+          ],
+          "expected": [
+            [
+              "introduction",
+              "setting",
+              "finding",
+              "limitations",
+              "next_step"
+            ]
+          ]
+        },
+        {
+          "name": "independent_selection_valid",
+          "passed": true,
+          "actual": true,
+          "expected": true
+        }
+      ],
+      "baseline": {
+        "passed": false,
+        "checks": [
+          {
+            "name": "plan_status",
+            "passed": true,
+            "actual": "feasible",
+            "expected": "feasible"
+          },
+          {
+            "name": "required_ids",
+            "passed": true,
+            "actual": [
+              "finding",
+              "limitations",
+              "next_step"
+            ],
+            "expected": [
+              "finding",
+              "limitations",
+              "next_step"
+            ]
+          },
+          {
+            "name": "excluded_ids",
+            "passed": true,
+            "actual": [],
+            "expected": []
+          },
+          {
+            "name": "duration_constraint",
+            "passed": true,
+            "actual": 65000,
+            "expected": 65000
+          },
+          {
+            "name": "selected_allowlist",
+            "passed": false,
+            "actual": [
+              "setting",
+              "finding",
+              "walkthrough",
+              "limitations",
+              "next_step"
+            ],
+            "expected": [
+              [
+                "introduction",
+                "setting",
+                "finding",
+                "limitations",
+                "next_step"
+              ]
+            ]
+          },
+          {
+            "name": "independent_selection_valid",
+            "passed": true,
+            "actual": true,
+            "expected": true
+          }
+        ],
+        "selected_ids": [
+          "setting",
+          "finding",
+          "walkthrough",
+          "limitations",
+          "next_step"
+        ],
+        "status": "feasible"
+      },
+      "finished_at": "2026-09-13T22:18:01.749+00:00"
+    },
+    {
+      "id": "experienced_operator",
+      "started_at": "2026-09-13T22:18:01.752+00:00",
+      "passed": true,
+      "model_calls": [
+        {
+          "request_attempted": true,
+          "response_received": true,
+          "usage": {
+            "input_tokens": 994,
+            "output_tokens": 367,
+            "total_tokens": 1361,
+            "input_tokens_details": {
+              "cached_tokens": 0
+            },
+            "output_tokens_details": {
+              "reasoning_tokens": 74
+            }
+          },
+          "model": "gpt-6-astra",
+          "status": "completed",
+          "elapsed_ms": 8072
+        }
+      ],
+      "constraints": {
+        "max_duration_ms": 65000,
+        "required_ids": [
+          "finding",
+          "limitations",
+          "next_step"
+        ],
+        "excluded_ids": [],
+        "priorities": {
+          "introduction": 1,
+          "setting": 6,
+          "walkthrough": 10
+        },
+        "evidence": [
+          {
+            "kind": "duration",
+            "segment_id": null,
+            "quote": "Fit within 65 seconds."
+          },
+          {
+            "kind": "required",
+            "segment_id": "finding",
+            "quote": "Keep finding, limitations and next step."
+          },
+          {
+            "kind": "required",
+            "segment_id": "limitations",
+            "quote": "Keep finding, limitations and next step."
+          },
+          {
+            "kind": "required",
+            "segment_id": "next_step",
+            "quote": "Keep finding, limitations and next step."
+          }
+        ],
+        "ambiguities": []
+      },
+      "interpretation": {
+        "max_duration_seconds": 65,
+        "duration_quote": "Fit within 65 seconds.",
+        "required": [
+          {
+            "segment_id": "finding",
+            "quote": "Keep finding, limitations and next step."
+          },
+          {
+            "segment_id": "limitations",
+            "quote": "Keep finding, limitations and next step."
+          },
+          {
+            "segment_id": "next_step",
+            "quote": "Keep finding, limitations and next step."
+          }
+        ],
+        "excluded": [],
+        "priorities": [
+          {
+            "segment_id": "introduction",
+            "value": 1,
+            "reason": "The viewers already understand the purpose of the handoff, and general orientation is secondary."
+          },
+          {
+            "segment_id": "setting",
+            "value": 6,
+            "reason": "Provides the fictional context for the finding and is its declared source dependency."
+          },
+          {
+            "segment_id": "walkthrough",
+            "value": 10,
+            "reason": "Directly addresses the preferred use of spare time: fields staff complete, ownership of unresolved questions, and incoming-shift checks before acceptance."
+          }
+        ],
+        "ambiguities": [],
+        "summary": "Keep finding, limitations and next step within 65 seconds, favoring the practical walkthrough over general orientation."
+      },
+      "plan": {
+        "status": "feasible",
+        "selected_ids": [
+          "setting",
+          "finding",
+          "walkthrough",
+          "limitations",
+          "next_step"
+        ],
+        "duration_ms": 64535,
+        "minimum_required_ms": 43601,
+        "required_closure": [
+          "setting",
+          "finding",
+          "limitations",
+          "next_step"
+        ],
+        "removed_ids": [
+          "introduction"
+        ],
+        "reasons": [
+          "Selected 5 complete clips totaling 64.535 seconds within the 65-second limit.",
+          "All explicit required clips and declared prerequisites are preserved in source order.",
+          "Optional clips maximize the configured priority score; duration and source order break ties."
+        ],
+        "checks": [
+          {
+            "name": "nonempty_cut",
+            "passed": true,
+            "detail": "The output contains at least one complete clip."
+          },
+          {
+            "name": "known_ids",
+            "passed": true,
+            "detail": "Every selected ID exists in the source catalog."
+          },
+          {
+            "name": "unique_ids",
+            "passed": true,
+            "detail": "Each selected clip appears once."
+          },
+          {
+            "name": "source_order",
+            "passed": true,
+            "detail": "Selected clips retain their original presentation order."
+          },
+          {
+            "name": "required_closure",
+            "passed": true,
+            "detail": "All mandatory clips and their prerequisites are selected."
+          },
+          {
+            "name": "excluded_absent",
+            "passed": true,
+            "detail": "No excluded clip is selected."
+          },
+          {
+            "name": "dependencies",
+            "passed": true,
+            "detail": "Every selected clip has its declared prerequisites."
+          },
+          {
+            "name": "duration_budget",
+            "passed": true,
+            "detail": "Measured clip sum is 64535 ms; budget is 65000 ms."
+          },
+          {
+            "name": "resolved_brief",
+            "passed": true,
+            "detail": "The brief has no unresolved ambiguities."
+          }
+        ]
+      },
+      "checks": [
+        {
+          "name": "plan_status",
+          "passed": true,
+          "actual": "feasible",
+          "expected": "feasible"
+        },
+        {
+          "name": "required_ids",
+          "passed": true,
+          "actual": [
+            "finding",
+            "limitations",
+            "next_step"
+          ],
+          "expected": [
+            "finding",
+            "limitations",
+            "next_step"
+          ]
+        },
+        {
+          "name": "excluded_ids",
+          "passed": true,
+          "actual": [],
+          "expected": []
+        },
+        {
+          "name": "duration_constraint",
+          "passed": true,
+          "actual": 65000,
+          "expected": 65000
+        },
+        {
+          "name": "selected_allowlist",
+          "passed": true,
+          "actual": [
+            "setting",
+            "finding",
+            "walkthrough",
+            "limitations",
+            "next_step"
+          ],
+          "expected": [
+            [
+              "setting",
+              "finding",
+              "walkthrough",
+              "limitations",
+              "next_step"
+            ]
+          ]
+        },
+        {
+          "name": "independent_selection_valid",
+          "passed": true,
+          "actual": true,
+          "expected": true
+        }
+      ],
+      "baseline": {
+        "passed": true,
+        "checks": [
+          {
+            "name": "plan_status",
+            "passed": true,
+            "actual": "feasible",
+            "expected": "feasible"
+          },
+          {
+            "name": "required_ids",
+            "passed": true,
+            "actual": [
+              "finding",
+              "limitations",
+              "next_step"
+            ],
+            "expected": [
+              "finding",
+              "limitations",
+              "next_step"
+            ]
+          },
+          {
+            "name": "excluded_ids",
+            "passed": true,
+            "actual": [],
+            "expected": []
+          },
+          {
+            "name": "duration_constraint",
+            "passed": true,
+            "actual": 65000,
+            "expected": 65000
+          },
+          {
+            "name": "selected_allowlist",
+            "passed": true,
+            "actual": [
+              "setting",
+              "finding",
+              "walkthrough",
+              "limitations",
+              "next_step"
+            ],
+            "expected": [
+              [
+                "setting",
+                "finding",
+                "walkthrough",
+                "limitations",
+                "next_step"
+              ]
+            ]
+          },
+          {
+            "name": "independent_selection_valid",
+            "passed": true,
+            "actual": true,
+            "expected": true
+          }
+        ],
+        "selected_ids": [
+          "setting",
+          "finding",
+          "walkthrough",
+          "limitations",
+          "next_step"
+        ],
+        "status": "feasible"
+      },
+      "finished_at": "2026-09-13T22:18:09.826+00:00"
+    },
+    {
+      "id": "exclude_walkthrough",
+      "started_at": "2026-09-13T22:18:09.829+00:00",
+      "passed": true,
+      "model_calls": [
+        {
+          "request_attempted": true,
+          "response_received": true,
+          "usage": {
+            "input_tokens": 970,
+            "output_tokens": 335,
+            "total_tokens": 1305,
+            "input_tokens_details": {
+              "cached_tokens": 0
+            },
+            "output_tokens_details": {
+              "reasoning_tokens": 61
+            }
+          },
+          "model": "gpt-6-astra",
+          "status": "completed",
+          "elapsed_ms": 7284
+        }
+      ],
+      "constraints": {
+        "max_duration_ms": 65000,
+        "required_ids": [
+          "finding",
+          "limitations",
+          "next_step"
+        ],
+        "excluded_ids": [
+          "walkthrough"
+        ],
+        "priorities": {
+          "introduction": 9,
+          "setting": 8
+        },
+        "evidence": [
+          {
+            "kind": "duration",
+            "segment_id": null,
+            "quote": "No more than 65 seconds."
+          },
+          {
+            "kind": "required",
+            "segment_id": "finding",
+            "quote": "Keep finding, limitations and next step."
+          },
+          {
+            "kind": "required",
+            "segment_id": "limitations",
+            "quote": "Keep finding, limitations and next step."
+          },
+          {
+            "kind": "required",
+            "segment_id": "next_step",
+            "quote": "Keep finding, limitations and next step."
+          },
+          {
+            "kind": "excluded",
+            "segment_id": "walkthrough",
+            "quote": "Exclude walkthrough."
+          }
+        ],
+        "ambiguities": []
+      },
+      "interpretation": {
+        "max_duration_seconds": 65,
+        "duration_quote": "No more than 65 seconds.",
+        "required": [
+          {
+            "segment_id": "finding",
+            "quote": "Keep finding, limitations and next step."
+          },
+          {
+            "segment_id": "limitations",
+            "quote": "Keep finding, limitations and next step."
+          },
+          {
+            "segment_id": "next_step",
+            "quote": "Keep finding, limitations and next step."
+          }
+        ],
+        "excluded": [
+          {
+            "segment_id": "walkthrough",
+            "quote": "Exclude walkthrough."
+          }
+        ],
+        "priorities": [
+          {
+            "segment_id": "introduction",
+            "value": 9,
+            "reason": "Introduces the handoff concept to incoming staff encountering it for the first time."
+          },
+          {
+            "segment_id": "setting",
+            "value": 8,
+            "reason": "Provides context for first-time viewers and is a declared dependency of the required finding."
+          }
+        ],
+        "ambiguities": [],
+        "summary": "Keep finding, limitations and next step, exclude walkthrough, and limit the cut to 65 seconds for incoming staff new to the handoff concept."
+      },
+      "plan": {
+        "status": "feasible",
+        "selected_ids": [
+          "introduction",
+          "setting",
+          "finding",
+          "limitations",
+          "next_step"
+        ],
+        "duration_ms": 61535,
+        "minimum_required_ms": 43601,
+        "required_closure": [
+          "setting",
+          "finding",
+          "limitations",
+          "next_step"
+        ],
+        "removed_ids": [
+          "walkthrough"
+        ],
+        "reasons": [
+          "Selected 5 complete clips totaling 61.535 seconds within the 65-second limit.",
+          "All explicit required clips and declared prerequisites are preserved in source order.",
+          "Optional clips maximize the configured priority score; duration and source order break ties."
+        ],
+        "checks": [
+          {
+            "name": "nonempty_cut",
+            "passed": true,
+            "detail": "The output contains at least one complete clip."
+          },
+          {
+            "name": "known_ids",
+            "passed": true,
+            "detail": "Every selected ID exists in the source catalog."
+          },
+          {
+            "name": "unique_ids",
+            "passed": true,
+            "detail": "Each selected clip appears once."
+          },
+          {
+            "name": "source_order",
+            "passed": true,
+            "detail": "Selected clips retain their original presentation order."
+          },
+          {
+            "name": "required_closure",
+            "passed": true,
+            "detail": "All mandatory clips and their prerequisites are selected."
+          },
+          {
+            "name": "excluded_absent",
+            "passed": true,
+            "detail": "No excluded clip is selected."
+          },
+          {
+            "name": "dependencies",
+            "passed": true,
+            "detail": "Every selected clip has its declared prerequisites."
+          },
+          {
+            "name": "duration_budget",
+            "passed": true,
+            "detail": "Measured clip sum is 61535 ms; budget is 65000 ms."
+          },
+          {
+            "name": "resolved_brief",
+            "passed": true,
+            "detail": "The brief has no unresolved ambiguities."
+          }
+        ]
+      },
+      "checks": [
+        {
+          "name": "plan_status",
+          "passed": true,
+          "actual": "feasible",
+          "expected": "feasible"
+        },
+        {
+          "name": "required_ids",
+          "passed": true,
+          "actual": [
+            "finding",
+            "limitations",
+            "next_step"
+          ],
+          "expected": [
+            "finding",
+            "limitations",
+            "next_step"
+          ]
+        },
+        {
+          "name": "excluded_ids",
+          "passed": true,
+          "actual": [
+            "walkthrough"
+          ],
+          "expected": [
+            "walkthrough"
+          ]
+        },
+        {
+          "name": "duration_constraint",
+          "passed": true,
+          "actual": 65000,
+          "expected": 65000
+        },
+        {
+          "name": "selected_allowlist",
+          "passed": true,
+          "actual": [
+            "introduction",
+            "setting",
+            "finding",
+            "limitations",
+            "next_step"
+          ],
+          "expected": [
+            [
+              "introduction",
+              "setting",
+              "finding",
+              "limitations",
+              "next_step"
+            ]
+          ]
+        },
+        {
+          "name": "independent_selection_valid",
+          "passed": true,
+          "actual": true,
+          "expected": true
+        }
+      ],
+      "baseline": {
+        "passed": true,
+        "checks": [
+          {
+            "name": "plan_status",
+            "passed": true,
+            "actual": "feasible",
+            "expected": "feasible"
+          },
+          {
+            "name": "required_ids",
+            "passed": true,
+            "actual": [
+              "finding",
+              "limitations",
+              "next_step"
+            ],
+            "expected": [
+              "finding",
+              "limitations",
+              "next_step"
+            ]
+          },
+          {
+            "name": "excluded_ids",
+            "passed": true,
+            "actual": [
+              "walkthrough"
+            ],
+            "expected": [
+              "walkthrough"
+            ]
+          },
+          {
+            "name": "duration_constraint",
+            "passed": true,
+            "actual": 65000,
+            "expected": 65000
+          },
+          {
+            "name": "selected_allowlist",
+            "passed": true,
+            "actual": [
+              "introduction",
+              "setting",
+              "finding",
+              "limitations",
+              "next_step"
+            ],
+            "expected": [
+              [
+                "introduction",
+                "setting",
+                "finding",
+                "limitations",
+                "next_step"
+              ]
+            ]
+          },
+          {
+            "name": "independent_selection_valid",
+            "passed": true,
+            "actual": true,
+            "expected": true
+          }
+        ],
+        "selected_ids": [
+          "introduction",
+          "setting",
+          "finding",
+          "limitations",
+          "next_step"
+        ],
+        "status": "feasible"
+      },
+      "finished_at": "2026-09-13T22:18:17.114+00:00"
+    },
+    {
+      "id": "impossible_30",
+      "started_at": "2026-09-13T22:18:17.117+00:00",
+      "passed": true,
+      "model_calls": [
+        {
+          "request_attempted": true,
+          "response_received": true,
+          "usage": {
+            "input_tokens": 950,
+            "output_tokens": 391,
+            "total_tokens": 1341,
+            "input_tokens_details": {
+              "cached_tokens": 0
+            },
+            "output_tokens_details": {
+              "reasoning_tokens": 123
+            }
+          },
+          "model": "gpt-6-astra",
+          "status": "completed",
+          "elapsed_ms": 8547
+        }
+      ],
+      "constraints": {
+        "max_duration_ms": 30000,
+        "required_ids": [
+          "finding",
+          "limitations",
+          "next_step"
+        ],
+        "excluded_ids": [],
+        "priorities": {
+          "introduction": 4,
+          "setting": 6,
+          "walkthrough": 8
+        },
+        "evidence": [
+          {
+            "kind": "duration",
+            "segment_id": null,
+            "quote": "Fit within 30 seconds."
+          },
+          {
+            "kind": "required",
+            "segment_id": "finding",
+            "quote": "Keep finding, limitations and next step."
+          },
+          {
+            "kind": "required",
+            "segment_id": "limitations",
+            "quote": "Keep finding, limitations and next step."
+          },
+          {
+            "kind": "required",
+            "segment_id": "next_step",
+            "quote": "Keep finding, limitations and next step."
+          }
+        ],
+        "ambiguities": []
+      },
+      "interpretation": {
+        "max_duration_seconds": 30,
+        "duration_quote": "Fit within 30 seconds.",
+        "required": [
+          {
+            "segment_id": "finding",
+            "quote": "Keep finding, limitations and next step."
+          },
+          {
+            "segment_id": "limitations",
+            "quote": "Keep finding, limitations and next step."
+          },
+          {
+            "segment_id": "next_step",
+            "quote": "Keep finding, limitations and next step."
+          }
+        ],
+        "excluded": [],
+        "priorities": [
+          {
+            "segment_id": "introduction",
+            "value": 4,
+            "reason": "Provides introductory context."
+          },
+          {
+            "segment_id": "setting",
+            "value": 6,
+            "reason": "Explains the fictional scope and is a declared dependency of finding."
+          },
+          {
+            "segment_id": "walkthrough",
+            "value": 8,
+            "reason": "Provides practical detail but is not explicitly requested."
+          }
+        ],
+        "ambiguities": [],
+        "summary": "The brief requires finding, limitations and next step within 30 seconds; with the setting dependency, these clips total 43.601 seconds."
+      },
+      "plan": {
+        "status": "infeasible",
+        "selected_ids": [],
+        "duration_ms": 0,
+        "minimum_required_ms": 43601,
+        "required_closure": [
+          "setting",
+          "finding",
+          "limitations",
+          "next_step"
+        ],
+        "removed_ids": [
+          "introduction",
+          "setting",
+          "finding",
+          "walkthrough",
+          "limitations",
+          "next_step"
+        ],
+        "reasons": [
+          "Mandatory clips and prerequisites need 43.601 seconds, exceeding the 30-second limit by 13.601 seconds.",
+          "Required closure: setting, finding, limitations, next_step."
+        ],
+        "checks": [
+          {
+            "name": "mandatory_duration",
+            "passed": false,
+            "detail": "Mandatory clips and prerequisites need 43.601 seconds, exceeding the 30-second limit by 13.601 seconds."
+          }
+        ]
+      },
+      "checks": [
+        {
+          "name": "plan_status",
+          "passed": true,
+          "actual": "infeasible",
+          "expected": "infeasible"
+        },
+        {
+          "name": "required_ids",
+          "passed": true,
+          "actual": [
+            "finding",
+            "limitations",
+            "next_step"
+          ],
+          "expected": [
+            "finding",
+            "limitations",
+            "next_step"
+          ]
+        },
+        {
+          "name": "excluded_ids",
+          "passed": true,
+          "actual": [],
+          "expected": []
+        },
+        {
+          "name": "duration_constraint",
+          "passed": true,
+          "actual": 30000,
+          "expected": 30000
+        },
+        {
+          "name": "selected_allowlist",
+          "passed": true,
+          "actual": [],
+          "expected": [
+            []
+          ]
+        }
+      ],
+      "baseline": {
+        "passed": true,
+        "checks": [
+          {
+            "name": "plan_status",
+            "passed": true,
+            "actual": "infeasible",
+            "expected": "infeasible"
+          },
+          {
+            "name": "required_ids",
+            "passed": true,
+            "actual": [
+              "finding",
+              "limitations",
+              "next_step"
+            ],
+            "expected": [
+              "finding",
+              "limitations",
+              "next_step"
+            ]
+          },
+          {
+            "name": "excluded_ids",
+            "passed": true,
+            "actual": [],
+            "expected": []
+          },
+          {
+            "name": "duration_constraint",
+            "passed": true,
+            "actual": 30000,
+            "expected": 30000
+          },
+          {
+            "name": "selected_allowlist",
+            "passed": true,
+            "actual": [],
+            "expected": [
+              []
+            ]
+          }
+        ],
+        "selected_ids": [],
+        "status": "infeasible"
+      },
+      "finished_at": "2026-09-13T22:18:25.665+00:00"
+    },
+    {
+      "id": "unconfirmed_slot",
+      "started_at": "2026-09-13T22:18:25.670+00:00",
+      "passed": true,
+      "model_calls": [
+        {
+          "request_attempted": true,
+          "response_received": true,
+          "usage": {
+            "input_tokens": 962,
+            "output_tokens": 452,
+            "total_tokens": 1414,
+            "input_tokens_details": {
+              "cached_tokens": 0
+            },
+            "output_tokens_details": {
+              "reasoning_tokens": 139
+            }
+          },
+          "model": "gpt-6-astra",
+          "status": "completed",
+          "elapsed_ms": 10593
+        }
+      ],
+      "constraints": {
+        "max_duration_ms": 1000,
+        "required_ids": [
+          "finding",
+          "limitations",
+          "next_step"
+        ],
+        "excluded_ids": [],
+        "priorities": {
+          "introduction": 4,
+          "setting": 6,
+          "walkthrough": 7
+        },
+        "evidence": [
+          {
+            "kind": "duration",
+            "segment_id": null,
+            "quote": "The slot is either 45 seconds or 65 seconds; scheduling has not confirmed which."
+          },
+          {
+            "kind": "required",
+            "segment_id": "finding",
+            "quote": "Keep finding, limitations and next step."
+          },
+          {
+            "kind": "required",
+            "segment_id": "limitations",
+            "quote": "Keep finding, limitations and next step."
+          },
+          {
+            "kind": "required",
+            "segment_id": "next_step",
+            "quote": "Keep finding, limitations and next step."
+          }
+        ],
+        "ambiguities": [
+          "The duration limit is unconfirmed: scheduling must clarify whether the slot is 45 seconds or 65 seconds.",
+          "A single duration between 1 and 3600 seconds is required.",
+          "No explicit active upper time bound was recognized; review the timing."
+        ]
+      },
+      "interpretation": {
+        "max_duration_seconds": null,
+        "duration_quote": "The slot is either 45 seconds or 65 seconds; scheduling has not confirmed which.",
+        "required": [
+          {
+            "segment_id": "finding",
+            "quote": "Keep finding, limitations and next step."
+          },
+          {
+            "segment_id": "limitations",
+            "quote": "Keep finding, limitations and next step."
+          },
+          {
+            "segment_id": "next_step",
+            "quote": "Keep finding, limitations and next step."
+          }
+        ],
+        "excluded": [],
+        "priorities": [
+          {
+            "segment_id": "introduction",
+            "value": 4,
+            "reason": "Provides introductory context but is not explicitly requested."
+          },
+          {
+            "segment_id": "setting",
+            "value": 6,
+            "reason": "Explains the fictional scope and is a declared dependency of the required finding."
+          },
+          {
+            "segment_id": "walkthrough",
+            "value": 7,
+            "reason": "Provides practical detail, but the brief emphasizes the finding, limitations and next step instead."
+          }
+        ],
+        "ambiguities": [
+          "The duration limit is unconfirmed: scheduling must clarify whether the slot is 45 seconds or 65 seconds."
+        ],
+        "summary": "Keep finding, limitations and next step, with setting enforced as a dependency; the duration limit remains unresolved."
+      },
+      "plan": {
+        "status": "needs_review",
+        "selected_ids": [],
+        "duration_ms": 0,
+        "minimum_required_ms": 43601,
+        "required_closure": [
+          "setting",
+          "finding",
+          "limitations",
+          "next_step"
+        ],
+        "removed_ids": [
+          "introduction",
+          "setting",
+          "finding",
+          "walkthrough",
+          "limitations",
+          "next_step"
+        ],
+        "reasons": [
+          "Resolve the brief before creating an output: The duration limit is unconfirmed: scheduling must clarify whether the slot is 45 seconds or 65 seconds.",
+          "Resolve the brief before creating an output: A single duration between 1 and 3600 seconds is required.",
+          "Resolve the brief before creating an output: No explicit active upper time bound was recognized; review the timing."
+        ],
+        "checks": [
+          {
+            "name": "resolved_brief",
+            "passed": false,
+            "detail": "The brief contains unresolved ambiguities."
+          }
+        ]
+      },
+      "checks": [
+        {
+          "name": "plan_status",
+          "passed": true,
+          "actual": "needs_review",
+          "expected": "needs_review"
+        },
+        {
+          "name": "required_ids",
+          "passed": true,
+          "actual": [
+            "finding",
+            "limitations",
+            "next_step"
+          ],
+          "expected": [
+            "finding",
+            "limitations",
+            "next_step"
+          ]
+        },
+        {
+          "name": "excluded_ids",
+          "passed": true,
+          "actual": [],
+          "expected": []
+        },
+        {
+          "name": "selected_allowlist",
+          "passed": true,
+          "actual": [],
+          "expected": [
+            []
+          ]
+        },
+        {
+          "name": "review_has_reasons",
+          "passed": true,
+          "actual": true,
+          "expected": true
+        }
+      ],
+      "baseline": {
+        "passed": true,
+        "checks": [
+          {
+            "name": "plan_status",
+            "passed": true,
+            "actual": "needs_review",
+            "expected": "needs_review"
+          },
+          {
+            "name": "required_ids",
+            "passed": true,
+            "actual": [
+              "finding",
+              "limitations",
+              "next_step"
+            ],
+            "expected": [
+              "finding",
+              "limitations",
+              "next_step"
+            ]
+          },
+          {
+            "name": "excluded_ids",
+            "passed": true,
+            "actual": [],
+            "expected": []
+          },
+          {
+            "name": "selected_allowlist",
+            "passed": true,
+            "actual": [],
+            "expected": [
+              []
+            ]
+          },
+          {
+            "name": "review_has_reasons",
+            "passed": true,
+            "actual": true,
+            "expected": true
+          }
+        ],
+        "selected_ids": [],
+        "status": "needs_review"
+      },
+      "finished_at": "2026-09-13T22:18:36.264+00:00"
+    },
+    {
+      "id": "rewrite_narration",
+      "started_at": "2026-09-13T22:18:36.270+00:00",
+      "passed": true,
+      "model_calls": [
+        {
+          "request_attempted": true,
+          "response_received": true,
+          "usage": {
+            "input_tokens": 959,
+            "output_tokens": 437,
+            "total_tokens": 1396,
+            "input_tokens_details": {
+              "cached_tokens": 0
+            },
+            "output_tokens_details": {
+              "reasoning_tokens": 138
+            }
+          },
+          "model": "gpt-6-astra",
+          "status": "completed",
+          "elapsed_ms": 9004
+        }
+      ],
+      "constraints": {
+        "max_duration_ms": 65000,
+        "required_ids": [
+          "finding",
+          "limitations",
+          "next_step"
+        ],
+        "excluded_ids": [],
+        "priorities": {
+          "introduction": 4,
+          "setting": 6,
+          "walkthrough": 8
+        },
+        "evidence": [
+          {
+            "kind": "duration",
+            "segment_id": null,
+            "quote": "Fit within 65 seconds."
+          },
+          {
+            "kind": "required",
+            "segment_id": "finding",
+            "quote": "Keep finding, limitations and next step."
+          },
+          {
+            "kind": "required",
+            "segment_id": "limitations",
+            "quote": "Keep finding, limitations and next step."
+          },
+          {
+            "kind": "required",
+            "segment_id": "next_step",
+            "quote": "Keep finding, limitations and next step."
+          }
+        ],
+        "ambiguities": [
+          "“Rewrite the finding narration in plainer language.” requests an unsupported speech rewrite; only keeping or removing whole prerecorded clips in original source order is supported."
+        ]
+      },
+      "interpretation": {
+        "max_duration_seconds": 65,
+        "duration_quote": "Fit within 65 seconds.",
+        "required": [
+          {
+            "segment_id": "finding",
+            "quote": "Keep finding, limitations and next step."
+          },
+          {
+            "segment_id": "limitations",
+            "quote": "Keep finding, limitations and next step."
+          },
+          {
+            "segment_id": "next_step",
+            "quote": "Keep finding, limitations and next step."
+          }
+        ],
+        "excluded": [],
+        "priorities": [
+          {
+            "segment_id": "introduction",
+            "value": 4,
+            "reason": "Provides introductory context but is not explicitly requested."
+          },
+          {
+            "segment_id": "setting",
+            "value": 6,
+            "reason": "Explains the fictional context and is a declared dependency of finding."
+          },
+          {
+            "segment_id": "walkthrough",
+            "value": 8,
+            "reason": "Provides useful procedural detail but is not explicitly requested."
+          }
+        ],
+        "ambiguities": [
+          "“Rewrite the finding narration in plainer language.” requests an unsupported speech rewrite; only keeping or removing whole prerecorded clips in original source order is supported."
+        ],
+        "summary": "Keep finding, limitations and next step within 65 seconds; the requested narration rewrite is unsupported."
+      },
+      "plan": {
+        "status": "needs_review",
+        "selected_ids": [],
+        "duration_ms": 0,
+        "minimum_required_ms": 43601,
+        "required_closure": [
+          "setting",
+          "finding",
+          "limitations",
+          "next_step"
+        ],
+        "removed_ids": [
+          "introduction",
+          "setting",
+          "finding",
+          "walkthrough",
+          "limitations",
+          "next_step"
+        ],
+        "reasons": [
+          "Resolve the brief before creating an output: “Rewrite the finding narration in plainer language.” requests an unsupported speech rewrite; only keeping or removing whole prerecorded clips in original source order is supported."
+        ],
+        "checks": [
+          {
+            "name": "resolved_brief",
+            "passed": false,
+            "detail": "The brief contains unresolved ambiguities."
+          }
+        ]
+      },
+      "checks": [
+        {
+          "name": "plan_status",
+          "passed": true,
+          "actual": "needs_review",
+          "expected": "needs_review"
+        },
+        {
+          "name": "required_ids",
+          "passed": true,
+          "actual": [
+            "finding",
+            "limitations",
+            "next_step"
+          ],
+          "expected": [
+            "finding",
+            "limitations",
+            "next_step"
+          ]
+        },
+        {
+          "name": "excluded_ids",
+          "passed": true,
+          "actual": [],
+          "expected": []
+        },
+        {
+          "name": "duration_constraint",
+          "passed": true,
+          "actual": 65000,
+          "expected": 65000
+        },
+        {
+          "name": "selected_allowlist",
+          "passed": true,
+          "actual": [],
+          "expected": [
+            []
+          ]
+        },
+        {
+          "name": "review_has_reasons",
+          "passed": true,
+          "actual": true,
+          "expected": true
+        }
+      ],
+      "baseline": {
+        "passed": true,
+        "checks": [
+          {
+            "name": "plan_status",
+            "passed": true,
+            "actual": "needs_review",
+            "expected": "needs_review"
+          },
+          {
+            "name": "required_ids",
+            "passed": true,
+            "actual": [
+              "finding",
+              "limitations",
+              "next_step"
+            ],
+            "expected": [
+              "finding",
+              "limitations",
+              "next_step"
+            ]
+          },
+          {
+            "name": "excluded_ids",
+            "passed": true,
+            "actual": [],
+            "expected": []
+          },
+          {
+            "name": "duration_constraint",
+            "passed": true,
+            "actual": 65000,
+            "expected": 65000
+          },
+          {
+            "name": "selected_allowlist",
+            "passed": true,
+            "actual": [],
+            "expected": [
+              []
+            ]
+          },
+          {
+            "name": "review_has_reasons",
+            "passed": true,
+            "actual": true,
+            "expected": true
+          }
+        ],
+        "selected_ids": [],
+        "status": "needs_review"
+      },
+      "finished_at": "2026-09-13T22:18:45.276+00:00"
+    }
+  ],
+  "summary": {
+    "completed_cases": 6,
+    "total_cases": 6,
+    "passed_cases": 6,
+    "fixed_priority_baseline_passed": 5,
+    "request_attempts": 6,
+    "reported_usage": {
+      "input_tokens": 5822,
+      "output_tokens": 2392,
+      "total_tokens": 8214
+    },
+    "usage_complete": true
+  },
+  "finished_at": "2026-09-13T22:18:45.283+00:00"
+}

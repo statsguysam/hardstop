@@ -344,7 +344,7 @@ def validate_interpretation(data, brief_text, segments):
 
 def interpret_brief(brief_text, segments):
     if not isinstance(brief_text, str) or not brief_text.strip() or len(brief_text) > 20000:
-        raise InterpretationError("The producer brief must contain 1–20000 characters")
+        raise InterpretationError("The producer brief must contain 1 to 20000 characters")
     credentials = configure.read_private("openai.json")
     model = configure.required_text(credentials, "model")
     public_catalog = [{k: s[k] for k in ("id", "title", "transcript", "requires", "duration_ms", "value")} for s in segments]

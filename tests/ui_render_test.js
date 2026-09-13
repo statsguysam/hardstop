@@ -99,11 +99,14 @@ check("reason and title markup is escaped rather than executed", () => {
   const changed = clone(base);
   changed.current_run.interpretation.priorities.find(row => row.segment_id === "workflow").reason = '<img src=x onerror="bad()"> & quoted';
   changed.source.segments.find(segment => segment.id === "workflow").title = "<script>bad()</script>";
+  changed.source.segments.find(segment => segment.id === "result").title = 'A result with <markup> & quotes';
   sandbox.renderFixture(changed);
   assert.ok(!node("decisions").innerHTML.includes("<img"));
   assert.ok(!node("decisions").innerHTML.includes("<script"));
   assert.match(node("decisions").innerHTML, /&lt;img src=x onerror=&quot;bad\(\)&quot;&gt; &amp; quoted/);
   assert.match(node("decisions").innerHTML, /&lt;script&gt;bad\(\)&lt;\/script&gt;/);
+  assert.match(node("requirements").innerHTML, /Keep: A result with &lt;markup&gt; &amp; quotes/);
+  assert.ok(!node("requirements").innerHTML.includes("<markup>"));
 });
 
 check("unknown selected IDs and irrelevant reasons do not become displayed choices", () => {
@@ -125,7 +128,14 @@ check("imported sources cannot offer demo presets or nonexistent placeholder cli
   assert.ok(!node("custom-body").placeholder.includes("disclaimer"));
   assert.equal(node("custom-body").value, "My unfinished instructions");
   assert.match(node("source-disclosure").textContent, /User-supplied recordings/);
+  assert.match(node("source-disclosure").textContent, /Narration: Original human narration\./);
   assert.ok(!node("source-disclosure").textContent.includes("Fictional"));
+  for (const narration of ["Synthesized narration.", "Synthetic voice: Kokoro af_heart"]) {
+    sandbox.renderFixture({...imported, source: {...imported.source, fictional: true, narration}});
+    assert.match(node("source-disclosure").textContent, /Fictional sample\. Synthetic voice\./);
+    assert.ok(!node("source-disclosure").textContent.includes("Kokoro"));
+    assert.ok(!node("source-disclosure").textContent.includes("af_heart"));
+  }
 });
 
 check("recorded unresolved timing cannot display schema placeholders", () => {

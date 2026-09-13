@@ -1,0 +1,151 @@
+{
+  "schema_version": 1,
+  "evidence_kind": "saved_run_receipt",
+  "label": "harbor-review-polished",
+  "local_run_id": "20260913T222001-19fda436",
+  "status": "needs_review",
+  "started_at": "2026-09-13T22:20:01.394000+00:00",
+  "finished_at": "2026-09-13T22:20:11.912000+00:00",
+  "brief": {
+    "text_included": true,
+    "body_sha256": "f77f229bd6aa4867c1fe0a9196559e91d436fd7bcbbdbb3c2d83511e11ad684c",
+    "source_fingerprint": "cadd9c41ac11316b48af7293bf6ebf24aef10b02ca52db5518ba376e3a28466b",
+    "fixture": "harbor_initial",
+    "subject": "Harbor: training brief",
+    "body": "FICTIONAL DEMO BRIEF: prepared sample material.\n\nFit within 60 seconds. Keep finding, limitations, and next_step. Favor walkthrough if it fits. Preserve the original narration and source order. Deliver a playable video, a matching copied slide deck, and an unsent handoff draft. Do not send anything. Retain complete clips and their declared prerequisites."
+  },
+  "events": [
+    {
+      "at": "2026-09-13T22:20:01.395000+00:00",
+      "stage": "reading",
+      "message": "Reading the current Gmail brief, Google Slides source, and Dropbox catalog"
+    },
+    {
+      "at": "2026-09-13T22:20:04.386000+00:00",
+      "stage": "interpreting",
+      "message": "The model is extracting the deadline, mandatory content, exclusions, and evidence quotes"
+    },
+    {
+      "at": "2026-09-13T22:20:11.911000+00:00",
+      "stage": "blocked",
+      "message": "Resolve the brief before creating an output: A keep/remove instruction does not unambiguously name a source clip."
+    }
+  ],
+  "checks": [
+    {
+      "name": "catalog_integrity",
+      "passed": true,
+      "detail": "Dropbox catalog matches the registered source SHA-256"
+    },
+    {
+      "name": "source_deck",
+      "passed": true,
+      "detail": "Source deck content and slide order match the registered recording"
+    },
+    {
+      "name": "resolved_brief",
+      "passed": false,
+      "detail": "The brief contains unresolved ambiguities."
+    }
+  ],
+  "limitations": [
+    "This is a saved receipt, not a new live run or independently signed provider attestation.",
+    "The exporter does not independently establish whether a report used live providers or test doubles; live provenance is documented separately.",
+    "Private provider object IDs, URLs, paths, response IDs, and temporary download links are omitted.",
+    "Fixture content is fictional and narration is synthesized. Gmail operations create or update unsent drafts only.",
+    "Verification covers explicit requirements and declared prerequisites, not general semantic preservation."
+  ],
+  "plan": {
+    "duration_ms": 0,
+    "minimum_required_ms": 44701,
+    "status": "needs_review",
+    "selected_ids": [],
+    "required_closure": [
+      "setting",
+      "finding",
+      "limitations",
+      "next_step"
+    ],
+    "removed_ids": [
+      "introduction",
+      "setting",
+      "finding",
+      "walkthrough",
+      "limitations",
+      "next_step"
+    ],
+    "reasons": [
+      "Resolve the brief before creating an output: A keep/remove instruction does not unambiguously name a source clip."
+    ],
+    "checks": [
+      {
+        "name": "resolved_brief",
+        "passed": false,
+        "detail": "The brief contains unresolved ambiguities."
+      }
+    ]
+  },
+  "constraints": {
+    "required_ids": [
+      "finding",
+      "limitations",
+      "next_step"
+    ],
+    "excluded_ids": [],
+    "max_duration_ms": 60000,
+    "priorities": {
+      "introduction": 4,
+      "setting": 6,
+      "walkthrough": 10
+    },
+    "ambiguities": [
+      "A keep/remove instruction does not unambiguously name a source clip."
+    ],
+    "evidence": [
+      {
+        "kind": "duration",
+        "segment_id": null,
+        "quote": "Fit within 60 seconds."
+      },
+      {
+        "kind": "required",
+        "segment_id": "finding",
+        "quote": "Keep finding, limitations, and next_step."
+      },
+      {
+        "kind": "required",
+        "segment_id": "limitations",
+        "quote": "Keep finding, limitations, and next_step."
+      },
+      {
+        "kind": "required",
+        "segment_id": "next_step",
+        "quote": "Keep finding, limitations, and next_step."
+      }
+    ]
+  },
+  "model": {
+    "usage": {
+      "input_tokens": 1012,
+      "output_tokens": 356,
+      "total_tokens": 1368,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens_details": {
+        "reasoning_tokens": 55
+      }
+    },
+    "name": "gpt-6-astra",
+    "elapsed_ms": 7521
+  },
+  "output_verification": {
+    "delivery_promoted": false,
+    "copied_deck_verified": false,
+    "video_sha256_recorded": false,
+    "dropbox_readback_verified": false,
+    "handoff_draft_readback_verified": false,
+    "inputs_rechecked_before_promotion": false,
+    "final_output_revisions_verified": false
+  }
+}

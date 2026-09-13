@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="dark">
   <meta name="description" content="One presentation, two audiences. Watch HardStop turn a Gmail brief into checked video and matching slides using real app runs.">
-  <title>HardStop — Watch the demonstration</title>
+  <title>HardStop: Watch the demonstration</title>
   <style>
     :root{color-scheme:dark;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#101820;color:#f3f1e9;font-synthesis:none;--muted:#acb6c2;--line:#34414f;--citron:#dce7ad}
     *{box-sizing:border-box}body{margin:0}a{color:inherit;text-underline-offset:4px}a:focus-visible,video:focus-visible{outline:3px solid var(--citron);outline-offset:5px;border-radius:4px}.shell{max-width:1460px;margin:auto;padding:0 40px}.skip{position:absolute;left:20px;top:-60px;background:var(--citron);color:#0b1120;padding:10px 14px;z-index:2}.skip:focus{top:12px}header{height:77px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{font-family:Georgia,"Times New Roman",serif;font-size:31px;font-weight:700;letter-spacing:-1.4px;text-decoration:none;display:flex;align-items:center;gap:11px}.repo-link{color:#b7c6e2;font-size:12px;text-decoration:none;display:flex;gap:10px;align-items:center}.repo-link:hover{color:var(--citron)}main{padding:27px 0 0}.intro{display:flex;align-items:flex-end;justify-content:space-between;gap:30px;margin-bottom:22px}h1{font-size:clamp(28px,3.1vw,43px);font-weight:600;line-height:1.15;letter-spacing:-1.6px;margin:0}.intro p{color:var(--muted);font-size:13px;line-height:1.75;max-width:465px;margin:0}.player-wrap{width:min(100%,calc((100svh - 312px)*16/9));min-width:0;margin:auto}.player-frame{background:#060c16;border:1px solid #35425d;border-radius:13px;overflow:hidden;box-shadow:0 20px 70px #00000026}video{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:contain;background:#060c16}.recording-label{display:flex;align-items:center;gap:9px;padding:13px 16px;border-top:1px solid var(--line);font-size:10px;letter-spacing:.2px;color:#afbed7;background:#111b2d}.below{display:flex;justify-content:space-between;align-items:center;gap:18px;margin:16px 0 0}.links{display:flex;align-items:center;gap:9px;flex-wrap:wrap}.button{display:inline-flex;align-items:center;gap:8px;padding:9px 12px;border:1px solid #394a69;border-radius:6px;background:#152138;color:#dfe9fc;text-decoration:none;font-size:11px;white-space:nowrap}.button.primary{color:#17200c;background:var(--citron);border-color:var(--citron);font-weight:650}.button:hover{border-color:#86a9ff}.button.primary:hover{background:#e7ff99;border-color:#e7ff99}.fallback-note{font-size:10px;line-height:1.6;color:var(--muted);max-width:225px;margin:0;text-align:right}.disclosure{display:flex;justify-content:space-between;gap:20px;padding:20px 0 21px;font-size:9px;line-height:1.6;color:#7f90ae}.disclosure p{margin:0}.disclosure p:last-child{text-align:right}.disclosure strong{font-weight:550;color:#aebbd0}
@@ -29,18 +29,19 @@
       <section class="player-wrap" aria-label="Recorded HardStop demonstration">
         <div class="player-frame">
           <video id="demonstration" controls playsinline preload="metadata" poster="images/hardstop.png" width="1920" height="1080" aria-label="HardStop recorded demonstration with real API runs" aria-describedby="recording-description">
-            <source src="https://github.com/statsguysam/hardstop/releases/download/v0.2.0/hardstop-demo.mp4" type="video/mp4">
-            Your browser cannot play this video. <a href="https://github.com/statsguysam/hardstop/releases/download/v0.2.0/hardstop-demo.mp4">Download the demonstration MP4.</a>
+            <source src="https://github.com/statsguysam/hardstop/releases/download/v0.3.0/hardstop-demo.mp4" type="video/mp4">
+            Your browser cannot play this video. <a href="https://github.com/statsguysam/hardstop/releases/download/v0.3.0/hardstop-demo.mp4">Download the demonstration MP4.</a>
             <track kind="captions" src="demo-captions.vtt" srclang="en" label="English">
           </video>
           <div id="recording-description" class="recording-label">Edited from actual app captures and output playback. Processing waits are shortened.</div>
         </div>
         <div class="below">
           <nav class="links" aria-label="Demonstration resources">
-            <a class="button primary" href="https://github.com/statsguysam/hardstop/releases/download/v0.2.0/hardstop-demo.mp4" download>Download MP4</a>
+            <a class="button primary" href="https://github.com/statsguysam/hardstop/releases/download/v0.3.0/hardstop-demo.mp4" download>Download MP4</a>
+            <a class="button" href="explore.html">Explore the runs</a>
             <a class="button" href="https://github.com/statsguysam/hardstop/blob/main/docs/EVIDENCE.md">Evidence</a>
-            <a class="button" href="https://github.com/statsguysam/hardstop/releases/download/v0.2.0/hardstop-source.zip">Relay source</a>
-            <a class="button" href="https://github.com/statsguysam/hardstop/releases/download/v0.2.0/hardstop-harbor-source.zip">Harbor source</a>
+            <a class="button" href="https://github.com/statsguysam/hardstop/releases/download/v0.3.0/hardstop-relay-source.zip">Relay source</a>
+            <a class="button" href="https://github.com/statsguysam/hardstop/releases/download/v0.3.0/hardstop-harbor-source.zip">Harbor source</a>
           </nav>
           <p class="fallback-note">Player not loading? Download the MP4 and open it in your video player.</p>
         </div>

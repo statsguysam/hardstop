@@ -1,0 +1,46 @@
+{
+  "buyer": {
+    "subject": "Relay: buyer version",
+    "body": "FICTIONAL DEMO BRIEF: prepared sample material.\n\nFit within 90 seconds. Keep result, disclaimer and call to action. The audience is a prospective buyer assessing whether coordination failures are worth solving. The extra time should make the pain of scattered updates and missing ownership concrete; product mechanics are secondary."
+  },
+  "operator": {
+    "subject": "Relay: operator version",
+    "body": "FICTIONAL DEMO BRIEF: prepared sample material.\n\nFit within 90 seconds. Keep result, disclaimer and call to action. The audience is the team that would use Relay day to day. The extra time should explain how a change leads to an owner and a confirmed next move; general framing of the pain is secondary."
+  },
+  "impossible": {
+    "subject": "Relay: shorter slot",
+    "body": "FICTIONAL DEMO BRIEF: prepared sample material.\n\nFit within 30 seconds. Keep result, disclaimer and call to action. Preserve the original narration and source order. Do not send anything."
+  },
+  "harbor_initial": {
+    "subject": "Harbor: training brief",
+    "body": "FICTIONAL DEMO BRIEF: prepared sample material.\n\nFit within 60 seconds. Keep finding, limitations, and next_step. Favor walkthrough if it fits. Preserve the original narration and source order. Deliver a playable video, a matching copied slide deck, and an unsent handoff draft. Do not send anything. Retain complete clips and their declared prerequisites."
+  },
+  "harbor": {
+    "subject": "Harbor: training brief",
+    "body": "FICTIONAL DEMO BRIEF: prepared sample material.\n\nFit within 60 seconds. Keep finding, limitations, and next_step. Favor walkthrough if it fits. Preserve the original narration and source order. Deliver a playable video, a matching copied slide deck, and an unsent handoff draft. Do not send anything."
+  },
+  "buyer-polished": {
+    "subject": "Relay: buyer version",
+    "body": "FICTIONAL DEMO BRIEF: prepared sample material.\n\nFit within 90 seconds. Keep result, disclaimer and call to action. The audience is a prospective buyer assessing whether coordination failures are worth solving. The extra time should make the pain of scattered updates and missing ownership concrete; product mechanics are secondary."
+  },
+  "harbor-polished": {
+    "subject": "Harbor: training brief",
+    "body": "FICTIONAL DEMO BRIEF: prepared sample material.\n\nFit within 60 seconds. Keep finding, limitations, and next_step. Favor walkthrough if it fits. Preserve the original narration and source order. Deliver a playable video, a matching copied slide deck, and an unsent handoff draft. Do not send anything."
+  },
+  "harbor-review-polished": {
+    "subject": "Harbor: training brief",
+    "body": "FICTIONAL DEMO BRIEF: prepared sample material.\n\nFit within 60 seconds. Keep finding, limitations, and next_step. Favor walkthrough if it fits. Preserve the original narration and source order. Deliver a playable video, a matching copied slide deck, and an unsent handoff draft. Do not send anything. Retain complete clips and their declared prerequisites."
+  },
+  "operator-polished": {
+    "subject": "Relay: operator version",
+    "body": "FICTIONAL DEMO BRIEF: prepared sample material.\n\nFit within 90 seconds. Keep result, disclaimer and call to action. The audience is the team that would use Relay day to day. The extra time should explain how a change leads to an owner and a confirmed next move; general framing of the pain is secondary."
+  },
+  "impossible-polished": {
+    "subject": "Relay: shorter slot",
+    "body": "FICTIONAL DEMO BRIEF: prepared sample material.\n\nFit within 30 seconds. Keep result, disclaimer and call to action. Preserve the original narration and source order. Do not send anything."
+  },
+  "operator-download-failure-polished": {
+    "subject": "Relay: operator version",
+    "body": "FICTIONAL DEMO BRIEF: prepared sample material.\n\nFit within 90 seconds. Keep result, disclaimer and call to action. The audience is the team that would use Relay day to day. The extra time should explain how a change leads to an owner and a confirmed next move; general framing of the pain is secondary."
+  }
+}

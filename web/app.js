@@ -12,9 +12,9 @@
   const $ = id => document.getElementById(id);
   const escape = value => String(value ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;"}[c]));
   const isDuration = n => Number.isFinite(n) && n >= 0;
-  const seconds = ms => isDuration(ms) ? `${(ms / 1000).toFixed(3).replace(/\.?0+$/, "")}s` : "—";
+  const seconds = ms => isDuration(ms) ? `${(ms / 1000).toFixed(3).replace(/\.?0+$/, "")}s` : "Not set";
   const clock = ms => {
-    if (!isDuration(ms)) return "—:—";
+    if (!isDuration(ms)) return "--:--";
     const whole = Math.floor(ms / 1000);
     return `${String(Math.floor(whole / 60)).padStart(2, "0")}:${String(whole % 60).padStart(2, "0")}`;
   };
@@ -74,7 +74,7 @@
     const hasSource = !!state?.source?.segments?.length;
     const button = $("run-button");
     button.disabled = !state?.configured || !hasSource || running || requestBusy || briefBusy;
-    button.textContent = requestBusy ? "Starting…" : running ? "Working on your cut…" : "Make this cut";
+    button.textContent = requestBusy ? "Starting" : running ? "Working on your cut" : "Make this cut";
     button.setAttribute("aria-busy", String(!!(running || requestBusy)));
     document.querySelectorAll(".scenario-button").forEach(node => { node.disabled = briefBusy || !hasSource || !state?.configured; });
     $("brief-change-notice").hidden = !running;
@@ -171,7 +171,7 @@
     if (rules) {
       const mandatory = current.plan?.required_closure || rules.required_ids || [];
       const timingSummary = timingNeedsReview ? "Time limit needs confirmation." : `${isDuration(rules.max_duration_ms) ? `Limit: <strong>${escape(seconds(rules.max_duration_ms))}</strong>. ` : ""}${isDuration(current.plan?.minimum_required_ms) ? `Required clips with context: <strong>${escape(seconds(current.plan.minimum_required_ms))}</strong>.` : ""}`;
-      requirementHTML = `${(rules.ambiguities || []).map(item => `<div class="ambiguity-item">${escape(item)}</div>`).join("")}<div class="requirement-chips">${mandatory.map(id => `<span class="requirement-chip" title="${escape(names[id] || id)}">Keep: ${escape(human(id))}</span>`).join("")}${(rules.excluded_ids || []).map(id => `<span class="requirement-chip excluded">Leave out: ${escape(human(id))}</span>`).join("")}</div><div class="requirement-summary">${timingSummary}</div><details class="evidence-details"><summary>Read the supporting lines from the brief</summary>${(rules.evidence || []).map(evidence => `<blockquote class="evidence-quote"><span class="evidence-kind">${escape(human(evidence.kind))}${evidence.segment_id ? ` · ${escape(human(evidence.segment_id))}` : ""}</span>“${escape(evidence.quote)}”</blockquote>`).join("")}</details>`;
+      requirementHTML = `${(rules.ambiguities || []).map(item => `<div class="ambiguity-item">${escape(item)}</div>`).join("")}<div class="requirement-chips">${mandatory.map(id => `<span class="requirement-chip" title="${escape(names[id] || id)}">Keep: ${escape(names[id] || human(id))}</span>`).join("")}${(rules.excluded_ids || []).map(id => `<span class="requirement-chip excluded">Leave out: ${escape(names[id] || human(id))}</span>`).join("")}</div><div class="requirement-summary">${timingSummary}</div><details class="evidence-details"><summary>Read the supporting lines from the brief</summary>${(rules.evidence || []).map(evidence => `<blockquote class="evidence-quote"><span class="evidence-kind">${escape(human(evidence.kind))}${evidence.segment_id ? `: ${escape(names[evidence.segment_id] || human(evidence.segment_id))}` : ""}</span>“${escape(evidence.quote)}”</blockquote>`).join("")}</details>`;
       if (briefChanged) requirementHTML = '<p class="requirement-summary">These requirements belong to the last attempt. The Gmail brief has since changed.</p>' + requirementHTML;
     }
     put("requirements", requirementHTML);
@@ -213,8 +213,11 @@
     $("custom-body").placeholder = segments.length && isDuration(total)
       ? `Fit within ${Math.max(1, Math.ceil(total / 1000))} seconds. Keep ${human(segments[0].id).toLowerCase()}. The audience is the team using this presentation.`
       : "Set a time limit, name the clips that must stay, and describe the audience.";
-    const disclosure = source.fictional === true ? "Fictional source content. " : source.source_kind === "user_recordings" ? "User-supplied recordings. " : "";
-    $("source-disclosure").textContent = `Local workspace. ${disclosure}${source.narration ? `Narration: ${source.narration}. ` : ""}Gmail messages remain unsent drafts. Explicit requirements and declared context dependencies are checked; source labels and transcripts are supplied by the source owner.`;
+    const disclosure = source.fictional === true ? "Fictional sample. " : source.source_kind === "user_recordings" ? "User-supplied recordings. " : "";
+    const narration = source.narration ? String(source.narration).trim() : "";
+    const narrationNote = /^(?:Synthetic voice|Synthesized)\b/i.test(narration) ? "Synthetic voice. "
+      : narration ? `Narration: ${narration}${/[.!?]$/.test(narration) ? "" : "."} ` : "";
+    $("source-disclosure").textContent = `Local workspace. ${disclosure}${narrationNote}Gmail messages remain unsent drafts. Checks cover explicit requirements and declared dependencies. Source labels and transcripts come from the source owner.`;
 
     const runChecks = [...(current?.plan?.checks || []), ...(current?.checks || [])];
     const checksByName = new Map(runChecks.map(check => [check.name,check]));
@@ -280,7 +283,7 @@
     if (briefBusy) return;
     briefBusy = true;
     clearError();
-    $("custom-brief-status").textContent = "Saving…";
+    $("custom-brief-status").textContent = "Saving";
     updateActions();
     try {
       await api("/api/brief", {subject:$("custom-subject").value,body:$("custom-body").value});

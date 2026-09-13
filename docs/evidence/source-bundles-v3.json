@@ -1,0 +1,26 @@
+{
+  "evidence_kind": "prepared_source_bundle_verification",
+  "checked_at": "2026-09-13T22:34:02.302621+00:00",
+  "artifacts": [
+    {
+      "name": "hardstop-relay-source.zip",
+      "sha256": "6059905bd1bd02770832ebbe21980da81b53296f7f9edc82dc3300ca1ac00220",
+      "bytes": 3166661,
+      "segments": 8,
+      "source_duration_ms": 177036,
+      "zip_integrity_verified": true,
+      "extracted_import_verified": true,
+      "matches_live_source_hashes": true
+    },
+    {
+      "name": "hardstop-harbor-source.zip",
+      "sha256": "dfb3e2714ad246b1a32ce93ad1ebcde43b1285106e21bd04c7356c53bbaeda5b",
+      "bytes": 1504141,
+      "segments": 6,
+      "source_duration_ms": 83202,
+      "zip_integrity_verified": true,
+      "extracted_import_verified": true,
+      "matches_live_source_hashes": true
+    }
+  ]
+}
