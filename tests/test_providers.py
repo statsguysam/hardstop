@@ -13,8 +13,13 @@ from unittest.mock import patch
 from urllib.error import HTTPError, URLError
 
 from hardstop.providers import (
-    CATALOG_IDS, HASH_BLOCK, UPLOAD_CHUNK, ProviderError, Providers,
+    HASH_BLOCK, UPLOAD_CHUNK, ProviderError, Providers,
     _ContentHash, _NoRedirect,
+)
+
+CATALOG_IDS = (
+    "opening", "problem", "workflow", "pilot_context", "result", "rollout",
+    "disclaimer", "call_to_action",
 )
 
 
@@ -67,9 +72,10 @@ def deck(identifier="source1", ids=None, revision="rev1", title="Demo"):
 
 
 def catalog():
-    return {"title": "HardStop test fixture", "fictional": True,
+    return {"title": "HardStop test fixture", "fictional": True, "description": "Fictional test catalog",
+            "narration": "Synthesized test narration", "source_kind": "fictional_synthesized_recording",
             "segments": [{"id": item, "title": item.replace("_", " ").title(),
-                          "slide_text": "A short fictional statement.",
+                          "slide_text": "A short fictional statement.", "value": 5,
                           "requires": ["pilot_context"] if item == "result" else []}
                          for item in CATALOG_IDS]}
 
@@ -326,6 +332,74 @@ class ProviderTests(unittest.TestCase):
         changed["slides"][0]["pageElements"][0]["shape"]["text"]["textElements"][0]["textRun"]["content"] = "Human changed title\n"
         with self.assertRaises(ProviderError):
             Providers(opener=QueueOpener(Response(changed))).create_source_deck(catalog(), presentation_id="created1")
+
+    def test_user_source_builds_new_segment_ids_and_preserves_declared_narration(self):
+        source = {"title": "Workshop", "description": "User-provided recording", "fictional": False,
+                  "narration": "Recorded human speaker", "source_kind": "user_recordings",
+                  "segments": [{"id": "lesson", "title": "One lesson", "slide_text": "Practice the exercise",
+                                "requires": [], "value": 8}]}
+        def populate(request):
+            requests = json.loads(request.data)["requests"]
+            self.assertEqual([item["createSlide"]["objectId"] for item in requests if "createSlide" in item], ["hs_lesson"])
+            text = [item["insertText"]["text"] for item in requests if "insertText" in item]
+            self.assertIn("SOURCE RECORDINGS · Recorded human speaker", text)
+            self.assertFalse(any("FICTIONAL" in item or "SYNTHESIZED" in item for item in text))
+            return Response({})
+        opener = QueueOpener(Response(deck("created1", [], title="Workshop")), populate,
+                             Response(deck("created1", ["hs_lesson"], title="Workshop")))
+        result = Providers(opener=opener).create_source_deck(source)
+        self.assertEqual(result["slide_ids"], {"lesson": "hs_lesson"})
+
+    def test_reusing_demo_ids_does_not_apply_fictional_or_synthesized_labels(self):
+        source = catalog()
+        source.update(fictional=False, narration="Recorded workshop speaker", source_kind="user_recordings")
+        def populate(request):
+            text = [item["insertText"]["text"] for item in json.loads(request.data)["requests"] if "insertText" in item]
+            self.assertIn("SOURCE RECORDINGS · Recorded workshop speaker", text)
+            self.assertNotIn("FICTIONAL FIXTURE · SYNTHESIZED NARRATION", text)
+            return Response({})
+        opener = QueueOpener(Response(deck("created1", [], title=source["title"])), populate, Response(source_deck()))
+        Providers(opener=opener).create_source_deck(source)
+
+    def test_source_deck_rejects_unknown_or_late_prerequisite_before_api(self):
+        source = catalog()
+        source["segments"][0]["requires"] = ["result"]
+        opener = QueueOpener()
+        with self.assertRaises(ValueError):
+            Providers(opener=opener).create_source_deck(source)
+        self.assertEqual(opener.requests, [])
+
+    def test_source_deck_id_boundaries_produce_legal_google_object_ids(self):
+        source = catalog()
+        for length in (1, 41):
+            with self.subTest(rejected_length=length):
+                source["segments"] = [dict(catalog()["segments"][0], id="a" * length)]
+                opener = QueueOpener()
+                with self.assertRaises(ValueError):
+                    Providers(opener=opener).create_source_deck(source)
+                self.assertEqual(opener.requests, [])
+        for length in (2, 40):
+            with self.subTest(accepted_length=length):
+                sid = "a" * length
+                source["segments"] = [dict(catalog()["segments"][0], id=sid)]
+                def populate(request):
+                    requests = json.loads(request.data)["requests"]
+                    ids = [item[key]["objectId"] for item in requests for key in ("createSlide", "createShape") if key in item]
+                    self.assertTrue(all(5 <= len(value) <= 50 for value in ids))
+                    self.assertEqual(len(ids), len(set(ids)))
+                    return Response({})
+                opener = QueueOpener(Response(deck("created1", [], title=source["title"])), populate,
+                                     Response(deck("created1", ["hs_" + sid], title=source["title"])))
+                Providers(opener=opener).create_source_deck(source)
+
+    def test_source_shape_name_collision_is_rejected_before_api(self):
+        source = catalog()
+        first = source["segments"][0]
+        source["segments"] = [dict(first, id="lesson"), dict(first, id="lesson_footer")]
+        opener = QueueOpener()
+        with self.assertRaises(ValueError):
+            Providers(opener=opener).create_source_deck(source)
+        self.assertEqual(opener.requests, [])
 
     def test_dropbox_hash_matches_reference_at_empty_and_block_boundaries(self):
         for length in (0, 1, HASH_BLOCK - 1, HASH_BLOCK, HASH_BLOCK + 1, HASH_BLOCK * 2 + 7):

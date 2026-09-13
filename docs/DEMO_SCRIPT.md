@@ -1,32 +1,27 @@
-# HardStop demo: the slot changed
+# HardStop: one presentation, two audiences
 
-The final video runs **1 minute 50.022 seconds** at 1920×1080. It contains 223 words of synthesized narration, actual captured app states from completed API runs, and a four-second excerpt from the resulting video. This is an edited demonstration with shortened waits, not an uninterrupted screen recording.
+Final video: **110.022 seconds**, 1920×1080. Narration: 215 words, synthesized locally.
 
-The persistent disclosure reads: **Recorded API runs. Waiting time shortened. Fictional example. Synthesized narration.** The Gmail producer briefs are labeled fictional draft fixtures. The source presentation and its claimed results are fictional.
+This is an edited montage of actual captured app states from completed API runs, with four seconds of actual output playback. It is not an uninterrupted screen recording. All source content is fictional. Harbor is a second synthetic fixture, not a customer submission. Its first brief required review; a clarified brief then succeeded.
 
-## Final script
+Persistent disclosure: Recorded API runs. Waiting time shortened. Fictional sources. Synthesized narration.
 
-| Time | Recorded picture | Narration |
+| Time | Actual picture | Exact narration |
 | --- | --- | --- |
-| 0:00–0:07 | The successful 120-second version in HardStop. | Your two-minute presentation is ready. Then the producer says, we only have ninety seconds. |
-| 0:07–0:16 | Actual processing frames from the original 120-second run, with waiting shortened. The earlier valid cut remains visible. | That change touches three places: the brief in Gmail, the recordings in Dropbox, and the deck in Google Slides. |
-| 0:16–0:24 | The finished file measures 116.770 seconds against the 120-second brief. | Here's the original cut: one minute, fifty-six seconds. It fits the first brief. Now let's change the deadline. |
-| 0:24–0:34 | The amended 90-second brief in the interface; the previous cut remains available. | HardStop's model reads the new brief and turns it into requirements. Each one links back to what the producer actually wrote. |
-| 0:34–0:46 | The retained clips, required context, omitted rollout, and quotations from the brief. | The result must stay, with its explanation and disclaimer. HardStop keeps those complete clips together, removes the rollout, and checks the timing. |
-| 0:46–0:54 | The completed 90-second version measures 86.203 seconds. | Here's the new version: eighty-six point two seconds. That's the finished file's measured length. Let's hear a few seconds. |
-| 0:54–0:58 | The first four seconds of the finished video, with its own audio alone. | *Source audio only; no added narration.* |
-| 0:58–1:07 | The actual copied Google Slides deck, with five matching slides in order. | It also copies the slide deck and keeps exactly the slides that match the video. The original deck stays intact. |
-| 1:07–1:15 | The actual unsent Gmail handoff draft, cropped to the subject and delivery summary. | The video goes back to Dropbox, then gets downloaded and checked. HardStop prepares this email draft for review. |
-| 1:15–1:28 | The 30-second request is blocked: its required clips need 53.969 seconds. The previous 86.203-second cut remains available. | Now ask for thirty seconds. The required recordings alone need almost fifty-four. HardStop explains why they cannot fit, and leaves the working version untouched. |
-| 1:28–1:41 | The freeform editor with a 75-second brief typed in. This shot shows writing; it does not show that brief being saved or executed. | You can write your own brief, too. The same checks apply. This example uses fictional content and synthesized narration; the app calls and recorded results are real. |
-| 1:41–1:50 | A closer view of the blocked request and the previous successful cut. | That's HardStop: change the brief, keep the video and deck in step, and know when the request simply cannot be met. |
+| 0:00–0:08 | Actual buyer delivery and brief. | One presentation. Two audiences. A buyer and an operator. Both have ninety seconds. |
+| 0:08–0:19 | The changed operator brief; the buyer delivery is still available. | The buyer needs the problem explained. The operator needs to see the workflow. I change the Gmail brief, while the required result and disclaimer stay. |
+| 0:19–0:32 | Actual Why these clips panel, showing the model explanation and change from the buyer selection. | HardStop's model turns the request into ranked preferences. It favors the problem for the buyer, and the workflow for the operator. Required context stays with the result. |
+| 0:32–0:40 | Buyer delivery: problem plus the same four required clips. | Here's the buyer cut: eighty-five point six seconds, with its own matching deck. |
+| 0:40–0:48 | Operator delivery: workflow plus the same four required clips. | The operator cut is eighty-six point two seconds. Same limit. Different content. Here's a short excerpt. |
+| 0:48–0:52 | Four seconds from the actual operator video; source audio alone. | *Source audio only.* |
+| 0:52–1:02 | Native copied Google Slides deck with five retained slides. | The recordings come from Dropbox. For each cut, HardStop copies the Google Slides deck and checks that its pages match the selected clips. |
+| 1:02–1:12 | Native unaddressed Gmail handoff, cropped to the delivery summary. | Saved videos are downloaded again and checked. This Gmail draft brings the video and deck together for review. Nothing is sent. |
+| 1:12–1:26 | Thirty-second Relay request blocked; operator delivery remains available. | Now ask for thirty seconds. The required recordings alone need almost fifty-four. HardStop explains why they cannot fit, and preserves the last working delivery. |
+| 1:26–1:42 | Independent six-recording Harbor source, after a clarified brief completed through all three apps. | Harbor uses six new recordings, different section names, and a new dependency. After clarifying the brief, it produces a forty-three point six-second cut through the same three apps. This is a second fictional example. |
+| 1:42–1:50 | Close on the operator delivery. | HardStop. Change the audience or the time limit, and get a video and matching deck you can review together. |
 
-## Recording notes
+The buyer, operator, Harbor and impossible outcomes were checked against their actual saved reports. Independent provider readbacks passed for the buyer, operator after the impossible request, and Harbor. The operator receipt identifies gpt-6-astra; the additional reports preserve their own recorded model provenance.
 
-- The storyline is a 120-second brief, a successful 90-second amendment, and an impossible 30-second request. The processing montage near the opening belongs to the original 120-second run.
-- The model used in the recorded runs was `gpt-6-astra`. It interprets the brief; deterministic checks enforce declared clip requirements, dependencies, source order, and measured time. The result’s dependency on pilot context is declared in the source catalog.
-- Google Slides and Gmail shots show actual native app content. Crops exclude private inbox content, account controls, unrelated toolbars, and delivery URLs. No UI states were fabricated.
-- The source recording and captures were unchanged after assembly. Final duration, audio/video streams, complete decoding, audio levels, and removal of optional identifying metadata were checked.
-- [Captions](demo-captions.vtt) match the final narration exactly and use no more than two lines per cue. Narration clip timing is measured; phrase boundaries within each clip are estimated.
+Captions match the exact narration and measured clip timing, with estimated phrase boundaries within each clip. The source excerpt uses the beginning of the unmodified operator recording.
 
-See the [evidence record](EVIDENCE.md) for the live-run results and verification details.
+[Verification evidence](EVIDENCE.md) | [Final captions](demo-captions.vtt)

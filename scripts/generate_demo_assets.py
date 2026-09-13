@@ -64,7 +64,7 @@ def arrow(draw, x1, x2, y, color=CITRUS, width=4):
     draw.polygon([(x2, y), (x2 - 13, y - 8), (x2 - 13, y + 8)], fill=color)
 
 
-def card(segment: dict, index: int, path: Path):
+def card(segment: dict, index: int, path: Path, total: int = 8):
     image = Image.new("RGB", (W, H))
     draw = ImageDraw.Draw(image)
     for y in range(H):
@@ -121,7 +121,7 @@ def card(segment: dict, index: int, path: Path):
         text(draw, segment["slide_text"], (80, 220), 44, max_width=1010)
     draw.line((80, 618, 1120, 618), fill="#3A4969", width=1)
     text(draw, "Fictional sample · Synthesized narration", (80, 645), 20, MUTED)
-    text(draw, f"{index + 1:02d} / 08", (1026, 645), 20, MUTED)
+    text(draw, f"{index + 1:02d} / {total:02d}", (1026, 645), 20, MUTED)
     image.save(path)
 
 
@@ -138,7 +138,7 @@ def generate(catalog_path: Path, output: Path, voice: str = "Samantha") -> dict:
         png = output / f"{ident}.png"
         audio = output / f"{ident}.aiff"
         mp4 = output / f"{ident}.mp4"
-        card(segment, index, png)
+        card(segment, index, png, total=len(data["segments"]))
         # Input comes from a text file, never shell interpolation.
         transcript = output / f"{ident}.txt"
         transcript.write_text(segment["transcript"])

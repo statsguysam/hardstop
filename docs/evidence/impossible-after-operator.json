@@ -1,0 +1,159 @@
+{
+  "schema_version": 1,
+  "evidence_kind": "saved_run_receipt",
+  "label": "impossible-after-operator",
+  "local_run_id": "20260913T213746-97c1decd",
+  "status": "infeasible",
+  "started_at": "2026-09-13T21:37:46.974000+00:00",
+  "finished_at": "2026-09-13T21:37:58.158000+00:00",
+  "brief": {
+    "text_included": true,
+    "body_sha256": "94596434e70d6d416d7fae1c08d6e1b82e2d3b20566c2825ddd7422b5a41fffe",
+    "source_fingerprint": "7f3b95fa962484d0324a794411c25510c384968c0efd81a0febc66633eb8815e",
+    "fixture": "impossible",
+    "subject": "[HardStop Demo] Relay launch presentation — impossible timing request",
+    "body": "FICTIONAL DEMO BRIEF — this Gmail draft is a test fixture, not a received customer email.\n\nThe complete recorded presentation must fit within 30 seconds. The pilot result, disclaimer and final call to action are still mandatory. Keep the pilot context before the result. Do not rewrite, accelerate, or truncate any retained recording. Keep the original section order.\n\nThis replaces all previous timing instructions. If these requirements cannot all be met, report the conflict and preserve the previous approved deliverables. Do not send anything."
+  },
+  "events": [
+    {
+      "at": "2026-09-13T21:37:46.975000+00:00",
+      "stage": "reading",
+      "message": "Reading the current Gmail brief, Google Slides source, and Dropbox catalog"
+    },
+    {
+      "at": "2026-09-13T21:37:49.380000+00:00",
+      "stage": "interpreting",
+      "message": "The model is extracting the deadline, mandatory content, exclusions, and evidence quotes"
+    },
+    {
+      "at": "2026-09-13T21:37:58.156000+00:00",
+      "stage": "blocked",
+      "message": "Mandatory clips and prerequisites need 53.969 seconds, exceeding the 30-second limit by 23.969 seconds.; Required closure: pilot_context, result, disclaimer, call_to_action."
+    }
+  ],
+  "checks": [
+    {
+      "name": "catalog_integrity",
+      "passed": true,
+      "detail": "Dropbox catalog matches the registered source SHA-256"
+    },
+    {
+      "name": "source_deck",
+      "passed": true,
+      "detail": "Source deck content and slide order match the registered recording"
+    },
+    {
+      "name": "mandatory_duration",
+      "passed": false,
+      "detail": "Mandatory clips and prerequisites need 53.969 seconds, exceeding the 30-second limit by 23.969 seconds."
+    }
+  ],
+  "limitations": [
+    "This is a saved receipt, not a new live run or independently signed provider attestation.",
+    "The exporter does not independently establish whether a report used live providers or test doubles; live provenance is documented separately.",
+    "Private provider object IDs, URLs, paths, response IDs, and temporary download links are omitted.",
+    "Fixture content is fictional and narration is synthesized. Gmail operations create or update unsent drafts only.",
+    "Verification covers explicit requirements and declared prerequisites, not general semantic preservation."
+  ],
+  "plan": {
+    "duration_ms": 0,
+    "minimum_required_ms": 53969,
+    "status": "infeasible",
+    "selected_ids": [],
+    "required_closure": [
+      "pilot_context",
+      "result",
+      "disclaimer",
+      "call_to_action"
+    ],
+    "removed_ids": [
+      "opening",
+      "problem",
+      "workflow",
+      "pilot_context",
+      "result",
+      "rollout",
+      "disclaimer",
+      "call_to_action"
+    ],
+    "reasons": [
+      "Mandatory clips and prerequisites need 53.969 seconds, exceeding the 30-second limit by 23.969 seconds.",
+      "Required closure: pilot_context, result, disclaimer, call_to_action."
+    ],
+    "checks": [
+      {
+        "name": "mandatory_duration",
+        "passed": false,
+        "detail": "Mandatory clips and prerequisites need 53.969 seconds, exceeding the 30-second limit by 23.969 seconds."
+      }
+    ]
+  },
+  "constraints": {
+    "required_ids": [
+      "pilot_context",
+      "result",
+      "disclaimer",
+      "call_to_action"
+    ],
+    "excluded_ids": [],
+    "max_duration_ms": 30000,
+    "priorities": {
+      "opening": 5,
+      "problem": 4,
+      "workflow": 10,
+      "rollout": 3
+    },
+    "ambiguities": [],
+    "evidence": [
+      {
+        "kind": "duration",
+        "segment_id": null,
+        "quote": "The complete recorded presentation must fit within 30 seconds."
+      },
+      {
+        "kind": "required",
+        "segment_id": "pilot_context",
+        "quote": "Keep the pilot context before the result."
+      },
+      {
+        "kind": "required",
+        "segment_id": "result",
+        "quote": "The pilot result, disclaimer and final call to action are still mandatory."
+      },
+      {
+        "kind": "required",
+        "segment_id": "disclaimer",
+        "quote": "The pilot result, disclaimer and final call to action are still mandatory."
+      },
+      {
+        "kind": "required",
+        "segment_id": "call_to_action",
+        "quote": "The pilot result, disclaimer and final call to action are still mandatory."
+      }
+    ]
+  },
+  "model": {
+    "usage": {
+      "input_tokens": 1435,
+      "output_tokens": 453,
+      "total_tokens": 1888,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens_details": {
+        "reasoning_tokens": 91
+      }
+    },
+    "name": "gpt-6-astra",
+    "elapsed_ms": 8768
+  },
+  "output_verification": {
+    "delivery_promoted": false,
+    "copied_deck_verified": false,
+    "video_sha256_recorded": false,
+    "dropbox_readback_verified": false,
+    "handoff_draft_readback_verified": false,
+    "inputs_rechecked_before_promotion": false,
+    "final_output_revisions_verified": false
+  }
+}

@@ -24,27 +24,33 @@ flowchart LR
 | `configure.py` | Private credential storage, PKCE OAuth callback handling, access-token refresh and bounded HTTP requests. |
 | `hardstop/providers.py` | Real Gmail, Slides/Drive and Dropbox API calls; draft readback, copied-deck verification, streamed media transfer, resource identity retention and safe provider errors. |
 | `hardstop/interpret.py` | One OpenAI Responses API request with a strict JSON schema; validation of known IDs, exact evidence quotations, numeric duration support and explicit ambiguity. |
+| `hardstop/source.py` | Validate a source-owner catalog, copy bounded local MP4 recordings without following links, measure and fully decode them, then install an immutable source package. |
 | `hardstop/planner.py` | Pure deterministic subset selection, declared dependency closure, mandatory/excluded content, original order and independent selection checks. |
 | `hardstop/media.py` | Probe and hash source files, fully decode inputs, concatenate normalized whole clips, verify output duration/audio/video and atomically install a new local artifact. |
 | `hardstop/workflow.py` | Seed journal, run journal, app coordination, repeated source-freshness checks and promotion of the last verified delivery. |
 | `hardstop/server.py` | Loopback review API and media serving; explicit routes, same-origin mutation checks and CSRF token validation. |
-| `hardstop/cli.py` | Seed, brief changes, explicit run IDs, status and local server commands. |
+| `hardstop/cli.py` | Fictional seeding, independent source registration, brief changes, explicit run IDs, status and local server commands. |
+| `scripts/evaluate_briefs.py` | Predeclare six interpretation cases, call the model once per case, score deterministic plans, and compare model priorities with a fixed-priority baseline. No cloud deliveries. |
 
 ## Source contract
 
-The committed `fixtures/catalog.json` describes eight fictional segments with stable IDs, transcript, display text, `requires` and value. Generation records actual file hashes and durations; it does not estimate timing from word count. The `result` segment requires `pilot_context`, which appears earlier in source order.
+There are two onboarding paths. `seed` uses the eight fictional segments in `fixtures/catalog.json`, with synthesized narration. `source` accepts 1–18 prepared local MP4 recordings and their source-owner catalog in a new workspace. Both register stable IDs, titles, transcripts, slide text, declared `requires` and default values. IDs contain 2–40 lowercase letters, digits or underscores and begin with a letter. Source import rejects generated slide-object name collisions. [Exact format and limits](SOURCE_GUIDE.md).
 
-`seed` verifies or generates the recordings, creates a dedicated native Google Slides source deck, uploads source clips and the catalog to the configured Dropbox app folder, and creates a labeled Gmail brief draft. The local source registration records the resulting identities and fingerprints. Reusing a completed seed returns those resources. Partial seeding uses a journal and requires reconciliation when a creation outcome is unresolved.
+Source import measures duration from the files and verifies full decoding; it does not estimate timing from transcript length. It checks sizes, common dimensions, audio/video streams, safe relative paths and file hashes before installing a new source directory. It does not generate narration or verify that a user-declared transcript accurately describes the audio. The Relay fixture's `result` dependency on earlier `pilot_context` is one declared example, not a built-in dependency for every presentation.
 
-One source slide corresponds to one complete clip. Slide verification checks content and order against that mapping. It does not imply that the media card and the native slide are pixel-identical.
+Both onboarding paths generate a dedicated native Google Slides source deck from each clip's title and `slide_text`, upload the recordings and catalog to the configured Dropbox app folder, and create an unaddressed Gmail brief draft. An arbitrary existing deck is not imported. The local registration retains resource identities and fingerprints. A registered workspace refuses replacement with another source; use a separate `--state-dir`. Partial registration uses a journal and requires reconciliation when creation outcomes are unresolved or inputs change.
+
+One source slide corresponds to one complete clip. Slide verification checks content and order against that registered mapping. It does not authenticate the source owner's labels, discover all semantic dependencies, or establish that media and slides are pixel-identical.
 
 ## Interpretation and planning
 
 The model receives the brief and a bounded catalog containing IDs, titles, transcripts, declared prerequisites, measured durations and values. It receives no credentials or arbitrary tool interface. The current configured model is `gpt-6-astra`; requests use the Responses API, `store: false`, a strict schema and bounded output.
 
-The returned structure includes duration, mandatory and excluded segment IDs, priorities, evidence quotations and ambiguities. The validator checks exact brief substrings and numeric duration evidence, rejects malformed or unknown IDs, and flags uncertain segment references for review. Grounded quotations help review the interpretation; they do not prove the model captured every human intention correctly.
+The returned structure includes duration, mandatory and excluded segment IDs, priorities, evidence quotations and ambiguities. The validator checks exact brief substrings and numeric duration evidence, rejects malformed or unknown IDs, and audits supported explicit directive grammar. Quotations help review constraints; they do not prove the model captured every human intention correctly. Optional-clip priority reasons are model-generated explanations, separate from verbatim evidence. The UI displays these reasons as text, labels in-progress choices as proposals, and only compares completed versions from the same known source catalog.
 
-The planner accepts at most 18 segments and exhaustively considers subsets. It closes mandatory content over the declared prerequisite graph, preserves source order, honors exclusions and chooses a maximum-value feasible set. A separate verifier recomputes the selected set's constraints. The model cannot bypass these checks by reporting a different duration or dependency graph.
+The planner accepts at most 18 segments and exhaustively considers subsets. It closes mandatory content over the declared prerequisite graph, preserves source order, honors exclusions and chooses a maximum-value feasible set. The model's priorities replace the catalog defaults for ranking; duration and source order break ties. A separate verifier recomputes the selected set's constraints. The model cannot bypass these checks by reporting a different duration or dependency graph.
+
+This separation has an observed consequence: two 90-second audience briefs with identical required closure chose different optional clips. The buyer version selected the problem explanation and the operator version selected the workflow. The [six-case evaluation and separate full-app runs](EVIDENCE.md#live-audience-versions) distinguish model-dependent ranking from deterministic enforcement. The fixed-priority baseline reuses the model's extracted hard constraints, so it isolates ranking rather than representing an application with no model at all.
 
 If a brief has unresolved ambiguity, the result is `needs_review`. If its mandatory dependency closure exceeds the budget or conflicts with exclusions, the result is `infeasible`. Neither outcome starts rendering or output creation.
 
@@ -91,4 +97,4 @@ python3 -m unittest discover -s tests -v
 
 The suite separates deterministic planning and interpretation checks, controlled provider failures and actual local FFmpeg operations. FFmpeg-dependent tests skip when the binaries are missing. Live evidence must come from full application runs with real app readbacks; connection tests and mocked provider tests alone are insufficient.
 
-The source presentation, product and outcomes are invented, and narration is synthesized. The implementation verifies explicit requirements and declared dependencies for whole-clip edits. It does not infer a universal account of meaning, support arbitrary timelines, or promise that a person presenting live will finish on time.
+The published Relay demonstration is fictional and uses synthesized narration. Imported recordings may be different; their fictional-content and narration labels are source-owner declarations. The implementation verifies explicit requirements and declared dependencies for whole-clip edits. It does not infer a universal account of meaning, support arbitrary timelines, or promise that a person presenting live will finish on time.

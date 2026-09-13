@@ -65,7 +65,7 @@
   }
 
   function scenarioKey() {
-    if (!state?.brief?.body) return null;
+    if (!state?.brief?.body || state.source?.source_kind === "user_recordings") return null;
     return Object.keys(state.fixtures || {}).find(key => state.fixtures[key].body === state.brief.body) || null;
   }
 
@@ -90,6 +90,7 @@
     const preserving = !!(ready && current && (ready.id !== current.id || briefChanged));
     const source = state.source || {};
     const segments = Array.isArray(source.segments) ? source.segments : [];
+    const fixtures = source.source_kind === "user_recordings" ? {} : state.fixtures || {};
     const total = segments.length && segments.every(s => isDuration(s.duration_ms)) ? segments.reduce((sum,s) => sum+s.duration_ms,0) : null;
     const activeScenario = scenarioKey();
     const presetBudget = {original:120000, amendment:90000, impossible:30000}[activeScenario];
@@ -109,8 +110,8 @@
     $("brief-body").textContent = state.brief?.body || "Set up the source presentation, recordings and Gmail draft to get started.";
 
     const scenarioNames = {original:["Original slot", "120s"], amendment:["Shorter slot", "90s"], impossible:["Too little time", "30s"], ambiguous:["Unclear brief", ""]};
-    put("scenarios", Object.keys(state.fixtures || scenarioNames).map(key => {
-      const [name, timing] = scenarioNames[key] || [state.fixtures[key].label, ""];
+    put("scenarios", Object.keys(fixtures).map(key => {
+      const [name, timing] = scenarioNames[key] || [fixtures[key].label, ""];
       return `<button type="button" class="scenario-button ${activeScenario === key ? "active" : ""}" data-scenario="${escape(key)}" aria-pressed="${activeScenario === key}" aria-label="Load ${escape(name)} scenario ${escape(timing)}">${escape(name)}<span>${escape(timing)}</span></button>`;
     }).join(""));
 
@@ -174,6 +175,46 @@
       if (briefChanged) requirementHTML = '<p class="requirement-summary">These requirements belong to the last attempt. The Gmail brief has since changed.</p>' + requirementHTML;
     }
     put("requirements", requirementHTML);
+
+    const decisionRows = Array.isArray(current?.interpretation?.priorities) ? current.interpretation.priorities : [];
+    const chosen = new Set(current?.plan?.selected_ids || []);
+    const mandatoryChoices = new Set(current?.plan?.required_closure || []);
+    const knownChoice = id => Object.hasOwn(names, id);
+    const optionalChoices = decisionRows.filter(row => row && knownChoice(row.segment_id) && chosen.has(row.segment_id) && !mandatoryChoices.has(row.segment_id) && typeof row.reason === "string" && row.reason.trim());
+    const showDecisions = ["ready", "running"].includes(current?.status) && current?.plan?.status === "feasible" && [...chosen].every(knownChoice) && optionalChoices.length > 0;
+    $("decision-panel").hidden = !showDecisions;
+    if (showDecisions) {
+      const catalogHash = current.source?.catalog_sha256;
+      const previous = current.status === "ready" && !briefChanged && typeof catalogHash === "string" && /^[a-f0-9]{64}$/.test(catalogHash)
+        ? (state.runs || []).filter(run => run.status === "ready" && run.id !== current.id &&
+            run.source?.catalog_sha256 === catalogHash && Date.parse(run.started_at) < Date.parse(current.started_at) &&
+            Array.isArray(run.plan?.selected_ids) && run.plan.selected_ids.every(knownChoice))
+          .sort((a, b) => Date.parse(b.started_at) - Date.parse(a.started_at))[0]
+        : null;
+      const before = new Set(previous?.plan?.selected_ids || []);
+      const added = [...chosen].filter(id => !before.has(id));
+      const removed = [...before].filter(id => !chosen.has(id));
+      const sameSet = (a,b) => JSON.stringify([...(a || [])].sort()) === JSON.stringify([...(b || [])].sort());
+      const sameRequirements = previous && isDuration(rules?.max_duration_ms) && rules.max_duration_ms > 0 && previous.constraints?.max_duration_ms === rules.max_duration_ms && sameSet(previous.plan?.required_closure,current.plan?.required_closure) && sameSet(previous.constraints?.excluded_ids,rules.excluded_ids);
+      const changed = previous && (added.length || removed.length);
+      const clipList = ids => {
+        const text = ids.map(id => names[id] || human(id)).join(", ");
+        return escape(/[.!?…]$/.test(text) ? text : text + ".");
+      };
+      const comparison = changed ? `<div class="version-change"><strong>${sameRequirements ? `Same ${escape(seconds(rules.max_duration_ms))} limit and required clips.` : "Changed from your previous verified cut."}</strong>${added.length ? `<p>Added: ${clipList(added)}</p>` : ""}${removed.length ? `<p>Left out: ${clipList(removed)}</p>` : ""}</div>` : "";
+      const choiceContext = current.status === "running"
+        ? (briefChanged ? "These proposed choices use the previous brief. Delivery has not completed." : "Proposed choices. Delivery checks are still in progress.")
+        : briefChanged ? "These choices belong to the previous brief and verified cut. The updated brief has not been checked." : "";
+      put("decisions", `${choiceContext ? `<p class="panel-description">${escape(choiceContext)}</p>` : ""}<p class="panel-description">The model suggests optional clips for your audience and preferences. The planner checks what fits around required content.</p>${optionalChoices.map(row => `<article class="editorial-choice"><h3>${escape(names[row.segment_id])}</h3><p>${escape(row.reason)}</p></article>`).join("")}${comparison}`);
+    } else {
+      put("decisions", "");
+    }
+    $("brief-introduction").textContent = Object.keys(fixtures).length ? "Choose an example or write your own. Each change is saved to the same draft." : "Write your brief using this source’s clip names, time limit and audience. Changes are saved to your dedicated Gmail draft.";
+    $("custom-body").placeholder = segments.length && isDuration(total)
+      ? `Fit within ${Math.max(1, Math.ceil(total / 1000))} seconds. Keep ${human(segments[0].id).toLowerCase()}. The audience is the team using this presentation.`
+      : "Set a time limit, name the clips that must stay, and describe the audience.";
+    const disclosure = source.fictional === true ? "Fictional source content. " : source.source_kind === "user_recordings" ? "User-supplied recordings. " : "";
+    $("source-disclosure").textContent = `Local workspace. ${disclosure}${source.narration ? `Narration: ${source.narration}. ` : ""}Gmail messages remain unsent drafts. Explicit requirements and declared context dependencies are checked; source labels and transcripts are supplied by the source owner.`;
 
     const runChecks = [...(current?.plan?.checks || []), ...(current?.checks || [])];
     const checksByName = new Map(runChecks.map(check => [check.name,check]));

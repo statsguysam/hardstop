@@ -1,0 +1,332 @@
+{
+  "schema_version": 1,
+  "evidence_kind": "saved_run_receipt",
+  "label": "harbor-imported-source",
+  "local_run_id": "20260913T213617-67c33f4a",
+  "status": "ready",
+  "started_at": "2026-09-13T21:36:17.990000+00:00",
+  "finished_at": "2026-09-13T21:37:26.791000+00:00",
+  "brief": {
+    "text_included": true,
+    "body_sha256": "690a1bb95900d16e2d507dc6f27135415fee2b63c6b43a45fd646fe7c0df13af",
+    "source_fingerprint": "675a84f7df0439d3283cb2c5a8387eceed86ebcb86df9625d5570069f1780613",
+    "fixture": "harbor-imported-source",
+    "subject": "Harbor - product briefing",
+    "body": "FICTIONAL DEMO BRIEF — this is a second synthetic test fixture, not a customer request.\n\nFit within 60 seconds. Keep finding, limitations, and next_step. Favor walkthrough if it fits. Preserve the original narration and source order. Deliver a playable video, a matching copied slide deck, and an unsent handoff draft. Do not send anything."
+  },
+  "events": [
+    {
+      "at": "2026-09-13T21:36:17.991000+00:00",
+      "stage": "reading",
+      "message": "Reading the current Gmail brief, Google Slides source, and Dropbox catalog"
+    },
+    {
+      "at": "2026-09-13T21:36:20.140000+00:00",
+      "stage": "interpreting",
+      "message": "The model is extracting the deadline, mandatory content, exclusions, and evidence quotes"
+    },
+    {
+      "at": "2026-09-13T21:36:43.592000+00:00",
+      "stage": "downloading",
+      "message": "Downloading 4 selected source recordings from Dropbox"
+    },
+    {
+      "at": "2026-09-13T21:36:53.723000+00:00",
+      "stage": "rendering",
+      "message": "Rendering whole clips in source order, then decoding and measuring the completed MP4"
+    },
+    {
+      "at": "2026-09-13T21:36:59.459000+00:00",
+      "stage": "deck",
+      "message": "Copying the source Google Slides deck and retaining exactly the selected slides"
+    },
+    {
+      "at": "2026-09-13T21:37:09.389000+00:00",
+      "stage": "uploading",
+      "message": "Uploading the cut to Dropbox and downloading it again to verify exact bytes"
+    },
+    {
+      "at": "2026-09-13T21:37:19.836000+00:00",
+      "stage": "handoff",
+      "message": "Creating an unaddressed Gmail handoff draft with verified delivery evidence"
+    },
+    {
+      "at": "2026-09-13T21:37:26.791000+00:00",
+      "stage": "ready",
+      "message": "Verified delivery ready for review. No email sent."
+    }
+  ],
+  "checks": [
+    {
+      "name": "catalog_integrity",
+      "passed": true,
+      "detail": "Dropbox catalog matches the registered source SHA-256"
+    },
+    {
+      "name": "source_deck",
+      "passed": true,
+      "detail": "Source deck content and slide order match the registered recording"
+    },
+    {
+      "name": "nonempty_cut",
+      "passed": true,
+      "detail": "The output contains at least one complete clip."
+    },
+    {
+      "name": "known_ids",
+      "passed": true,
+      "detail": "Every selected ID exists in the source catalog."
+    },
+    {
+      "name": "unique_ids",
+      "passed": true,
+      "detail": "Each selected clip appears once."
+    },
+    {
+      "name": "source_order",
+      "passed": true,
+      "detail": "Selected clips retain their original presentation order."
+    },
+    {
+      "name": "required_closure",
+      "passed": true,
+      "detail": "All mandatory clips and their prerequisites are selected."
+    },
+    {
+      "name": "excluded_absent",
+      "passed": true,
+      "detail": "No excluded clip is selected."
+    },
+    {
+      "name": "dependencies",
+      "passed": true,
+      "detail": "Every selected clip has its declared prerequisites."
+    },
+    {
+      "name": "duration_budget",
+      "passed": true,
+      "detail": "Measured clip sum is 43601 ms; budget is 60000 ms."
+    },
+    {
+      "name": "resolved_brief",
+      "passed": true,
+      "detail": "The brief has no unresolved ambiguities."
+    },
+    {
+      "name": "independent_selection",
+      "passed": true,
+      "detail": "Selection independently satisfies explicit constraints and declared dependencies"
+    },
+    {
+      "name": "source_setting",
+      "passed": true,
+      "detail": "setting: downloaded hash and measured duration match the source"
+    },
+    {
+      "name": "source_finding",
+      "passed": true,
+      "detail": "finding: downloaded hash and measured duration match the source"
+    },
+    {
+      "name": "source_limitations",
+      "passed": true,
+      "detail": "limitations: downloaded hash and measured duration match the source"
+    },
+    {
+      "name": "source_next_step",
+      "passed": true,
+      "detail": "next_step: downloaded hash and measured duration match the source"
+    },
+    {
+      "name": "measured_deadline",
+      "passed": true,
+      "detail": "Actual output 43601 ms fits 60000 ms"
+    },
+    {
+      "name": "decode_verified",
+      "passed": true,
+      "detail": "Full output decode succeeded with video and audio"
+    },
+    {
+      "name": "copied_source_content",
+      "passed": true,
+      "detail": "Copied deck content matches the captured source for the retained slides"
+    },
+    {
+      "name": "output_sha256",
+      "passed": true,
+      "detail": "Dropbox output downloaded again with the exact rendered SHA-256"
+    },
+    {
+      "name": "matching_deck",
+      "passed": true,
+      "detail": "Copied Google Slides deck matches selected recordings in content and order"
+    },
+    {
+      "name": "handoff_readback",
+      "passed": true,
+      "detail": "Handoff draft read back exactly with no recipients"
+    },
+    {
+      "name": "final_outputs",
+      "passed": true,
+      "detail": "Output deck and video revisions are unchanged at final verification"
+    },
+    {
+      "name": "fresh_inputs",
+      "passed": true,
+      "detail": "Brief, source deck, catalog, and media revisions rechecked before promotion"
+    }
+  ],
+  "limitations": [
+    "This is a saved receipt, not a new live run or independently signed provider attestation.",
+    "The exporter does not independently establish whether a report used live providers or test doubles; live provenance is documented separately.",
+    "Private provider object IDs, URLs, paths, response IDs, and temporary download links are omitted.",
+    "Fixture content is fictional and narration is synthesized. Gmail operations create or update unsent drafts only.",
+    "Verification covers explicit requirements and declared prerequisites, not general semantic preservation."
+  ],
+  "plan": {
+    "duration_ms": 43601,
+    "minimum_required_ms": 43601,
+    "status": "feasible",
+    "selected_ids": [
+      "setting",
+      "finding",
+      "limitations",
+      "next_step"
+    ],
+    "required_closure": [
+      "setting",
+      "finding",
+      "limitations",
+      "next_step"
+    ],
+    "removed_ids": [
+      "introduction",
+      "walkthrough"
+    ],
+    "reasons": [
+      "Selected 4 complete clips totaling 43.601 seconds within the 60-second limit.",
+      "All explicit required clips and declared prerequisites are preserved in source order.",
+      "Optional clips maximize the configured priority score; duration and source order break ties."
+    ],
+    "checks": [
+      {
+        "name": "nonempty_cut",
+        "passed": true,
+        "detail": "The output contains at least one complete clip."
+      },
+      {
+        "name": "known_ids",
+        "passed": true,
+        "detail": "Every selected ID exists in the source catalog."
+      },
+      {
+        "name": "unique_ids",
+        "passed": true,
+        "detail": "Each selected clip appears once."
+      },
+      {
+        "name": "source_order",
+        "passed": true,
+        "detail": "Selected clips retain their original presentation order."
+      },
+      {
+        "name": "required_closure",
+        "passed": true,
+        "detail": "All mandatory clips and their prerequisites are selected."
+      },
+      {
+        "name": "excluded_absent",
+        "passed": true,
+        "detail": "No excluded clip is selected."
+      },
+      {
+        "name": "dependencies",
+        "passed": true,
+        "detail": "Every selected clip has its declared prerequisites."
+      },
+      {
+        "name": "duration_budget",
+        "passed": true,
+        "detail": "Measured clip sum is 43601 ms; budget is 60000 ms."
+      },
+      {
+        "name": "resolved_brief",
+        "passed": true,
+        "detail": "The brief has no unresolved ambiguities."
+      }
+    ]
+  },
+  "constraints": {
+    "required_ids": [
+      "finding",
+      "limitations",
+      "next_step"
+    ],
+    "excluded_ids": [],
+    "max_duration_ms": 60000,
+    "priorities": {
+      "introduction": 4,
+      "setting": 6,
+      "walkthrough": 10
+    },
+    "ambiguities": [],
+    "evidence": [
+      {
+        "kind": "duration",
+        "segment_id": null,
+        "quote": "Fit within 60 seconds."
+      },
+      {
+        "kind": "required",
+        "segment_id": "finding",
+        "quote": "Keep finding, limitations, and next_step."
+      },
+      {
+        "kind": "required",
+        "segment_id": "limitations",
+        "quote": "Keep finding, limitations, and next_step."
+      },
+      {
+        "kind": "required",
+        "segment_id": "next_step",
+        "quote": "Keep finding, limitations, and next_step."
+      }
+    ]
+  },
+  "media": {
+    "duration_ms": 43601,
+    "expected_duration_ms": 43601,
+    "width": 1280,
+    "height": 720,
+    "decode_verified": true,
+    "has_audio": true,
+    "has_video": true,
+    "sha256": "bce94047037044a10de5a7e809e0baf0bf90a8f00c1b5f08e04772ca50cefde2"
+  },
+  "model": {
+    "usage": {
+      "input_tokens": 1015,
+      "output_tokens": 392,
+      "total_tokens": 1407,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens_details": {
+        "reasoning_tokens": 99
+      }
+    },
+    "name": "gpt-6-astra",
+    "elapsed_ms": 23444
+  },
+  "output_verification": {
+    "delivery_promoted": true,
+    "copied_deck_verified": true,
+    "video_sha256_recorded": true,
+    "dropbox_readback_verified": true,
+    "handoff_draft_readback_verified": true,
+    "inputs_rechecked_before_promotion": true,
+    "final_output_revisions_verified": true
+  }
+}

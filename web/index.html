@@ -50,14 +50,16 @@
         <aside class="side-column" aria-label="Producer brief and progress">
           <section class="panel brief-panel" aria-labelledby="brief-title">
             <div class="panel-heading"><h2 id="brief-title">The brief</h2><span class="fixture-tag">Gmail draft</span></div>
-            <p class="panel-description">Choose an example or write your own. Each change is saved to the same draft.</p>
+            <p id="brief-introduction" class="panel-description">Choose an example or write your own. Each change is saved to the same draft.</p>
             <div id="scenarios" class="scenario-grid" aria-label="Choose a producer brief example"></div>
-            <details id="custom-brief" class="custom-brief"><summary>Write your own brief</summary><p class="panel-description">Set the time limit and name the clips that must stay or go.</p><label for="custom-subject">Subject</label><input id="custom-subject" maxlength="200" type="text" value="[HardStop Demo] Producer challenge"><label for="custom-body">Instructions</label><textarea id="custom-body" maxlength="20000" rows="7" placeholder="Fit within 75 seconds. Keep the result, disclaimer and call to action. Remove the workflow."></textarea><button id="save-custom-brief" type="button" class="output-link">Save brief to Gmail</button><span id="custom-brief-status" role="status"></span></details>
+            <details id="custom-brief" class="custom-brief"><summary>Write your own brief</summary><p class="panel-description">Set the time limit and name the clips that must stay or go.</p><label for="custom-subject">Subject</label><input id="custom-subject" maxlength="200" type="text" value="Producer brief"><label for="custom-body">Instructions</label><textarea id="custom-body" maxlength="20000" rows="7" placeholder="Set a time limit, name the clips that must stay, and describe the audience."></textarea><button id="save-custom-brief" type="button" class="output-link">Save brief to Gmail</button><span id="custom-brief-status" role="status"></span></details>
             <div id="brief-change-notice" class="inline-note" hidden>Changing the brief now will stop this cut if the updated instructions arrive before delivery.</div>
             <div class="email-card"><h3 id="brief-subject">No brief loaded yet</h3><div id="brief-body" class="email-body">Set up the source presentation, recordings and Gmail draft to get started.</div></div>
           </section>
 
           <section class="panel requirements-panel" aria-labelledby="requirements-title"><div class="panel-heading"><h2 id="requirements-title">What the brief requires</h2></div><div id="requirements"><p class="empty-copy">We’ll read the brief and show what must stay and what must go.</p></div></section>
+
+          <section id="decision-panel" class="panel decision-panel" aria-labelledby="decision-title" hidden><div class="panel-heading"><h2 id="decision-title">Why these clips</h2></div><div id="decisions"></div></section>
 
           <section class="panel activity-panel" aria-labelledby="activity-title"><div class="panel-heading"><h2 id="activity-title">Progress</h2><span id="activity-indicator" class="activity-indicator" aria-hidden="true"></span></div><ol id="activity" class="activity-list"><li class="empty-activity">Choose a brief and start your first cut.</li></ol></section>
         </aside>
@@ -66,7 +68,7 @@
       <section id="history-section" class="history-section" hidden aria-labelledby="history-title"><div class="history-heading"><h2 id="history-title">Earlier cuts</h2><span>Verified videos stay available when a new request cannot be completed.</span></div><div id="history" class="history-list"></div></section>
     </main>
 
-    <footer><span>HardStop. Less time, with the essentials intact.</span><p class="disclosure">Local workspace. Sample content is fictional and narration is synthesized. Gmail messages remain unsent drafts. Only explicit requirements and declared context dependencies are checked.</p></footer>
+    <footer><span>HardStop. Less time, with the essentials intact.</span><p id="source-disclosure" class="disclosure">Local workspace. Gmail messages remain unsent drafts. Only explicit requirements and declared context dependencies are checked.</p></footer>
   </div>
 </body>
 </html>

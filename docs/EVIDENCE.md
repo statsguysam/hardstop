@@ -1,6 +1,6 @@
 # Verification evidence
 
-HardStop has completed real API runs across Gmail, Google Slides, Dropbox, and the runtime model. The source presentation, narration, and Gmail producer briefs are labeled fictional fixtures. These runs are distinct from the isolated provider mocks used by the automated tests.
+HardStop has completed real API runs across Gmail, Google Slides, Dropbox, and the runtime model. The Relay source presentation and outcomes are fictional and its narration is synthesized. Preset Gmail briefs are labeled fixtures; additional authored audience briefs were saved to the dedicated draft. Full deliveries, a model-and-planner evaluation, and isolated automated tests are described separately below.
 
 ## Observed live runs
 
@@ -12,13 +12,67 @@ HardStop has completed real API runs across Gmail, Google Slides, Dropbox, and t
 | Custom, 75 seconds | `20260913T204335-893b5aac` | Ready | 53.969 seconds | 24 passed |
 | Ambiguous brief | `20260913T204910-873095a5` | Needs review; no new outputs | No render started | Unconfirmed timing and unnamed important content |
 
-The original, amendment and impossible rows are the final sequence used for the **110.022-second demo recording**. [Recorded media checks](evidence/demo-media.json) include its measured duration, full decode, audio levels and caption checks. The custom 75-second challenge was an additional live run. It retained `pilot_context`, `result`, `disclaimer` and `call_to_action`, using the runtime model's interpretation of custom Gmail text. The four complete mandatory clips fit the cap; no optional complete clip fit the remaining time.
+The original, amendment and impossible rows supplied the sequence for the **110.022-second original submission recording**. [Recorded media checks](evidence/demo-media.json) include its measured duration, full decode, audio levels and caption checks. The custom 75-second challenge was an additional live run. It retained `pilot_context`, `result`, `disclaimer` and `call_to_action`, using the runtime model's interpretation of custom Gmail text. The four complete mandatory clips fit the cap; no optional complete clip fit the remaining time.
 
 Every ready run above read the connected Gmail draft, copied and trimmed the real Google Slides source deck, downloaded real Dropbox source files, rendered complete clips with FFmpeg, uploaded the resulting video, downloaded it again for SHA-256 comparison, and created an unsent Gmail handoff draft. The checks recorded source-to-copy content equality, retained slide order, successful media decoding, output revisions, and fresh input revisions before promotion. Check counts differ because each selected source recording gets its own integrity check.
 
 The 30-second request was blocked because its mandatory clips and declared prerequisites require **53.969 seconds**. Its report has an empty output collection, an infeasible plan, and an intentionally failed feasibility check. That failed check is the expected outcome for this request.
 
 The later ambiguous brief left the slot at one or two minutes and referred to an unspecified important part. It returned `needs_review` with no output resources recorded. The local last-ready reference still pointed to the successful custom 75-second run. This verifies the recorded blocked outcome and preserved reference; no additional independent cloud readback was performed after this ambiguity test.
+
+## Live audience versions
+
+Two further completed runs used the same Relay recordings, **90-second cap**, explicit required IDs (`result`, `disclaimer`, `call_to_action`), empty exclusion list and declared `pilot_context` dependency. The briefs described their audiences without naming the preferred optional clip.
+
+| Audience | Saved local run | Selected optional clip | Actual rendered duration | Result |
+| --- | --- | --- | --- | --- |
+| Prospective buyer assessing the coordination problem | [`20260913T212354-e378ced3`](evidence/buyer-audience.json) | `problem` | 85.603 seconds | Ready; 25 checks passed |
+| Operator learning the day-to-day process | [`20260913T212933-b404cd00`](evidence/operator-audience.json) | `workflow` | 86.203 seconds | Ready; 25 checks passed |
+
+Both selected `pilot_context`, `result`, `disclaimer` and `call_to_action` in source order alongside the optional clip. Both recorded `gpt-6-astra` interpretations, full media decoding, measured deadline checks, matching copied Slides content/order, uploaded-byte readback, an unaddressed Gmail handoff readback, and final input/output checks. These are actual three-app deliveries, separate from the evaluation below.
+
+The [subsequent 30-second request](evidence/impossible-after-operator.json), run `20260913T213746-97c1decd`, was infeasible and recorded no outputs. An [independent post-run readback](evidence/delivery-readbacks-v2.json) then downloaded both audience videos and read their copied decks and handoff drafts: **10 checks passed for the buyer** and **12 for the operator**. The operator checks additionally confirmed that the impossible request created no outputs and preserved the last-ready reference. These are recorded point-in-time provider checks, not a guarantee against later changes.
+
+This demonstrates an audience-dependent choice within one authored scenario. It does not demonstrate customer demand, time savings, automatic discovery of all needed context, or superiority to other editing products. [Producer use case and market-evidence limits](USE_CASE.md).
+
+## Imported source: Harbor
+
+A separate six-clip fictional inventory-training package exercised the general source importer and a new three-app workspace. Its recordings were synthesized beforehand and supplied as local MP4s; the importer itself did not synthesize media. The source declared `finding` dependent on earlier `setting`, with unrelated IDs and content from the Relay catalog. [Source metadata](../fixtures/examples/harbor-catalog.json) and [both authored briefs](../fixtures/examples/harbor-briefs.json) are public.
+
+The [initial request](evidence/harbor-initial-review.json), `20260913T213143-57fd898f`, returned `needs_review`. The generic instruction “Retain complete clips and their declared prerequisites” was outside the supported explicit clip grammar. No delivery was created. A clarified brief removed that generic instruction and its redundant embedded subject line; the importer, interpreter and audit were not tuned to make the request pass.
+
+The [clarified run](evidence/harbor-imported-source.json), `20260913T213617-67c33f4a`, completed at **43.601 seconds** against the **60-second cap**, retaining `setting`, `finding`, `limitations` and `next_step`. It passed **24 delivery checks** and created the video, matching copied deck and unsent handoff. A separate [post-run provider readback](evidence/delivery-readbacks-v2.json) passed **10 checks** for its video bytes/revision, slide content/order and unaddressed handoff content/identity.
+
+Both attempts are retained because the clarification is a real limit of the current grammar. This is a second synthetic source integration test, not a customer onboarding study, independent validation of the declared transcripts, or proof that arbitrary unprepared video works. [Supported package format](SOURCE_GUIDE.md).
+
+## Six-case model evaluation
+
+[The complete public report](evidence/audience-evaluation.json) retains all six original results, declared ground truth, prompts, sanitized catalog input, model outputs, deterministic plans, checks and usage. The suite was fixed before its first call; its SHA-256 is `116a189ea79db0b3edf2c5edcf4ec355ec9e121ff67cacd23ff51d0edd4d27b5`. Each case received **one** genuine Responses API interpretation. There were no retries, prompt repairs or selective resampling.
+
+| Predeclared case | Expected outcome | Observed outcome |
+| --- | --- | --- |
+| Buyer audience | Feasible; optional `problem` | Passed; planned 85.603 seconds |
+| Operator audience | Feasible; optional `workflow` | Passed; planned 86.203 seconds |
+| Buyer with supported passive requirements and 1.5-minute wording | Same buyer selection | Passed; planned 85.603 seconds |
+| Operator with a negated removal requirement | Same operator selection | Passed; planned 86.203 seconds |
+| Request to rewrite the result narration | `needs_review`; no selected output | Passed; model identified the unsupported edit |
+| Unconfirmed 60- or 90-second timing | `needs_review`; no selected output | Passed; uncertain timing blocked planning |
+
+The score was **6/6**. A baseline kept each model interpretation's hard constraints but removed its optional priorities, using the source catalog's fixed values instead. That baseline passed **4/6 overall** and **2/4 audience cases**; model priorities passed **4/4 audience cases**. This comparison isolates optional ranking; it is not a fully model-free baseline. Audience ground truth was deliberately strict, with one expected optional clip for each described need. Other editorial choices could be defensible and would still count as failures in this test.
+
+The six calls used `gpt-6-astra` and reported **8,210 input tokens + 2,818 output tokens = 11,028 total tokens**. Usage was available for every call. These totals exclude the separate full-app audience runs. The evaluator also captures provider usage before downstream validation, so a rejected interpretation does not silently disappear from reported consumption.
+
+The evaluation invoked interpretation and the ordinary deterministic planner only. **It rendered no video and made no Gmail, Slides or Dropbox writes.** Six authored cases on one fictional catalog are a focused functional check, not a general accuracy estimate or customer validation. Supported paraphrases were within the existing language audit; validation was not weakened for the test.
+
+Inspect or repeat the entire suite with your own configured OpenAI access and the Relay manifest:
+
+```sh
+python3 scripts/evaluate_briefs.py
+python3 scripts/evaluate_briefs.py --live --source .state/demo-assets/manifest.json \
+  --output .state/evaluations/new-evaluation.json
+```
+
+The first command lists cases without any API calls. The second saves a new checkpointed report and refuses to overwrite an existing output file. It requires the measured Relay manifest produced by generation or portable-bundle import; it is not an evaluation of arbitrary source packages. Preserve later reports separately from the original evidence.
 
 ## Independent preservation readback
 
@@ -60,9 +114,13 @@ python3 -m unittest discover -s tests -v
 node --check web/app.js
 ```
 
-The final local suite passed **166 tests** with FFmpeg available. A separate planner stress check compared **250 generated catalogs** against an independent combinations-search oracle, including objective value and the shorter-duration tie break. It passed; those cases are **not** included in the 166-test count. The recorded stress check also exercised the 18-segment boundary. [Read the oracle summary](evidence/planner-stress.json). This is a sampled local test, not an exhaustive proof over all inputs or a live provider check.
+The current local suite passed **213 tests**, including FFmpeg operations and loopback-server checks. JavaScript syntax passed. A separate planner stress check compared **250 generated catalogs** against an independent combinations-search oracle, including objective value and the shorter-duration tie break. It passed; those cases are **not** included in the unit-test count. The recorded stress check also exercised the 18-segment boundary. [Read the oracle summary](evidence/planner-stress.json). This is a sampled local test, not an exhaustive proof over all inputs or a live provider check.
 
-A fresh committed-source export imported the portable release bundle and loaded the CLI without credentials. The [GitHub Linux CI run](https://github.com/statsguysam/hardstop/actions/runs/34782456480) also passed all 166 tests with FFmpeg installed and no media-test skips. That run tested commit `9c8ecf0`; later documentation updates do not change the runtime implementation.
+A fresh committed-source export imported the portable release bundle and loaded the CLI without credentials. The [earlier GitHub Linux CI run](https://github.com/statsguysam/hardstop/actions/runs/34782456480) also passed all 166 tests with FFmpeg installed and no media-test skips. That run tested commit `9c8ecf0`, before the general source importer, evaluation harness and additional UI checks. It does not validate those later changes.
+
+Remote CI for the strengthened source revision is pending. The 213-test result above is a local result and must not be substituted for that future CI outcome.
+
+The current suite adds source-import and registration cases, evaluation scoring/failure accounting, and offline interface replay using the recorded audience interpretations. Source tests verify real local media boundaries and use isolated provider responses for registration. The UI tests use synthetic delivery states around the saved model outputs; they are not further live deliveries. Rerun the complete suite for the current source revision.
 
 The suite covers deterministic planning, model-output validation, provider adapters, workflow failures, review-server access controls, OAuth flows, and private credential handling. Adversarial cases include omitted or reversed clip directives, unsupported edits hidden alongside a known clip, per-clip timing mistaken for a total limit, changed source content immediately before copying, altered copied content before readback or during trimming, malformed write identities, missing upload revisions, interrupted runs, and corrupt output readback. The media tests generate and decode real short videos with FFmpeg. Other external provider responses are isolated test doubles; they do not prove live credentials or remote app behavior.
 
@@ -70,6 +128,6 @@ Copied-deck verification compares the retained slide objects and presentation-wi
 
 The CI workflow installs FFmpeg and runs the tests without provider credentials. The live runs above supply the separate integration evidence. Language auditing recognizes a limited grammar; unfamiliar wording can require review. Cross-app checks are repeated observations, not a distributed transaction. Verification enforces explicit requirements and declared dependencies; it does not claim complete semantic preservation or an independently validated market need.
 
-## Published submission
+## Original published submission
 
-The repository and every release asset were fetched without authentication. Downloaded video, captions, output cut, source archive and checksum-file hashes matched the reviewed local files. The GitHub Pages player played through the 110.022-second video, and English captions were enabled and visibly displayed. The official form confirmed one submission at 21:06 UTC on September 13, 2026. The contact address and form confirmation are kept outside public source. [Public-access receipt](evidence/publication.json).
+The original repository release and its assets were fetched without authentication. Downloaded video, captions, output cut, source archive and checksum-file hashes matched the reviewed local files. The GitHub Pages player played through the 110.022-second video, and English captions were enabled and visibly displayed. The official form confirmed one submission at 21:06 UTC on September 13, 2026. The contact address and form confirmation are kept outside public source. [Original public-access receipt](evidence/publication.json). These checks are historical evidence for that release; new source, media and CI publication checks remain tracked separately in the [submission checklist](SUBMISSION_CHECKLIST.md).

@@ -1,0 +1,2021 @@
+{
+  "format": "hardstop-brief-evaluation-v1",
+  "execution": "live Responses API",
+  "status": "completed",
+  "started_at": "2026-09-13T21:21:11.877+00:00",
+  "suite_sha256": "116a189ea79db0b3edf2c5edcf4ec355ec9e121ff67cacd23ff51d0edd4d27b5",
+  "catalog_sha256": "5952f6818d1652d4ff3e1d0ff8fa5455301b0bb3d28bd14b4451e381323e7ba4",
+  "cases": [
+    {
+      "id": "buyer",
+      "brief": "Fit within 90 seconds. Keep result, disclaimer and call to action. The audience is a prospective buyer assessing whether coordination failures are worth solving. The extra time should make the pain of scattered updates and missing ownership concrete; product mechanics are secondary.",
+      "expected": {
+        "status": "feasible",
+        "max_duration_ms": 90000,
+        "required_ids": [
+          "result",
+          "disclaimer",
+          "call_to_action"
+        ],
+        "excluded_ids": [],
+        "selected_allowlist": [
+          [
+            "problem",
+            "pilot_context",
+            "result",
+            "disclaimer",
+            "call_to_action"
+          ]
+        ],
+        "audience_optional": "problem"
+      }
+    },
+    {
+      "id": "operator",
+      "brief": "Fit within 90 seconds. Keep result, disclaimer and call to action. The audience is the team that would use Relay day to day. The extra time should explain how a change leads to an owner and a confirmed next move; general framing of the pain is secondary.",
+      "expected": {
+        "status": "feasible",
+        "max_duration_ms": 90000,
+        "required_ids": [
+          "result",
+          "disclaimer",
+          "call_to_action"
+        ],
+        "excluded_ids": [],
+        "selected_allowlist": [
+          [
+            "workflow",
+            "pilot_context",
+            "result",
+            "disclaimer",
+            "call_to_action"
+          ]
+        ],
+        "audience_optional": "workflow"
+      }
+    },
+    {
+      "id": "buyer_paraphrase",
+      "brief": "At most 1.5 minutes. The result, disclaimer and call to action must be retained. The audience is a prospective buyer assessing whether coordination failures are worth solving. The extra time should make the pain of scattered updates and missing ownership concrete; product mechanics are secondary.",
+      "expected": {
+        "status": "feasible",
+        "max_duration_ms": 90000,
+        "required_ids": [
+          "result",
+          "disclaimer",
+          "call_to_action"
+        ],
+        "excluded_ids": [],
+        "selected_allowlist": [
+          [
+            "problem",
+            "pilot_context",
+            "result",
+            "disclaimer",
+            "call_to_action"
+          ]
+        ],
+        "audience_optional": "problem"
+      }
+    },
+    {
+      "id": "operator_paraphrase",
+      "brief": "The time limit is 90 seconds. Do not remove result, disclaimer and call to action. The audience is the team that would use Relay day to day. The extra time should explain how a change leads to an owner and a confirmed next move; general framing of the pain is secondary.",
+      "expected": {
+        "status": "feasible",
+        "max_duration_ms": 90000,
+        "required_ids": [
+          "result",
+          "disclaimer",
+          "call_to_action"
+        ],
+        "excluded_ids": [],
+        "selected_allowlist": [
+          [
+            "workflow",
+            "pilot_context",
+            "result",
+            "disclaimer",
+            "call_to_action"
+          ]
+        ],
+        "audience_optional": "workflow"
+      }
+    },
+    {
+      "id": "unsupported_rewrite",
+      "brief": "Fit within 90 seconds. Keep result, disclaimer and call to action. Rewrite the result narration to make the claim more persuasive.",
+      "expected": {
+        "status": "needs_review",
+        "max_duration_ms": 90000,
+        "required_ids": [
+          "result",
+          "disclaimer",
+          "call_to_action"
+        ],
+        "excluded_ids": [],
+        "selected_allowlist": [
+          []
+        ]
+      }
+    },
+    {
+      "id": "ambiguous_timing",
+      "brief": "Fit within 60 seconds or 90 seconds; the slot is unconfirmed. Keep result, disclaimer and call to action.",
+      "expected": {
+        "status": "needs_review",
+        "max_duration_ms": null,
+        "required_ids": [
+          "result",
+          "disclaimer",
+          "call_to_action"
+        ],
+        "excluded_ids": [],
+        "selected_allowlist": [
+          []
+        ]
+      }
+    }
+  ],
+  "catalog": [
+    {
+      "id": "opening",
+      "title": "Every handoff needs a next move",
+      "transcript": "Meet Relay, a fictional product for teams whose work crosses too many tools. A project rarely fails because nobody cares. More often, the next action is hidden in a message, the owner is missing from a document, or everyone assumes someone else will follow up. Relay gives each handoff a clear owner, a clear next move, and one place to see whether that move actually happened. Today, we will walk through the problem, a simple workflow, and an illustrative pilot.",
+      "requires": [],
+      "duration_ms": 30567,
+      "value": 5
+    },
+    {
+      "id": "problem",
+      "title": "The work moves. The context stays behind.",
+      "transcript": "Picture a small team preparing a customer launch. The designer says the final artwork is ready in chat. The account lead records a last minute change in a document. The producer moves the delivery date in a calendar. Each update is reasonable on its own, but nobody has a complete picture. The next morning, people spend the first meeting reconstructing yesterday. The problem is not a shortage of messages. It is that responsibility disappears when work moves between those messages and tools.",
+      "requires": [],
+      "duration_ms": 31634,
+      "value": 4
+    },
+    {
+      "id": "workflow",
+      "title": "One handoff. Three explicit steps.",
+      "transcript": "Relay's proposed workflow has three steps. First, notice a change that affects a handoff, such as a revised deadline or a missing deliverable. Second, connect that change to a named owner and the source that supports it. Third, ask the owner to confirm a concrete next move. The system keeps a link to the original evidence so the team can check its reasoning. In this concept, consequential actions require a person's approval, and uncertain ownership stays visible instead of being guessed away.",
+      "requires": [],
+      "duration_ms": 32234,
+      "value": 10
+    },
+    {
+      "id": "pilot_context",
+      "title": "An illustration, not a customer study",
+      "transcript": "The following pilot is entirely fictional. It models twelve handoffs for one invented team. The counts illustrate how this concept might be evaluated; they are not measured customer outcomes or evidence of product effectiveness.",
+      "requires": [],
+      "duration_ms": 14934,
+      "value": 8
+    },
+    {
+      "id": "result",
+      "title": "An illustrative change: 5 to 2",
+      "transcript": "Within that fictional scenario, unresolved handoffs fell from five to two after the proposed workflow was applied. This is an illustrative change, not a real world performance claim. The pilot context must accompany this result.",
+      "requires": [
+        "pilot_context"
+      ],
+      "duration_ms": 15567,
+      "value": 9
+    },
+    {
+      "id": "rollout",
+      "title": "Start small. Check what changed.",
+      "transcript": "A sensible first rollout would focus on one team and one recurring kind of handoff for a single week. The team would decide what a successful handoff means before starting. We would record missed ownership, incorrect suggestions, and time spent checking the system, as well as any time saved. At the end of the week, the team would review the evidence and decide whether to adjust the workflow, expand it, or stop. A useful system should earn adoption through observable results.",
+      "requires": [],
+      "duration_ms": 30667,
+      "value": 3
+    },
+    {
+      "id": "disclaimer",
+      "title": "Fictional demonstration",
+      "transcript": "This presentation is a fictional demonstration with synthesized narration. The product, scenario, and outcomes are invented. No customer claims or promised results are being made.",
+      "requires": [],
+      "duration_ms": 12734,
+      "value": 1
+    },
+    {
+      "id": "call_to_action",
+      "title": "Make the next move visible",
+      "transcript": "For a real pilot, choose one recurring handoff, name its owner, and agree what done means. Then test whether making the next move visible helps your team.",
+      "requires": [],
+      "duration_ms": 10734,
+      "value": 7
+    }
+  ],
+  "results": [
+    {
+      "id": "buyer",
+      "started_at": "2026-09-13T21:21:11.878+00:00",
+      "passed": true,
+      "model_calls": [
+        {
+          "request_attempted": true,
+          "response_received": true,
+          "usage": {
+            "input_tokens": 1373,
+            "output_tokens": 467,
+            "total_tokens": 1840,
+            "input_tokens_details": {
+              "cached_tokens": 0
+            },
+            "output_tokens_details": {
+              "reasoning_tokens": 74
+            }
+          },
+          "model": "gpt-6-astra",
+          "status": "completed",
+          "elapsed_ms": 10500
+        }
+      ],
+      "constraints": {
+        "max_duration_ms": 90000,
+        "required_ids": [
+          "result",
+          "disclaimer",
+          "call_to_action"
+        ],
+        "excluded_ids": [],
+        "priorities": {
+          "opening": 7,
+          "problem": 10,
+          "workflow": 3,
+          "pilot_context": 8,
+          "rollout": 4
+        },
+        "evidence": [
+          {
+            "kind": "duration",
+            "segment_id": null,
+            "quote": "Fit within 90 seconds."
+          },
+          {
+            "kind": "required",
+            "segment_id": "result",
+            "quote": "Keep result, disclaimer and call to action."
+          },
+          {
+            "kind": "required",
+            "segment_id": "disclaimer",
+            "quote": "Keep result, disclaimer and call to action."
+          },
+          {
+            "kind": "required",
+            "segment_id": "call_to_action",
+            "quote": "Keep result, disclaimer and call to action."
+          }
+        ],
+        "ambiguities": []
+      },
+      "interpretation": {
+        "max_duration_seconds": 90,
+        "duration_quote": "Fit within 90 seconds.",
+        "required": [
+          {
+            "segment_id": "result",
+            "quote": "Keep result, disclaimer and call to action."
+          },
+          {
+            "segment_id": "disclaimer",
+            "quote": "Keep result, disclaimer and call to action."
+          },
+          {
+            "segment_id": "call_to_action",
+            "quote": "Keep result, disclaimer and call to action."
+          }
+        ],
+        "excluded": [],
+        "priorities": [
+          {
+            "segment_id": "opening",
+            "value": 7,
+            "reason": "Introduces missing ownership and scattered context, helping a prospective buyer understand the coordination problem."
+          },
+          {
+            "segment_id": "problem",
+            "value": 10,
+            "reason": "Best matches the preference: \"The extra time should make the pain of scattered updates and missing ownership concrete; product mechanics are secondary.\""
+          },
+          {
+            "segment_id": "workflow",
+            "value": 3,
+            "reason": "Explains product mechanics, which the brief explicitly makes secondary."
+          },
+          {
+            "segment_id": "pilot_context",
+            "value": 8,
+            "reason": "Clarifies the fictional nature of the result and is its declared source dependency, rather than an explicitly required clip in the brief."
+          },
+          {
+            "segment_id": "rollout",
+            "value": 4,
+            "reason": "Helps a buyer assess whether solving coordination failures is worthwhile, but is less directly focused on making the pain concrete."
+          }
+        ],
+        "ambiguities": [],
+        "summary": "Keep result, disclaimer and call to action within 90 seconds, prioritizing concrete coordination pain over product mechanics."
+      },
+      "plan": {
+        "status": "feasible",
+        "selected_ids": [
+          "problem",
+          "pilot_context",
+          "result",
+          "disclaimer",
+          "call_to_action"
+        ],
+        "duration_ms": 85603,
+        "minimum_required_ms": 53969,
+        "required_closure": [
+          "pilot_context",
+          "result",
+          "disclaimer",
+          "call_to_action"
+        ],
+        "removed_ids": [
+          "opening",
+          "workflow",
+          "rollout"
+        ],
+        "reasons": [
+          "Selected 5 complete clips totaling 85.603 seconds within the 90-second limit.",
+          "All explicit required clips and declared prerequisites are preserved in source order.",
+          "Optional clips maximize the configured priority score; duration and source order break ties."
+        ],
+        "checks": [
+          {
+            "name": "nonempty_cut",
+            "passed": true,
+            "detail": "The output contains at least one complete clip."
+          },
+          {
+            "name": "known_ids",
+            "passed": true,
+            "detail": "Every selected ID exists in the source catalog."
+          },
+          {
+            "name": "unique_ids",
+            "passed": true,
+            "detail": "Each selected clip appears once."
+          },
+          {
+            "name": "source_order",
+            "passed": true,
+            "detail": "Selected clips retain their original presentation order."
+          },
+          {
+            "name": "required_closure",
+            "passed": true,
+            "detail": "All mandatory clips and their prerequisites are selected."
+          },
+          {
+            "name": "excluded_absent",
+            "passed": true,
+            "detail": "No excluded clip is selected."
+          },
+          {
+            "name": "dependencies",
+            "passed": true,
+            "detail": "Every selected clip has its declared prerequisites."
+          },
+          {
+            "name": "duration_budget",
+            "passed": true,
+            "detail": "Measured clip sum is 85603 ms; budget is 90000 ms."
+          },
+          {
+            "name": "resolved_brief",
+            "passed": true,
+            "detail": "The brief has no unresolved ambiguities."
+          }
+        ]
+      },
+      "checks": [
+        {
+          "name": "plan_status",
+          "passed": true,
+          "actual": "feasible",
+          "expected": "feasible"
+        },
+        {
+          "name": "required_ids",
+          "passed": true,
+          "actual": [
+            "call_to_action",
+            "disclaimer",
+            "result"
+          ],
+          "expected": [
+            "call_to_action",
+            "disclaimer",
+            "result"
+          ]
+        },
+        {
+          "name": "excluded_ids",
+          "passed": true,
+          "actual": [],
+          "expected": []
+        },
+        {
+          "name": "duration_constraint",
+          "passed": true,
+          "actual": 90000,
+          "expected": 90000
+        },
+        {
+          "name": "selected_allowlist",
+          "passed": true,
+          "actual": [
+            "problem",
+            "pilot_context",
+            "result",
+            "disclaimer",
+            "call_to_action"
+          ],
+          "expected": [
+            [
+              "problem",
+              "pilot_context",
+              "result",
+              "disclaimer",
+              "call_to_action"
+            ]
+          ]
+        },
+        {
+          "name": "independent_selection_valid",
+          "passed": true,
+          "actual": true,
+          "expected": true
+        }
+      ],
+      "baseline": {
+        "passed": false,
+        "checks": [
+          {
+            "name": "plan_status",
+            "passed": true,
+            "actual": "feasible",
+            "expected": "feasible"
+          },
+          {
+            "name": "required_ids",
+            "passed": true,
+            "actual": [
+              "call_to_action",
+              "disclaimer",
+              "result"
+            ],
+            "expected": [
+              "call_to_action",
+              "disclaimer",
+              "result"
+            ]
+          },
+          {
+            "name": "excluded_ids",
+            "passed": true,
+            "actual": [],
+            "expected": []
+          },
+          {
+            "name": "duration_constraint",
+            "passed": true,
+            "actual": 90000,
+            "expected": 90000
+          },
+          {
+            "name": "selected_allowlist",
+            "passed": false,
+            "actual": [
+              "workflow",
+              "pilot_context",
+              "result",
+              "disclaimer",
+              "call_to_action"
+            ],
+            "expected": [
+              [
+                "problem",
+                "pilot_context",
+                "result",
+                "disclaimer",
+                "call_to_action"
+              ]
+            ]
+          },
+          {
+            "name": "independent_selection_valid",
+            "passed": true,
+            "actual": true,
+            "expected": true
+          }
+        ],
+        "selected_ids": [
+          "workflow",
+          "pilot_context",
+          "result",
+          "disclaimer",
+          "call_to_action"
+        ],
+        "status": "feasible"
+      },
+      "finished_at": "2026-09-13T21:21:22.383+00:00"
+    },
+    {
+      "id": "operator",
+      "started_at": "2026-09-13T21:21:22.389+00:00",
+      "passed": true,
+      "model_calls": [
+        {
+          "request_attempted": true,
+          "response_received": true,
+          "usage": {
+            "input_tokens": 1378,
+            "output_tokens": 442,
+            "total_tokens": 1820,
+            "input_tokens_details": {
+              "cached_tokens": 0
+            },
+            "output_tokens_details": {
+              "reasoning_tokens": 65
+            }
+          },
+          "model": "gpt-6-astra",
+          "status": "completed",
+          "elapsed_ms": 10023
+        }
+      ],
+      "constraints": {
+        "max_duration_ms": 90000,
+        "required_ids": [
+          "result",
+          "disclaimer",
+          "call_to_action"
+        ],
+        "excluded_ids": [],
+        "priorities": {
+          "opening": 3,
+          "problem": 2,
+          "workflow": 10,
+          "pilot_context": 8,
+          "rollout": 6
+        },
+        "evidence": [
+          {
+            "kind": "duration",
+            "segment_id": null,
+            "quote": "Fit within 90 seconds."
+          },
+          {
+            "kind": "required",
+            "segment_id": "result",
+            "quote": "Keep result, disclaimer and call to action."
+          },
+          {
+            "kind": "required",
+            "segment_id": "disclaimer",
+            "quote": "Keep result, disclaimer and call to action."
+          },
+          {
+            "kind": "required",
+            "segment_id": "call_to_action",
+            "quote": "Keep result, disclaimer and call to action."
+          }
+        ],
+        "ambiguities": []
+      },
+      "interpretation": {
+        "max_duration_seconds": 90,
+        "duration_quote": "Fit within 90 seconds.",
+        "required": [
+          {
+            "segment_id": "result",
+            "quote": "Keep result, disclaimer and call to action."
+          },
+          {
+            "segment_id": "disclaimer",
+            "quote": "Keep result, disclaimer and call to action."
+          },
+          {
+            "segment_id": "call_to_action",
+            "quote": "Keep result, disclaimer and call to action."
+          }
+        ],
+        "excluded": [],
+        "priorities": [
+          {
+            "segment_id": "opening",
+            "value": 3,
+            "reason": "Provides general framing, which the brief makes secondary."
+          },
+          {
+            "segment_id": "problem",
+            "value": 2,
+            "reason": "Focuses on the pain rather than the preferred explanation of the workflow."
+          },
+          {
+            "segment_id": "workflow",
+            "value": 10,
+            "reason": "Directly explains how a change leads to a named owner and a confirmed next move, the brief's main preference."
+          },
+          {
+            "segment_id": "pilot_context",
+            "value": 8,
+            "reason": "Clarifies the fictional result and is a declared dependency of the required result clip."
+          },
+          {
+            "segment_id": "rollout",
+            "value": 6,
+            "reason": "Offers practical guidance for the day-to-day user audience, but is less directly relevant than the workflow explanation."
+          }
+        ],
+        "ambiguities": [],
+        "summary": "Limit the cut to 90 seconds, retain result, disclaimer and call to action, and favor workflow explanation over general pain framing."
+      },
+      "plan": {
+        "status": "feasible",
+        "selected_ids": [
+          "workflow",
+          "pilot_context",
+          "result",
+          "disclaimer",
+          "call_to_action"
+        ],
+        "duration_ms": 86203,
+        "minimum_required_ms": 53969,
+        "required_closure": [
+          "pilot_context",
+          "result",
+          "disclaimer",
+          "call_to_action"
+        ],
+        "removed_ids": [
+          "opening",
+          "problem",
+          "rollout"
+        ],
+        "reasons": [
+          "Selected 5 complete clips totaling 86.203 seconds within the 90-second limit.",
+          "All explicit required clips and declared prerequisites are preserved in source order.",
+          "Optional clips maximize the configured priority score; duration and source order break ties."
+        ],
+        "checks": [
+          {
+            "name": "nonempty_cut",
+            "passed": true,
+            "detail": "The output contains at least one complete clip."
+          },
+          {
+            "name": "known_ids",
+            "passed": true,
+            "detail": "Every selected ID exists in the source catalog."
+          },
+          {
+            "name": "unique_ids",
+            "passed": true,
+            "detail": "Each selected clip appears once."
+          },
+          {
+            "name": "source_order",
+            "passed": true,
+            "detail": "Selected clips retain their original presentation order."
+          },
+          {
+            "name": "required_closure",
+            "passed": true,
+            "detail": "All mandatory clips and their prerequisites are selected."
+          },
+          {
+            "name": "excluded_absent",
+            "passed": true,
+            "detail": "No excluded clip is selected."
+          },
+          {
+            "name": "dependencies",
+            "passed": true,
+            "detail": "Every selected clip has its declared prerequisites."
+          },
+          {
+            "name": "duration_budget",
+            "passed": true,
+            "detail": "Measured clip sum is 86203 ms; budget is 90000 ms."
+          },
+          {
+            "name": "resolved_brief",
+            "passed": true,
+            "detail": "The brief has no unresolved ambiguities."
+          }
+        ]
+      },
+      "checks": [
+        {
+          "name": "plan_status",
+          "passed": true,
+          "actual": "feasible",
+          "expected": "feasible"
+        },
+        {
+          "name": "required_ids",
+          "passed": true,
+          "actual": [
+            "call_to_action",
+            "disclaimer",
+            "result"
+          ],
+          "expected": [
+            "call_to_action",
+            "disclaimer",
+            "result"
+          ]
+        },
+        {
+          "name": "excluded_ids",
+          "passed": true,
+          "actual": [],
+          "expected": []
+        },
+        {
+          "name": "duration_constraint",
+          "passed": true,
+          "actual": 90000,
+          "expected": 90000
+        },
+        {
+          "name": "selected_allowlist",
+          "passed": true,
+          "actual": [
+            "workflow",
+            "pilot_context",
+            "result",
+            "disclaimer",
+            "call_to_action"
+          ],
+          "expected": [
+            [
+              "workflow",
+              "pilot_context",
+              "result",
+              "disclaimer",
+              "call_to_action"
+            ]
+          ]
+        },
+        {
+          "name": "independent_selection_valid",
+          "passed": true,
+          "actual": true,
+          "expected": true
+        }
+      ],
+      "baseline": {
+        "passed": true,
+        "checks": [
+          {
+            "name": "plan_status",
+            "passed": true,
+            "actual": "feasible",
+            "expected": "feasible"
+          },
+          {
+            "name": "required_ids",
+            "passed": true,
+            "actual": [
+              "call_to_action",
+              "disclaimer",
+              "result"
+            ],
+            "expected": [
+              "call_to_action",
+              "disclaimer",
+              "result"
+            ]
+          },
+          {
+            "name": "excluded_ids",
+            "passed": true,
+            "actual": [],
+            "expected": []
+          },
+          {
+            "name": "duration_constraint",
+            "passed": true,
+            "actual": 90000,
+            "expected": 90000
+          },
+          {
+            "name": "selected_allowlist",
+            "passed": true,
+            "actual": [
+              "workflow",
+              "pilot_context",
+              "result",
+              "disclaimer",
+              "call_to_action"
+            ],
+            "expected": [
+              [
+                "workflow",
+                "pilot_context",
+                "result",
+                "disclaimer",
+                "call_to_action"
+              ]
+            ]
+          },
+          {
+            "name": "independent_selection_valid",
+            "passed": true,
+            "actual": true,
+            "expected": true
+          }
+        ],
+        "selected_ids": [
+          "workflow",
+          "pilot_context",
+          "result",
+          "disclaimer",
+          "call_to_action"
+        ],
+        "status": "feasible"
+      },
+      "finished_at": "2026-09-13T21:21:32.417+00:00"
+    },
+    {
+      "id": "buyer_paraphrase",
+      "started_at": "2026-09-13T21:21:32.420+00:00",
+      "passed": true,
+      "model_calls": [
+        {
+          "request_attempted": true,
+          "response_received": true,
+          "usage": {
+            "input_tokens": 1378,
+            "output_tokens": 470,
+            "total_tokens": 1848,
+            "input_tokens_details": {
+              "cached_tokens": 0
+            },
+            "output_tokens_details": {
+              "reasoning_tokens": 80
+            }
+          },
+          "model": "gpt-6-astra",
+          "status": "completed",
+          "elapsed_ms": 10644
+        }
+      ],
+      "constraints": {
+        "max_duration_ms": 90000,
+        "required_ids": [
+          "result",
+          "disclaimer",
+          "call_to_action"
+        ],
+        "excluded_ids": [],
+        "priorities": {
+          "opening": 7,
+          "problem": 10,
+          "workflow": 3,
+          "pilot_context": 8,
+          "rollout": 5
+        },
+        "evidence": [
+          {
+            "kind": "duration",
+            "segment_id": null,
+            "quote": "At most 1.5 minutes."
+          },
+          {
+            "kind": "required",
+            "segment_id": "result",
+            "quote": "The result, disclaimer and call to action must be retained."
+          },
+          {
+            "kind": "required",
+            "segment_id": "disclaimer",
+            "quote": "The result, disclaimer and call to action must be retained."
+          },
+          {
+            "kind": "required",
+            "segment_id": "call_to_action",
+            "quote": "The result, disclaimer and call to action must be retained."
+          }
+        ],
+        "ambiguities": []
+      },
+      "interpretation": {
+        "max_duration_seconds": 90,
+        "duration_quote": "At most 1.5 minutes.",
+        "required": [
+          {
+            "segment_id": "result",
+            "quote": "The result, disclaimer and call to action must be retained."
+          },
+          {
+            "segment_id": "disclaimer",
+            "quote": "The result, disclaimer and call to action must be retained."
+          },
+          {
+            "segment_id": "call_to_action",
+            "quote": "The result, disclaimer and call to action must be retained."
+          }
+        ],
+        "excluded": [],
+        "priorities": [
+          {
+            "segment_id": "opening",
+            "value": 7,
+            "reason": "Introduces missing ownership and hidden next actions, but makes the coordination pain less concrete than the problem clip."
+          },
+          {
+            "segment_id": "problem",
+            "value": 10,
+            "reason": "Directly serves the requested emphasis on concrete pain from scattered updates and missing ownership for a prospective buyer."
+          },
+          {
+            "segment_id": "workflow",
+            "value": 3,
+            "reason": "Explains product mechanics, which the brief makes secondary."
+          },
+          {
+            "segment_id": "pilot_context",
+            "value": 8,
+            "reason": "Frames the illustrative result accurately; also a declared dependency of the required result clip."
+          },
+          {
+            "segment_id": "rollout",
+            "value": 5,
+            "reason": "Helps a prospective buyer assess whether solving coordination failures is worthwhile through a measured trial."
+          }
+        ],
+        "ambiguities": [],
+        "summary": "Limit the cut to 90 seconds, retain the result, disclaimer and call to action, and favor concrete coordination pain over product mechanics."
+      },
+      "plan": {
+        "status": "feasible",
+        "selected_ids": [
+          "problem",
+          "pilot_context",
+          "result",
+          "disclaimer",
+          "call_to_action"
+        ],
+        "duration_ms": 85603,
+        "minimum_required_ms": 53969,
+        "required_closure": [
+          "pilot_context",
+          "result",
+          "disclaimer",
+          "call_to_action"
+        ],
+        "removed_ids": [
+          "opening",
+          "workflow",
+          "rollout"
+        ],
+        "reasons": [
+          "Selected 5 complete clips totaling 85.603 seconds within the 90-second limit.",
+          "All explicit required clips and declared prerequisites are preserved in source order.",
+          "Optional clips maximize the configured priority score; duration and source order break ties."
+        ],
+        "checks": [
+          {
+            "name": "nonempty_cut",
+            "passed": true,
+            "detail": "The output contains at least one complete clip."
+          },
+          {
+            "name": "known_ids",
+            "passed": true,
+            "detail": "Every selected ID exists in the source catalog."
+          },
+          {
+            "name": "unique_ids",
+            "passed": true,
+            "detail": "Each selected clip appears once."
+          },
+          {
+            "name": "source_order",
+            "passed": true,
+            "detail": "Selected clips retain their original presentation order."
+          },
+          {
+            "name": "required_closure",
+            "passed": true,
+            "detail": "All mandatory clips and their prerequisites are selected."
+          },
+          {
+            "name": "excluded_absent",
+            "passed": true,
+            "detail": "No excluded clip is selected."
+          },
+          {
+            "name": "dependencies",
+            "passed": true,
+            "detail": "Every selected clip has its declared prerequisites."
+          },
+          {
+            "name": "duration_budget",
+            "passed": true,
+            "detail": "Measured clip sum is 85603 ms; budget is 90000 ms."
+          },
+          {
+            "name": "resolved_brief",
+            "passed": true,
+            "detail": "The brief has no unresolved ambiguities."
+          }
+        ]
+      },
+      "checks": [
+        {
+          "name": "plan_status",
+          "passed": true,
+          "actual": "feasible",
+          "expected": "feasible"
+        },
+        {
+          "name": "required_ids",
+          "passed": true,
+          "actual": [
+            "call_to_action",
+            "disclaimer",
+            "result"
+          ],
+          "expected": [
+            "call_to_action",
+            "disclaimer",
+            "result"
+          ]
+        },
+        {
+          "name": "excluded_ids",
+          "passed": true,
+          "actual": [],
+          "expected": []
+        },
+        {
+          "name": "duration_constraint",
+          "passed": true,
+          "actual": 90000,
+          "expected": 90000
+        },
+        {
+          "name": "selected_allowlist",
+          "passed": true,
+          "actual": [
+            "problem",
+            "pilot_context",
+            "result",
+            "disclaimer",
+            "call_to_action"
+          ],
+          "expected": [
+            [
+              "problem",
+              "pilot_context",
+              "result",
+              "disclaimer",
+              "call_to_action"
+            ]
+          ]
+        },
+        {
+          "name": "independent_selection_valid",
+          "passed": true,
+          "actual": true,
+          "expected": true
+        }
+      ],
+      "baseline": {
+        "passed": false,
+        "checks": [
+          {
+            "name": "plan_status",
+            "passed": true,
+            "actual": "feasible",
+            "expected": "feasible"
+          },
+          {
+            "name": "required_ids",
+            "passed": true,
+            "actual": [
+              "call_to_action",
+              "disclaimer",
+              "result"
+            ],
+            "expected": [
+              "call_to_action",
+              "disclaimer",
+              "result"
+            ]
+          },
+          {
+            "name": "excluded_ids",
+            "passed": true,
+            "actual": [],
+            "expected": []
+          },
+          {
+            "name": "duration_constraint",
+            "passed": true,
+            "actual": 90000,
+            "expected": 90000
+          },
+          {
+            "name": "selected_allowlist",
+            "passed": false,
+            "actual": [
+              "workflow",
+              "pilot_context",
+              "result",
+              "disclaimer",
+              "call_to_action"
+            ],
+            "expected": [
+              [
+                "problem",
+                "pilot_context",
+                "result",
+                "disclaimer",
+                "call_to_action"
+              ]
+            ]
+          },
+          {
+            "name": "independent_selection_valid",
+            "passed": true,
+            "actual": true,
+            "expected": true
+          }
+        ],
+        "selected_ids": [
+          "workflow",
+          "pilot_context",
+          "result",
+          "disclaimer",
+          "call_to_action"
+        ],
+        "status": "feasible"
+      },
+      "finished_at": "2026-09-13T21:21:43.066+00:00"
+    },
+    {
+      "id": "operator_paraphrase",
+      "started_at": "2026-09-13T21:21:43.073+00:00",
+      "passed": true,
+      "model_calls": [
+        {
+          "request_attempted": true,
+          "response_received": true,
+          "usage": {
+            "input_tokens": 1382,
+            "output_tokens": 521,
+            "total_tokens": 1903,
+            "input_tokens_details": {
+              "cached_tokens": 0
+            },
+            "output_tokens_details": {
+              "reasoning_tokens": 122
+            }
+          },
+          "model": "gpt-6-astra",
+          "status": "completed",
+          "elapsed_ms": 10803
+        }
+      ],
+      "constraints": {
+        "max_duration_ms": 90000,
+        "required_ids": [
+          "result",
+          "disclaimer",
+          "call_to_action"
+        ],
+        "excluded_ids": [],
+        "priorities": {
+          "opening": 3,
+          "problem": 2,
+          "workflow": 10,
+          "pilot_context": 8,
+          "rollout": 5
+        },
+        "evidence": [
+          {
+            "kind": "duration",
+            "segment_id": null,
+            "quote": "The time limit is 90 seconds."
+          },
+          {
+            "kind": "required",
+            "segment_id": "result",
+            "quote": "Do not remove result, disclaimer and call to action."
+          },
+          {
+            "kind": "required",
+            "segment_id": "disclaimer",
+            "quote": "Do not remove result, disclaimer and call to action."
+          },
+          {
+            "kind": "required",
+            "segment_id": "call_to_action",
+            "quote": "Do not remove result, disclaimer and call to action."
+          }
+        ],
+        "ambiguities": []
+      },
+      "interpretation": {
+        "max_duration_seconds": 90,
+        "duration_quote": "The time limit is 90 seconds.",
+        "required": [
+          {
+            "segment_id": "result",
+            "quote": "Do not remove result, disclaimer and call to action."
+          },
+          {
+            "segment_id": "disclaimer",
+            "quote": "Do not remove result, disclaimer and call to action."
+          },
+          {
+            "segment_id": "call_to_action",
+            "quote": "Do not remove result, disclaimer and call to action."
+          }
+        ],
+        "excluded": [],
+        "priorities": [
+          {
+            "segment_id": "opening",
+            "value": 3,
+            "reason": "Introduces the concept, but general framing of the pain is secondary."
+          },
+          {
+            "segment_id": "problem",
+            "value": 2,
+            "reason": "Expands the pain framing rather than explaining the preferred operational workflow."
+          },
+          {
+            "segment_id": "workflow",
+            "value": 10,
+            "reason": "Directly explains how a change leads to a named owner and a confirmed next move, the brief's strongest preference for this day-to-day user audience."
+          },
+          {
+            "segment_id": "pilot_context",
+            "value": 8,
+            "reason": "Clarifies the fictional result and is a declared dependency of the required result clip."
+          },
+          {
+            "segment_id": "rollout",
+            "value": 5,
+            "reason": "Offers practical guidance relevant to the team using Relay, but is less directly aligned with the preferred change-to-owner-to-confirmation explanation."
+          }
+        ],
+        "ambiguities": [],
+        "summary": "Limit the cut to 90 seconds, retain result, disclaimer and call to action, and favor workflow explanation over pain framing."
+      },
+      "plan": {
+        "status": "feasible",
+        "selected_ids": [
+          "workflow",
+          "pilot_context",
+          "result",
+          "disclaimer",
+          "call_to_action"
+        ],
+        "duration_ms": 86203,
+        "minimum_required_ms": 53969,
+        "required_closure": [
+          "pilot_context",
+          "result",
+          "disclaimer",
+          "call_to_action"
+        ],
+        "removed_ids": [
+          "opening",
+          "problem",
+          "rollout"
+        ],
+        "reasons": [
+          "Selected 5 complete clips totaling 86.203 seconds within the 90-second limit.",
+          "All explicit required clips and declared prerequisites are preserved in source order.",
+          "Optional clips maximize the configured priority score; duration and source order break ties."
+        ],
+        "checks": [
+          {
+            "name": "nonempty_cut",
+            "passed": true,
+            "detail": "The output contains at least one complete clip."
+          },
+          {
+            "name": "known_ids",
+            "passed": true,
+            "detail": "Every selected ID exists in the source catalog."
+          },
+          {
+            "name": "unique_ids",
+            "passed": true,
+            "detail": "Each selected clip appears once."
+          },
+          {
+            "name": "source_order",
+            "passed": true,
+            "detail": "Selected clips retain their original presentation order."
+          },
+          {
+            "name": "required_closure",
+            "passed": true,
+            "detail": "All mandatory clips and their prerequisites are selected."
+          },
+          {
+            "name": "excluded_absent",
+            "passed": true,
+            "detail": "No excluded clip is selected."
+          },
+          {
+            "name": "dependencies",
+            "passed": true,
+            "detail": "Every selected clip has its declared prerequisites."
+          },
+          {
+            "name": "duration_budget",
+            "passed": true,
+            "detail": "Measured clip sum is 86203 ms; budget is 90000 ms."
+          },
+          {
+            "name": "resolved_brief",
+            "passed": true,
+            "detail": "The brief has no unresolved ambiguities."
+          }
+        ]
+      },
+      "checks": [
+        {
+          "name": "plan_status",
+          "passed": true,
+          "actual": "feasible",
+          "expected": "feasible"
+        },
+        {
+          "name": "required_ids",
+          "passed": true,
+          "actual": [
+            "call_to_action",
+            "disclaimer",
+            "result"
+          ],
+          "expected": [
+            "call_to_action",
+            "disclaimer",
+            "result"
+          ]
+        },
+        {
+          "name": "excluded_ids",
+          "passed": true,
+          "actual": [],
+          "expected": []
+        },
+        {
+          "name": "duration_constraint",
+          "passed": true,
+          "actual": 90000,
+          "expected": 90000
+        },
+        {
+          "name": "selected_allowlist",
+          "passed": true,
+          "actual": [
+            "workflow",
+            "pilot_context",
+            "result",
+            "disclaimer",
+            "call_to_action"
+          ],
+          "expected": [
+            [
+              "workflow",
+              "pilot_context",
+              "result",
+              "disclaimer",
+              "call_to_action"
+            ]
+          ]
+        },
+        {
+          "name": "independent_selection_valid",
+          "passed": true,
+          "actual": true,
+          "expected": true
+        }
+      ],
+      "baseline": {
+        "passed": true,
+        "checks": [
+          {
+            "name": "plan_status",
+            "passed": true,
+            "actual": "feasible",
+            "expected": "feasible"
+          },
+          {
+            "name": "required_ids",
+            "passed": true,
+            "actual": [
+              "call_to_action",
+              "disclaimer",
+              "result"
+            ],
+            "expected": [
+              "call_to_action",
+              "disclaimer",
+              "result"
+            ]
+          },
+          {
+            "name": "excluded_ids",
+            "passed": true,
+            "actual": [],
+            "expected": []
+          },
+          {
+            "name": "duration_constraint",
+            "passed": true,
+            "actual": 90000,
+            "expected": 90000
+          },
+          {
+            "name": "selected_allowlist",
+            "passed": true,
+            "actual": [
+              "workflow",
+              "pilot_context",
+              "result",
+              "disclaimer",
+              "call_to_action"
+            ],
+            "expected": [
+              [
+                "workflow",
+                "pilot_context",
+                "result",
+                "disclaimer",
+                "call_to_action"
+              ]
+            ]
+          },
+          {
+            "name": "independent_selection_valid",
+            "passed": true,
+            "actual": true,
+            "expected": true
+          }
+        ],
+        "selected_ids": [
+          "workflow",
+          "pilot_context",
+          "result",
+          "disclaimer",
+          "call_to_action"
+        ],
+        "status": "feasible"
+      },
+      "finished_at": "2026-09-13T21:21:53.878+00:00"
+    },
+    {
+      "id": "unsupported_rewrite",
+      "started_at": "2026-09-13T21:21:53.883+00:00",
+      "passed": true,
+      "model_calls": [
+        {
+          "request_attempted": true,
+          "response_received": true,
+          "usage": {
+            "input_tokens": 1350,
+            "output_tokens": 458,
+            "total_tokens": 1808,
+            "input_tokens_details": {
+              "cached_tokens": 0
+            },
+            "output_tokens_details": {
+              "reasoning_tokens": 83
+            }
+          },
+          "model": "gpt-6-astra",
+          "status": "completed",
+          "elapsed_ms": 10522
+        }
+      ],
+      "constraints": {
+        "max_duration_ms": 90000,
+        "required_ids": [
+          "result",
+          "disclaimer",
+          "call_to_action"
+        ],
+        "excluded_ids": [],
+        "priorities": {
+          "opening": 5,
+          "problem": 4,
+          "workflow": 10,
+          "pilot_context": 8,
+          "rollout": 3
+        },
+        "evidence": [
+          {
+            "kind": "duration",
+            "segment_id": null,
+            "quote": "Fit within 90 seconds."
+          },
+          {
+            "kind": "required",
+            "segment_id": "result",
+            "quote": "Keep result, disclaimer and call to action."
+          },
+          {
+            "kind": "required",
+            "segment_id": "disclaimer",
+            "quote": "Keep result, disclaimer and call to action."
+          },
+          {
+            "kind": "required",
+            "segment_id": "call_to_action",
+            "quote": "Keep result, disclaimer and call to action."
+          }
+        ],
+        "ambiguities": [
+          "Unsupported edit: \"Rewrite the result narration to make the claim more persuasive.\" Only complete prerecorded clips can be kept or removed; narration cannot be rewritten."
+        ]
+      },
+      "interpretation": {
+        "max_duration_seconds": 90,
+        "duration_quote": "Fit within 90 seconds.",
+        "required": [
+          {
+            "segment_id": "result",
+            "quote": "Keep result, disclaimer and call to action."
+          },
+          {
+            "segment_id": "disclaimer",
+            "quote": "Keep result, disclaimer and call to action."
+          },
+          {
+            "segment_id": "call_to_action",
+            "quote": "Keep result, disclaimer and call to action."
+          }
+        ],
+        "excluded": [],
+        "priorities": [
+          {
+            "segment_id": "opening",
+            "value": 5,
+            "reason": "Introduces the product and its purpose."
+          },
+          {
+            "segment_id": "problem",
+            "value": 4,
+            "reason": "Provides background on the handoff problem."
+          },
+          {
+            "segment_id": "workflow",
+            "value": 10,
+            "reason": "Explains the workflow underlying the required result."
+          },
+          {
+            "segment_id": "pilot_context",
+            "value": 8,
+            "reason": "Explains the fictional scenario; also a declared dependency of the required result."
+          },
+          {
+            "segment_id": "rollout",
+            "value": 3,
+            "reason": "Adds implementation guidance beyond the required call to action."
+          }
+        ],
+        "ambiguities": [
+          "Unsupported edit: \"Rewrite the result narration to make the claim more persuasive.\" Only complete prerecorded clips can be kept or removed; narration cannot be rewritten."
+        ],
+        "summary": "The brief requests a cut within 90 seconds retaining result, disclaimer and call to action, plus an unsupported narration rewrite."
+      },
+      "plan": {
+        "status": "needs_review",
+        "selected_ids": [],
+        "duration_ms": 0,
+        "minimum_required_ms": 53969,
+        "required_closure": [
+          "pilot_context",
+          "result",
+          "disclaimer",
+          "call_to_action"
+        ],
+        "removed_ids": [
+          "opening",
+          "problem",
+          "workflow",
+          "pilot_context",
+          "result",
+          "rollout",
+          "disclaimer",
+          "call_to_action"
+        ],
+        "reasons": [
+          "Resolve the brief before creating an output: Unsupported edit: \"Rewrite the result narration to make the claim more persuasive.\" Only complete prerecorded clips can be kept or removed; narration cannot be rewritten."
+        ],
+        "checks": [
+          {
+            "name": "resolved_brief",
+            "passed": false,
+            "detail": "The brief contains unresolved ambiguities."
+          }
+        ]
+      },
+      "checks": [
+        {
+          "name": "plan_status",
+          "passed": true,
+          "actual": "needs_review",
+          "expected": "needs_review"
+        },
+        {
+          "name": "required_ids",
+          "passed": true,
+          "actual": [
+            "call_to_action",
+            "disclaimer",
+            "result"
+          ],
+          "expected": [
+            "call_to_action",
+            "disclaimer",
+            "result"
+          ]
+        },
+        {
+          "name": "excluded_ids",
+          "passed": true,
+          "actual": [],
+          "expected": []
+        },
+        {
+          "name": "duration_constraint",
+          "passed": true,
+          "actual": 90000,
+          "expected": 90000
+        },
+        {
+          "name": "selected_allowlist",
+          "passed": true,
+          "actual": [],
+          "expected": [
+            []
+          ]
+        },
+        {
+          "name": "review_has_reasons",
+          "passed": true,
+          "actual": true,
+          "expected": true
+        }
+      ],
+      "baseline": {
+        "passed": true,
+        "checks": [
+          {
+            "name": "plan_status",
+            "passed": true,
+            "actual": "needs_review",
+            "expected": "needs_review"
+          },
+          {
+            "name": "required_ids",
+            "passed": true,
+            "actual": [
+              "call_to_action",
+              "disclaimer",
+              "result"
+            ],
+            "expected": [
+              "call_to_action",
+              "disclaimer",
+              "result"
+            ]
+          },
+          {
+            "name": "excluded_ids",
+            "passed": true,
+            "actual": [],
+            "expected": []
+          },
+          {
+            "name": "duration_constraint",
+            "passed": true,
+            "actual": 90000,
+            "expected": 90000
+          },
+          {
+            "name": "selected_allowlist",
+            "passed": true,
+            "actual": [],
+            "expected": [
+              []
+            ]
+          },
+          {
+            "name": "review_has_reasons",
+            "passed": true,
+            "actual": true,
+            "expected": true
+          }
+        ],
+        "selected_ids": [],
+        "status": "needs_review"
+      },
+      "finished_at": "2026-09-13T21:22:04.406+00:00"
+    },
+    {
+      "id": "ambiguous_timing",
+      "started_at": "2026-09-13T21:22:04.408+00:00",
+      "passed": true,
+      "model_calls": [
+        {
+          "request_attempted": true,
+          "response_received": true,
+          "usage": {
+            "input_tokens": 1349,
+            "output_tokens": 460,
+            "total_tokens": 1809,
+            "input_tokens_details": {
+              "cached_tokens": 0
+            },
+            "output_tokens_details": {
+              "reasoning_tokens": 77
+            }
+          },
+          "model": "gpt-6-astra",
+          "status": "completed",
+          "elapsed_ms": 8156
+        }
+      ],
+      "constraints": {
+        "max_duration_ms": 1000,
+        "required_ids": [
+          "result",
+          "disclaimer",
+          "call_to_action"
+        ],
+        "excluded_ids": [],
+        "priorities": {
+          "opening": 5,
+          "problem": 4,
+          "workflow": 10,
+          "pilot_context": 8,
+          "rollout": 3
+        },
+        "evidence": [
+          {
+            "kind": "duration",
+            "segment_id": null,
+            "quote": "Fit within 60 seconds or 90 seconds; the slot is unconfirmed."
+          },
+          {
+            "kind": "required",
+            "segment_id": "result",
+            "quote": "Keep result, disclaimer and call to action."
+          },
+          {
+            "kind": "required",
+            "segment_id": "disclaimer",
+            "quote": "Keep result, disclaimer and call to action."
+          },
+          {
+            "kind": "required",
+            "segment_id": "call_to_action",
+            "quote": "Keep result, disclaimer and call to action."
+          }
+        ],
+        "ambiguities": [
+          "The duration limit is unconfirmed: clarify whether the cut must fit within 60 seconds or 90 seconds.",
+          "A single duration between 1 and 3600 seconds is required.",
+          "The timing clause is conditional or unconfirmed.",
+          "No explicit active upper time bound was recognized; review the timing."
+        ]
+      },
+      "interpretation": {
+        "max_duration_seconds": null,
+        "duration_quote": "Fit within 60 seconds or 90 seconds; the slot is unconfirmed.",
+        "required": [
+          {
+            "segment_id": "result",
+            "quote": "Keep result, disclaimer and call to action."
+          },
+          {
+            "segment_id": "disclaimer",
+            "quote": "Keep result, disclaimer and call to action."
+          },
+          {
+            "segment_id": "call_to_action",
+            "quote": "Keep result, disclaimer and call to action."
+          }
+        ],
+        "excluded": [],
+        "priorities": [
+          {
+            "segment_id": "opening",
+            "value": 5,
+            "reason": "Introduces the product and its purpose."
+          },
+          {
+            "segment_id": "problem",
+            "value": 4,
+            "reason": "Provides motivating context for the workflow."
+          },
+          {
+            "segment_id": "workflow",
+            "value": 10,
+            "reason": "Explains the proposed workflow underlying the required result."
+          },
+          {
+            "segment_id": "pilot_context",
+            "value": 8,
+            "reason": "Explains the fictional basis of the result; also a declared dependency of the required result."
+          },
+          {
+            "segment_id": "rollout",
+            "value": 3,
+            "reason": "Adds evaluation guidance but overlaps with the required call to action."
+          }
+        ],
+        "ambiguities": [
+          "The duration limit is unconfirmed: clarify whether the cut must fit within 60 seconds or 90 seconds."
+        ],
+        "summary": "Keep the result, disclaimer and call to action, with the result's declared pilot-context dependency; the duration limit remains unconfirmed."
+      },
+      "plan": {
+        "status": "needs_review",
+        "selected_ids": [],
+        "duration_ms": 0,
+        "minimum_required_ms": 53969,
+        "required_closure": [
+          "pilot_context",
+          "result",
+          "disclaimer",
+          "call_to_action"
+        ],
+        "removed_ids": [
+          "opening",
+          "problem",
+          "workflow",
+          "pilot_context",
+          "result",
+          "rollout",
+          "disclaimer",
+          "call_to_action"
+        ],
+        "reasons": [
+          "Resolve the brief before creating an output: The duration limit is unconfirmed: clarify whether the cut must fit within 60 seconds or 90 seconds.",
+          "Resolve the brief before creating an output: A single duration between 1 and 3600 seconds is required.",
+          "Resolve the brief before creating an output: The timing clause is conditional or unconfirmed.",
+          "Resolve the brief before creating an output: No explicit active upper time bound was recognized; review the timing."
+        ],
+        "checks": [
+          {
+            "name": "resolved_brief",
+            "passed": false,
+            "detail": "The brief contains unresolved ambiguities."
+          }
+        ]
+      },
+      "checks": [
+        {
+          "name": "plan_status",
+          "passed": true,
+          "actual": "needs_review",
+          "expected": "needs_review"
+        },
+        {
+          "name": "required_ids",
+          "passed": true,
+          "actual": [
+            "call_to_action",
+            "disclaimer",
+            "result"
+          ],
+          "expected": [
+            "call_to_action",
+            "disclaimer",
+            "result"
+          ]
+        },
+        {
+          "name": "excluded_ids",
+          "passed": true,
+          "actual": [],
+          "expected": []
+        },
+        {
+          "name": "selected_allowlist",
+          "passed": true,
+          "actual": [],
+          "expected": [
+            []
+          ]
+        },
+        {
+          "name": "review_has_reasons",
+          "passed": true,
+          "actual": true,
+          "expected": true
+        }
+      ],
+      "baseline": {
+        "passed": true,
+        "checks": [
+          {
+            "name": "plan_status",
+            "passed": true,
+            "actual": "needs_review",
+            "expected": "needs_review"
+          },
+          {
+            "name": "required_ids",
+            "passed": true,
+            "actual": [
+              "call_to_action",
+              "disclaimer",
+              "result"
+            ],
+            "expected": [
+              "call_to_action",
+              "disclaimer",
+              "result"
+            ]
+          },
+          {
+            "name": "excluded_ids",
+            "passed": true,
+            "actual": [],
+            "expected": []
+          },
+          {
+            "name": "selected_allowlist",
+            "passed": true,
+            "actual": [],
+            "expected": [
+              []
+            ]
+          },
+          {
+            "name": "review_has_reasons",
+            "passed": true,
+            "actual": true,
+            "expected": true
+          }
+        ],
+        "selected_ids": [],
+        "status": "needs_review"
+      },
+      "finished_at": "2026-09-13T21:22:12.567+00:00"
+    }
+  ],
+  "limitations": [
+    "Six authored cases on one fictional catalog are a small functional evaluation, not a general language benchmark.",
+    "Audience selections are strict, predeclared editorial ground truth; other editorial choices may be defensible but count as failures here.",
+    "The baseline reuses model-extracted hard constraints and removes only model priorities; it isolates ranking, not all model contribution.",
+    "No video rendering or Gmail, Slides or Dropbox delivery occurs in this evaluation.",
+    "One request per case, with no retries, prompt repair, or selective resampling. Missing usage remains unknown, not zero cost."
+  ],
+  "summary": {
+    "completed_cases": 6,
+    "total_cases": 6,
+    "passed_cases": 6,
+    "fixed_priority_baseline_passed": 4,
+    "request_attempts": 6,
+    "reported_usage": {
+      "input_tokens": 8210,
+      "output_tokens": 2818,
+      "total_tokens": 11028
+    },
+    "usage_complete": true,
+    "audience_pairs": [
+      {
+        "cases": [
+          "buyer",
+          "operator"
+        ],
+        "same_hard_constraints": true,
+        "different_selections": true,
+        "passed": true
+      },
+      {
+        "cases": [
+          "buyer_paraphrase",
+          "operator_paraphrase"
+        ],
+        "same_hard_constraints": true,
+        "different_selections": true,
+        "passed": true
+      }
+    ]
+  },
+  "finished_at": "2026-09-13T21:22:12.572+00:00"
+}

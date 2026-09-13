@@ -2,6 +2,7 @@
 from contextlib import contextmanager
 from datetime import datetime, timezone
 import fcntl
+import hashlib
 import json
 import os
 from pathlib import Path
@@ -60,80 +61,132 @@ class Workflow:
         self.interpreter = interpreter or interpret_brief
         self.renderer = renderer or render_cut
 
-    def fixtures(self): return read_json(ROOT / 'fixtures/briefs.json')
+    def fixtures(self):
+        source = read_json(self.state / 'source.json', {})
+        return {} if source.get('source_kind') == 'user_recordings' else read_json(ROOT / 'fixtures/briefs.json')
 
     def source(self):
         source = read_json(self.state / 'source.json')
-        if source is None: raise ValueError('Run demo setup first: python3 -m hardstop.cli seed')
+        if source is None: raise ValueError('Register source recordings first with the source or seed command')
         return source
 
     def seed(self):
         with exclusive(self.state / 'run.lock'):
             existing = read_json(self.state / 'source.json')
-            if existing: return existing
+            if existing:
+                return existing
             manifest = make_demo_assets(ROOT / 'fixtures/catalog.json', self.state / 'demo-assets')
-            journal_path = self.state / 'seed.json'
-            journal = read_json(journal_path, {'id': uuid.uuid4().hex[:12], 'uploads': {}, 'created_at': now()})
-            if journal.get('pending') == 'create_draft' and not journal.get('draft_id'):
-                raise ValueError('A prior Gmail draft creation is unresolved. Reconcile it before setup continues.')
-            def save(**values):
-                journal.update(values)
-                atomic_json(journal_path, journal)
-            try:
-                if not journal.get('deck'):
-                    if journal.get('pending') == 'create_deck' and not journal.get('presentation_id'):
-                        raise ValueError('A prior source deck creation is unresolved; reconcile before continuing')
-                    save(pending='create_deck')
-                    deck = self.providers.create_source_deck(manifest, presentation_id=journal.get('presentation_id'),
-                        on_created=lambda value: save(presentation_id=value))
-                    save(deck=deck, pending=None)
-                remote = {key: value for key, value in manifest.items() if key != 'segments'}
-                remote['segments'] = []
+            return self._seed_manifest(manifest, self.fixtures()['original'])
+
+    def import_recordings(self, catalog_path, subject, body):
+        """Verify and register a new source in an empty, dedicated workspace."""
+        from .source import import_source
+        self._validate_brief(subject, body)
+        catalog_path = Path(catalog_path).absolute()
+        with exclusive(self.state / 'run.lock'):
+            if read_json(self.state / 'source.json'):
+                raise ValueError('This workspace already has a source. Use a new --state-dir for different recordings.')
+            assets = self.state / 'source-assets'
+            manifest_path = assets / 'manifest.json'
+            if assets.is_symlink() or assets.absolute() != assets.resolve():
+                raise ValueError('The source directory must not contain symbolic links')
+            if manifest_path.exists():
+                if catalog_path.is_symlink() or not catalog_path.is_file() or catalog_path.resolve() != catalog_path:
+                    raise ValueError('Use a regular catalog file without symbolic links when resuming source setup')
+                if manifest_path.is_symlink() or not manifest_path.is_file():
+                    raise ValueError('The source manifest must be a regular file')
+                manifest = read_json(manifest_path)
+                if manifest.get('catalog_sha256') != sha256_file(catalog_path):
+                    raise ValueError('The catalog changed after import; use a new workspace or reconcile the existing setup')
                 for segment in manifest['segments']:
-                    item = {key: value for key, value in segment.items() if key not in ('media_path', 'card_path')}
-                    path = f"/hardstop-source-{journal['id']}-{item['id']}-{item['sha256'][:8]}.mp4"
-                    item['dropbox_path'] = path
-                    if item['id'] not in journal['uploads']:
-                        if journal.get('pending') == path:
-                            check = self.state / 'reconcile.mp4'
-                            meta = self.providers.download(path, check)
-                            if meta['sha256'] != item['sha256']: raise ValueError('Unresolved source upload has unexpected content')
-                            check.unlink()
-                        else:
-                            save(pending=path)
-                            meta = self.providers.upload(path, segment['media_path'])
-                        journal['uploads'][item['id']] = {'rev': meta['rev'], 'sha256': item['sha256'], 'path': path}
-                        save(pending=None)
-                    item['dropbox_rev'] = journal['uploads'][item['id']]['rev']
-                    remote['segments'].append(item)
-                remote['presentation_id'] = journal['deck']['presentation_id']
-                remote['deck_fingerprint'] = journal['deck']['fingerprint']
-                catalog_path = self.state / 'cloud-catalog.json'
-                atomic_json(catalog_path, remote)
-                cloud_path = f"/hardstop-catalog-{journal['id']}.json"
-                if not journal.get('catalog'):
-                    if journal.get('pending') == cloud_path:
-                        meta = self.providers.download(cloud_path, self.state / 'reconcile-catalog.json')
-                        if meta['sha256'] != sha256_file(catalog_path): raise ValueError('Unresolved catalog upload differs from expected source')
+                    clip = Path(segment['media_path'])
+                    if (not clip.is_absolute() or clip.is_symlink() or not clip.is_file() or
+                            clip.absolute() != clip.resolve() or clip.parent != assets):
+                        raise ValueError('Imported recordings must remain inside the source directory')
+                    if sha256_file(clip) != segment['sha256'] or probe(clip)['duration_ms'] != segment['duration_ms']:
+                        raise ValueError('An imported recording changed before registration')
+            else:
+                manifest = import_source(catalog_path, assets)
+            return self._seed_manifest(manifest, {'subject': subject, 'body': body})
+
+    def _seed_manifest(self, manifest, fixture):
+        """The caller holds run.lock; every remote write is recorded for recovery."""
+        journal_path = self.state / 'seed.json'
+        journal = read_json(journal_path, {'id': uuid.uuid4().hex[:12], 'uploads': {}, 'created_at': now()})
+        registration = {
+            'manifest': {k: v for k, v in manifest.items() if k != 'segments'},
+            'segments': [{k: v for k, v in segment.items() if k not in ('media_path', 'card_path')} for segment in manifest['segments']],
+            'brief': fixture,
+        }
+        registration_hash = hashlib.sha256(json.dumps(registration, sort_keys=True).encode()).hexdigest()
+        if journal.get('registration_sha256') not in (None, registration_hash):
+            raise ValueError('Source setup inputs changed after registration began; reconcile the existing setup first')
+        journal['registration_sha256'] = registration_hash
+        if journal.get('pending') == 'create_draft' and not journal.get('draft_id'):
+            raise ValueError('A prior Gmail draft creation is unresolved. Reconcile it before setup continues.')
+        def save(**values):
+            journal.update(values)
+            atomic_json(journal_path, journal)
+        try:
+            if not journal.get('deck'):
+                if journal.get('pending') == 'create_deck' and not journal.get('presentation_id'):
+                    raise ValueError('A prior source deck creation is unresolved; reconcile before continuing')
+                save(pending='create_deck')
+                deck = self.providers.create_source_deck(manifest, presentation_id=journal.get('presentation_id'),
+                    on_created=lambda value: save(presentation_id=value))
+                save(deck=deck, pending=None)
+            remote = {key: value for key, value in manifest.items() if key != 'segments'}
+            remote['segments'] = []
+            for segment in manifest['segments']:
+                item = {key: value for key, value in segment.items() if key not in ('media_path', 'card_path')}
+                path = f"/hardstop-source-{journal['id']}-{item['id']}-{item['sha256'][:8]}.mp4"
+                item['dropbox_path'] = path
+                if item['id'] not in journal['uploads']:
+                    if journal.get('pending') == path:
+                        check = self.state / 'reconcile.mp4'
+                        meta = self.providers.download(path, check)
+                        if meta['sha256'] != item['sha256']: raise ValueError('Unresolved source upload has unexpected content')
+                        check.unlink()
                     else:
-                        save(pending=cloud_path)
-                        meta = self.providers.upload(cloud_path, catalog_path)
-                    save(catalog={'path': cloud_path, 'rev': meta['rev'], 'sha256': sha256_file(catalog_path)}, pending=None)
-                if not journal.get('draft_id'):
-                    fixture = self.fixtures()['original']
-                    save(pending='create_draft')
-                    draft = self.providers.create_draft(fixture['subject'], fixture['body'])
-                    save(draft_id=draft['draft_id'], pending=None)
-                    atomic_json(self.state / 'brief-cache.json', draft)
-                source = dict(remote, brief_draft_id=journal['draft_id'], catalog=journal['catalog'], seed_id=journal['id'])
-                atomic_json(self.state / 'source.json', source)
-                save(completed_at=now(), pending=None)
-                return source
-            except ProviderError as exc:
-                if exc.presentation_id: journal['presentation_id'] = exc.presentation_id
-                if exc.draft_id: journal['draft_id'] = exc.draft_id
-                save(error=safe_error(exc))
-                raise
+                        save(pending=path)
+                        meta = self.providers.upload(path, segment['media_path'])
+                    if meta['sha256'] != item['sha256']:
+                        raise ValueError('A source upload differs from the verified imported recording; reconcile before continuing')
+                    journal['uploads'][item['id']] = {'rev': meta['rev'], 'sha256': item['sha256'], 'path': path}
+                    save(pending=None)
+                item['dropbox_rev'] = journal['uploads'][item['id']]['rev']
+                remote['segments'].append(item)
+            remote['presentation_id'] = journal['deck']['presentation_id']
+            remote['deck_fingerprint'] = journal['deck']['fingerprint']
+            catalog_path = self.state / 'cloud-catalog.json'
+            atomic_json(catalog_path, remote)
+            cloud_path = f"/hardstop-catalog-{journal['id']}.json"
+            if not journal.get('catalog'):
+                if journal.get('pending') == cloud_path:
+                    meta = self.providers.download(cloud_path, self.state / 'reconcile-catalog.json')
+                    if meta['sha256'] != sha256_file(catalog_path): raise ValueError('Unresolved catalog upload differs from expected source')
+                else:
+                    save(pending=cloud_path)
+                    meta = self.providers.upload(cloud_path, catalog_path)
+                save(catalog={'path': cloud_path, 'rev': meta['rev'], 'sha256': sha256_file(catalog_path)}, pending=None)
+            if not journal.get('draft_id'):
+                save(pending='create_draft')
+                draft = self.providers.create_draft(fixture['subject'], fixture['body'])
+                save(draft_id=draft['draft_id'], pending=None)
+            else:
+                draft = self.providers.read_draft(journal['draft_id'])
+            if draft.get('has_recipients') or draft['subject'] != fixture['subject'] or draft['body'] != fixture['body'].rstrip('\n'):
+                raise ValueError('The initial Gmail brief differs from the requested source setup; review it before continuing')
+            atomic_json(self.state / 'brief-cache.json', draft)
+            source = dict(remote, brief_draft_id=journal['draft_id'], catalog=journal['catalog'], seed_id=journal['id'])
+            atomic_json(self.state / 'source.json', source)
+            save(completed_at=now(), pending=None)
+            return source
+        except ProviderError as exc:
+            if exc.presentation_id: journal['presentation_id'] = exc.presentation_id
+            if exc.draft_id: journal['draft_id'] = exc.draft_id
+            save(error=safe_error(exc))
+            raise
 
     def set_brief(self, scenario):
         fixtures = self.fixtures()
@@ -141,11 +194,15 @@ class Workflow:
         fixture = fixtures[scenario]
         return self.set_custom_brief(fixture['subject'], fixture['body'])
 
-    def set_custom_brief(self, subject, body):
+    @staticmethod
+    def _validate_brief(subject, body):
         if not isinstance(subject, str) or not subject.strip() or len(subject) > 200 or any(c in subject for c in ('\r', '\n', '\x00')):
             raise ValueError('Use a single-line subject of 1–200 characters')
         if not isinstance(body, str) or not body.strip() or len(body) > 20000 or '\x00' in body:
             raise ValueError('Use a brief of 1–20000 characters')
+
+    def set_custom_brief(self, subject, body):
+        self._validate_brief(subject, body)
         with exclusive(self.state / 'brief.lock'):
             result = self.providers.update_draft(self.source()['brief_draft_id'], subject, body)
             atomic_json(self.state / 'brief-cache.json', result)
@@ -191,7 +248,7 @@ class Workflow:
                 registered = self.source()
                 event('reading', 'Reading the current Gmail brief, Google Slides source, and Dropbox catalog')
                 brief = self.providers.read_draft(registered['brief_draft_id'])
-                if brief.get('has_recipients'): raise ValueError('The demo brief must remain an unaddressed draft')
+                if brief.get('has_recipients'): raise ValueError('The producer brief must remain an unaddressed draft')
                 atomic_json(self.state / 'brief-cache.json', brief)
                 deck = self.providers.read_deck(registered['presentation_id'])
                 catalog_meta = self.providers.download(registered['catalog']['path'], folder / 'catalog.json')
@@ -267,6 +324,11 @@ class Workflow:
                 event('handoff', 'Creating an unaddressed Gmail handoff draft with verified delivery evidence')
                 link = self.providers.temporary_link(remote_path)
                 included = ', '.join(identifier.replace('_', ' ') for identifier in selection['selected_ids'])
+                if catalog.get('source_kind') == 'fictional_synthesized_recording':
+                    source_note = 'Fictional example with synthesized narration. '
+                else:
+                    source_note = ('Fictional example. ' if catalog.get('fictional') is True else 'User-supplied recordings. ')
+                    source_note += ('Narration: ' + catalog['narration'].rstrip('.') + '. ') if catalog.get('narration') else ''
                 body = ("Your cut is ready for review.\n\n"
                     f"Finished length: {media['duration_ms']/1000:.3f} seconds.\n"
                     f"Time limit: {report['constraints']['max_duration_ms']/1000:g} seconds.\n"
@@ -276,7 +338,7 @@ class Workflow:
                     f"Video download: {link}\n\n"
                     f"The download link is temporary. The video is also saved in the Dropbox app folder at {remote_path}.\n\n"
                     "These checks describe the files at the end of this run. Review before sharing.\n"
-                    "Fictional example with synthesized narration. No email has been sent.\n")
+                    f"{source_note}No email has been sent.\n")
                 draft = self.providers.create_draft(
                     f"HardStop: {report['constraints']['max_duration_ms']/1000:g}-second version ready for review", body)
                 record_output('draft_id', draft['draft_id'])

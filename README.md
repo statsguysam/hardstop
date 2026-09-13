@@ -2,7 +2,7 @@
 
 **The slot is now 90 seconds. The result and disclaimer still have to stay.**
 
-HardStop helps producers reuse prerecorded presentation segments and matching decks when a slot changes. It reads the revised brief in Gmail, makes a shorter video from the recordings in Dropbox, and builds a matching Google Slides deck. It checks required content, source order, actual runtime, and saved deliverables before preparing the handoff. When a request cannot fit, it explains why and keeps the last verified cut.
+HardStop helps webinar and product-demo producers turn registered recordings into versions for different audiences and time limits. It reads the brief in Gmail, selects complete recordings from Dropbox, and creates a video with a matching Google Slides deck. It checks required clips, source order, actual runtime, and saved deliverables before preparing the handoff. When a request cannot fit, it explains why and keeps the last verified cut. [Read the producer use case and its evidence](docs/USE_CASE.md).
 
 **[Watch the 1:50 demo](https://statsguysam.github.io/hardstop/)**
 
@@ -20,7 +20,13 @@ Beyond the presets, a [custom 75-second Gmail brief](docs/evidence/custom-75.jso
 | **Dropbox** | Immutable prerecorded clips and their catalog | Download selected clips, verify their hashes and durations, upload the rendered MP4, then download it again and compare the bytes. |
 | **Google Slides** | One source slide for each recorded segment | Copy the source presentation, retain the selected slides, then read back their content and order. The source deck remains intact. |
 
-The runtime model is **`gpt-6-astra` through the OpenAI Responses API**, with a strict JSON schema. It interprets the brief and supplies exact evidence quotations. Python validates that interpretation, enforces declared dependencies, and chooses the feasible set of complete clips. FFmpeg renders it; FFprobe measures the actual output. The model does not execute tools or provide trusted timing estimates.
+The runtime model is **`gpt-6-astra` through the OpenAI Responses API**, with a strict JSON schema. It extracts constraints with exact brief quotations, identifies unsupported requests, and scores optional clips for the audience and preferences. Python audits supported directive wording, enforces declared dependencies, and chooses the feasible set using those scores. FFmpeg renders it; FFprobe measures the actual output. The model does not execute tools or provide trusted timing estimates. Transcripts and content dependencies are supplied by the source owner.
+
+## The same limit can need a different cut
+
+Two completed live runs used the same **90-second cap**, mandatory result/disclaimer/call-to-action clips, and declared context dependency. A buyer brief produced **85.603 seconds**, with the problem explanation as the optional clip. An operator brief produced **86.203 seconds**, with the workflow explanation instead. Both delivered a video, matching copied Slides deck and unsent Gmail draft, with **25 checks passed**. The interface shows the model's concise explanation for optional choices and compares completed versions when their source catalog matches. [Exact runs and limits](docs/EVIDENCE.md#live-audience-versions).
+
+A separate [predeclared six-case evaluation](docs/evidence/audience-evaluation.json) passed **6/6 on six first API calls**: the audience pair, a supported paraphrase of each, an unsupported narration rewrite, and uncertain timing. Model priorities chose the expected optional clip in **4/4 audience cases**; using the source's fixed priorities with the same extracted hard constraints passed **2/4**. Total reported usage was **11,028 tokens**. This small authored evaluation demonstrates a specific model contribution; it is not a general accuracy estimate, customer validation, or proof of broad semantic understanding. It created no cloud deliverables.
 
 ## The demonstration
 
@@ -44,7 +50,7 @@ source .venv/bin/activate
 python3 -m unittest discover -s tests -v
 ```
 
-The final local suite and [GitHub Linux CI](https://github.com/statsguysam/hardstop/actions/runs/34782456480) each passed **166 tests** with FFmpeg available. A separate planner stress check matched an independent combinations-search oracle on **250 generated catalogs**; those cases are not included in the 166-test count. Tests do not need API credentials. They use controlled provider responses and local media fixtures; media tests are skipped when FFmpeg tools are unavailable. A passing unit suite is separate from a successful live API run.
+The current local suite passed **213 tests**, including FFmpeg media and loopback checks; JavaScript syntax also passed. The linked [earlier GitHub Linux CI run](https://github.com/statsguysam/hardstop/actions/runs/34782456480) passed 166 tests for the original release; CI for the strengthened source revision is pending. A separate planner stress check matched an independent combinations-search oracle on **250 generated catalogs**; those cases are not included in the unit-test count. Tests do not need API credentials. They use controlled provider responses and local media fixtures; media tests are skipped when FFmpeg tools are unavailable. A passing unit suite is separate from a successful live API run.
 
 For a fresh sample on macOS:
 
@@ -93,7 +99,24 @@ python3 configure.py openai-key --model gpt-6-astra
 
 Do not paste credentials into the repository or chat. API requests use `store: false`; the local report records the response identity, model, usage and validated interpretation. See the [OpenAI API quickstart](https://developers.openai.com/api/docs/quickstart).
 
-### Seed and execute
+### Use your own recordings
+
+Prepare **1–18 complete MP4 clips** and a JSON catalog with source-owner transcripts, titles, `slide_text`, declared dependencies and default values. IDs use 2–40 lowercase letters, digits or underscores, starting with a letter. The importer checks the files, measures and decodes them, then registers a dedicated Dropbox catalog, a source Slides deck generated from `slide_text`, and a Gmail brief draft. It does not transcribe the recordings or import an existing branded deck. [Source format, limits and a complete example](docs/SOURCE_GUIDE.md).
+
+Use a new workspace for each source package, after configuring your API access:
+
+```bash
+python3 -m hardstop.cli --state-dir .state/my-presentation source /path/to/catalog.json \
+  --brief /path/to/brief.txt --subject "Producer brief"
+python3 -m hardstop.cli --state-dir .state/my-presentation run --id first-cut
+python3 -m hardstop.cli --state-dir .state/my-presentation serve --port 8767
+```
+
+The `source` command creates dedicated resources in your three app accounts. Existing source workspaces are preserved. Open the local interface on port 8767, revise the Gmail brief through **Write your own brief**, and make the next cut. Imported workspaces do not offer the Relay demo presets. These recordings are copied and verified; no new narration is synthesized.
+
+An independent six-clip fictional **Harbor** package completed this import-and-delivery path, producing a **43.601-second** cut against a 60-second brief with **24 checks passed**. Its first brief needed review because of an unsupported generic instruction; both that result and the clarified successful brief are retained. An independent post-run readback passed ten checks. This verifies a second prepared source, not adoption by an outside producer. [Harbor evidence](docs/EVIDENCE.md#imported-source-harbor).
+
+### Seed and execute the fictional demo
 
 The following commands create clearly labeled fictional demo artifacts in your three app accounts. They operate on those dedicated resources and never send email.
 
@@ -109,7 +132,7 @@ python3 -m hardstop.cli status
 python3 -m hardstop.cli serve --port 8766
 ```
 
-Open [the local review interface](http://127.0.0.1:8766). Use **Write your own brief** to save an original brief to the dedicated Gmail draft; the runtime model reads that text on its next run. The interface shows run progress, requirements, selected clips, verification checks and playable verified outputs. `brief ambiguous` exercises an unclear request. Use a new run ID for a new execution; calling an existing ID returns its saved report without repeating writes.
+Open [the local review interface](http://127.0.0.1:8766). Use **Write your own brief** to save an original brief to the dedicated Gmail draft; the runtime model reads that text on its next run. The interface shows run progress, requirements, optional-clip explanations, selected clips, verification checks and playable verified outputs. `brief ambiguous` exercises an unclear request. Use a new run ID for a new execution; calling an existing ID returns its saved report without repeating writes.
 
 Run reports and media are saved under `.state/runs/<run-id>/`. Only a fully verified `ready` run updates `.state/latest_ready.json`. `infeasible`, `needs_review`, `stale`, `failed` and `unknown` outcomes preserve the prior reference. An interrupted or uncertain write requires reconciliation; changing the run ID is not a substitute for checking what the service already created.
 
@@ -128,7 +151,7 @@ There is no distributed transaction across Gmail, Slides and Dropbox. A failed r
 
 ## Scope
 
-This prototype selects complete prerecorded segments in source order, with one matching slide per segment. The supplied workflow uses eight registered recordings; arbitrary media ingestion is not implemented. The planner accepts at most 18 segments. The scoped language audit can require review for unfamiliar wording, even when a person could resolve it. HardStop does not rewrite speech, change playback speed, cut inside clips, estimate a live speaker's delivery, or guarantee unrestricted semantic preservation. Deck checks compare structured content, not pixel-identical rendering. Fresh fixture generation is macOS-specific; Windows is not a supported runtime because workflow locking uses `fcntl`.
+This prototype selects complete prerecorded segments in source order, with one matching slide per segment. Source onboarding accepts a bounded package of 1–18 local MP4 recordings and declared metadata; it does not automatically split a long recording, transcribe speech, or import an arbitrary existing deck. Source labels, transcripts and dependencies are not independently authenticated. The scoped language audit can require review for unfamiliar wording, even when a person could resolve it. HardStop does not rewrite speech, change playback speed, cut inside clips, estimate a live speaker's delivery, or guarantee unrestricted semantic preservation. Deck checks compare structured content, not pixel-identical rendering. Fresh fixture generation is macOS-specific; Windows is not a supported runtime because workflow locking uses `fcntl`.
 
 The review server binds to loopback for local use. The public demo page plays a recorded video; it exposes no live credentials or agent mutation endpoints.
 

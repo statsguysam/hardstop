@@ -1,12 +1,12 @@
 # HardStop submission checklist
 
-Completed on September 13, 2026. The public repository, release files, demo playback, English captions, clean source import and GitHub CI were verified. The official form confirmed one solo-team submission at 21:06 UTC, before the 23:00 UTC deadline. The confirmation is retained privately.
+The original release was submitted on September 13, 2026. Its public repository, release files, demo playback, English captions, clean sample import and 166-test GitHub CI run were verified. The official form confirmed one solo-team submission at 21:06 UTC, before the 23:00 UTC deadline. The confirmation is retained privately. The strengthened revision adds audience selection, general source onboarding and further evidence; its local work is verified, while new publication and media checks remain pending below.
 
 The official event page lists a submission deadline of **September 13, 2026, 23:00 UTC**, which is **September 14, 2026, 04:30 IST**. Complete the form before that cutoff; leave time to verify access and the confirmation. The [event page](https://multiappagenthackathon.com/) is the authority if the organizers announce another change.
 
 Public links: [repository](https://github.com/statsguysam/hardstop), [1:50 demo](https://statsguysam.github.io/hardstop/), [release files](https://github.com/statsguysam/hardstop/releases/tag/v0.1.0), [successful Linux CI run](https://github.com/statsguysam/hardstop/actions/runs/34782456480).
 
-## Required submission package
+## Original submitted package
 
 - [x] An accessible GitHub repository containing the actual implementation, fictional source catalog, tests, and setup instructions.
 - [x] A README with a concise project overview, the three external apps, setup and run instructions, reliability test evidence, and the demo link.
@@ -20,8 +20,8 @@ Public links: [repository](https://github.com/statsguysam/hardstop), [1:50 demo]
 | --- | ---: | --- |
 | Technical execution | 30% | A working Gmail, model interpretation, Dropbox recordings, rendering, copied Slides deck, Dropbox upload, and Gmail handoff draft sequence using real APIs. |
 | Reliability | 25% | Independently checked constraints, measured output duration, complete media decode, byte-for-byte upload readback, actual slide-order readback, and a blocked impossible brief that preserves the last valid output. |
-| Usefulness | 20% | A producer changes a recorded presentation slot from 120 to 90 seconds; the video and deck both get rebuilt from the same verified selection. |
-| Originality | 15% | Explicit requirement handling across deliverables, declared context dependencies, and a clear explanation when complete required recordings cannot fit. Avoid presenting AI video shortening itself as new. |
+| Usefulness | 20% | A producer obtains different buyer and operator versions under the same 90-second cap, with matching video and deck; another prepared source can be registered in its own workspace. |
+| Originality | 15% | Audience-dependent optional selection and explicit requirement handling across deliverables, with declared context and preserved outputs when a request cannot fit. Avoid presenting AI video shortening itself as new. |
 | Demo clarity | 10% | A legible successful run followed by the 30-second conflict, within two minutes. Show actual deliverables and outcomes before architecture. |
 
 ## Live acceptance gate
@@ -40,7 +40,26 @@ Connection smoke tests alone do not satisfy this gate. Record results from the c
 - [x] Run the ambiguity and failure tests applicable to the final code. Report actual passing counts and limits in the README; distinguish unit tests, injected failures, local media tests, and live API checks.
 - [x] Confirm errors and unavailable services fail visibly; live mode must not fall back to a mock or saved replay silently.
 
-## Repository and reproduction
+## Strengthened revision: verified local work
+
+- [x] Complete buyer and operator deliveries under the same 90-second cap and required closure, with different optional clips and 25 checks passed for each. Actual outputs measure 85.603 and 86.203 seconds.
+- [x] Run the six predeclared model-evaluation cases once each, preserve all results, and report 6/6 plus the limited baseline comparison and all 11,028 reported tokens.
+- [x] Register the independent six-clip Harbor source in a new workspace and complete a 43.601-second delivery with 24 checks. Retain the initial review outcome and clarified brief.
+- [x] Independently read back buyer, operator and Harbor deliveries. Preserve the operator version after a subsequent impossible request; retain the 10/12/10 check results.
+- [x] Pass the current 213-test local suite, including FFmpeg and loopback checks, and JavaScript syntax validation.
+- [x] Check explanation escaping, stopped/proposed state labels, current-brief comparisons, imported-source presets and placeholders using recorded interpretations in offline UI tests.
+- [x] Document the producer use case, source-owner transcripts, generated Slides from `slide_text`, 2–40-character IDs, and new-workspace onboarding. State customer-demand and semantic limits.
+
+## Strengthened revision: publication gates
+
+- [ ] Publish the final strengthened source snapshot and verify the public README and evidence links without authentication.
+- [ ] Inspect the new GitHub Actions run for that source revision. The older 166-test CI result does not establish that the new 213-test source passed remotely.
+- [ ] Publish the revised demo, captions, prepared-source bundles and checksums; fetch and compare the released artifacts without authentication.
+- [ ] Verify the revised Pages video plays with usable English captions and stays within two minutes.
+- [ ] Reproduce setup from the final clean published source and its newly released source bundles.
+- [ ] Confirm the existing submitted repository/demo links resolve to the reviewed strengthened revision. Preserve the original one-team submission confirmation.
+
+## Original release: repository and reproduction
 
 - [x] Provide exact commands to install prerequisites, configure the approved scoped credentials, run tests, prepare fixtures, launch the interface and execute the demo sequence.
 - [x] Document Python and FFmpeg requirements. Fresh local fixture generation also requires Pillow and macOS `say`; existing verified recordings can be reused. Do not imply fresh speech generation is cross-platform.
@@ -53,7 +72,7 @@ Connection smoke tests alone do not satisfy this gate. Record results from the c
 - [x] Verify public README links and ensure the public demo can play without access to private Google Slides or Dropbox source resources.
 - [x] Inspect the first GitHub Actions result after publication; local passing tests do not establish the remote CI result.
 
-## Final recording and form
+## Original release: recording and form
 
 - [x] Follow [DEMO_SCRIPT.md](DEMO_SCRIPT.md) and show the actual 120-second, 90-second and 30-second sequence.
 - [x] Keep the fictional fixture and synthesized narration labels readable. Keep a saved-replay label when using recorded run state.

@@ -22,12 +22,9 @@ from urllib.parse import quote, urlsplit, urlunsplit
 from urllib.request import HTTPRedirectHandler, Request, build_opener
 
 import configure
+from .source import validate_catalog_metadata
 
 
-CATALOG_IDS = (
-    "opening", "problem", "workflow", "pilot_context", "result", "rollout",
-    "disclaimer", "call_to_action",
-)
 JSON_LIMIT = 16 * 1024 * 1024
 UPLOAD_CHUNK = 8 * 1024 * 1024
 HASH_BLOCK = 4 * 1024 * 1024
@@ -292,16 +289,11 @@ class Providers:
             raise
 
     def create_source_deck(self, catalog, *, presentation_id=None, on_created=None):
-        segments = catalog.get("segments", []) if isinstance(catalog, dict) else []
-        if [segment.get("id") for segment in segments] != list(CATALOG_IDS):
-            raise ValueError("Source deck requires the eight catalog segments in source order")
-        for segment in segments:
-            _safe_title(segment["title"])
-            if not isinstance(segment.get("slide_text"), str) or not segment["slide_text"].strip():
-                raise ValueError("Each catalog segment needs display text")
-        if "pilot_context" not in segments[4].get("requires", []):
-            raise ValueError("The result segment must require pilot_context")
-        title = _safe_title(catalog.get("title", "HardStop · Fictional demo"))
+        validate_catalog_metadata(catalog, require_media_paths=False)
+        segments = catalog["segments"]
+        identifiers = [segment["id"] for segment in segments]
+        title = _safe_title(catalog["title"])
+        legacy_demo = catalog.get("source_kind") == "fictional_synthesized_recording"
         if presentation_id is None:
             created = self._google("https://slides.googleapis.com/v1/presentations", method="POST",
                                    payload={"title": title}, operation="Create source deck", write=True)
@@ -315,7 +307,7 @@ class Providers:
             existing = self.read_deck(presentation_id)
             created = existing["raw"]
             if existing["slide_ids"]:
-                expected = ["hs_" + item for item in CATALOG_IDS]
+                expected = ["hs_" + item for item in identifiers]
                 content_matches = existing["slide_ids"] == expected and created.get("title") == title
                 for slide, segment in zip(created.get("slides", []), segments):
                     elements = {element.get("objectId"): element for element in slide.get("pageElements", [])}
@@ -326,7 +318,7 @@ class Providers:
                         content_matches = content_matches and actual.rstrip("\n") == text.rstrip("\n")
                 if not content_matches:
                     raise ProviderError("Verify source deck before resume", presentation_id=presentation_id)
-                return {"presentation_id": presentation_id, "slide_ids": dict(zip(CATALOG_IDS, expected)),
+                return {"presentation_id": presentation_id, "slide_ids": dict(zip(identifiers, expected)),
                         "fingerprint": existing["fingerprint"], "revision_id": existing["revision_id"]}
         try:
             presentation_id = _identifier(presentation_id)
@@ -336,14 +328,15 @@ class Providers:
             requests = [{"deleteObject": {"objectId": slide["objectId"]}}
                         for slide in created.get("slides", [])]
             for index, segment in enumerate(segments):
-                requests.extend(self._slide_requests(segment, index, width, height, len(segments)))
+                requests.extend(self._slide_requests(segment, index, width, height, len(segments),
+                    legacy_demo=legacy_demo, fictional=catalog["fictional"], narration=catalog["narration"]))
             self._google(f"https://slides.googleapis.com/v1/presentations/{presentation_id}:batchUpdate",
                          method="POST", payload={"requests": requests}, operation="Populate source deck", write=True)
             deck = self.read_deck(presentation_id)
-            expected = ["hs_" + item for item in CATALOG_IDS]
+            expected = ["hs_" + item for item in identifiers]
             if deck["slide_ids"] != expected:
                 raise ProviderError("Verify source deck", uncertain=True)
-            return {"presentation_id": presentation_id, "slide_ids": dict(zip(CATALOG_IDS, expected)),
+            return {"presentation_id": presentation_id, "slide_ids": dict(zip(identifiers, expected)),
                     "fingerprint": deck["fingerprint"], "revision_id": deck["revision_id"]}
         except ProviderError as exc:
             exc.presentation_id = presentation_id
@@ -364,7 +357,7 @@ class Providers:
         return value
 
     @staticmethod
-    def _slide_requests(segment, index, width, height, total):
+    def _slide_requests(segment, index, width, height, total, *, legacy_demo=False, fictional=False, narration=""):
         slide_id = "hs_" + segment["id"]
         navy = {"red": 11 / 255, "green": 17 / 255, "blue": 32 / 255}
         cobalt = {"red": 59 / 255, "green": 91 / 255, "blue": 1.0}
@@ -401,12 +394,17 @@ class Providers:
                 ])
 
         shape("edge", 0, 0, 8, 405, fill=cobalt)
-        shape("brand", 34, 27, 550, 27, "HARDSTOP  /  DEMO DELIVERY", size=11, color=citrus, bold=True)
+        brand = "HARDSTOP  /  DEMO DELIVERY" if legacy_demo else "HARDSTOP  /  SOURCE RECORDINGS"
+        footer = "FICTIONAL FIXTURE · SYNTHESIZED NARRATION" if legacy_demo else (
+            ("FICTIONAL SOURCE · " if fictional else "SOURCE RECORDINGS · ") + narration)
+        title_size = 35 if legacy_demo or len(segment["title"]) <= 65 else 28 if len(segment["title"]) <= 100 else 24
+        body_size = 23 if legacy_demo or len(segment["slide_text"]) <= 140 else 18 if len(segment["slide_text"]) <= 240 else 15
+        shape("brand", 34, 27, 550, 27, brand, size=11, color=citrus, bold=True)
         shape("number", 633, 27, 60, 27, f"{index + 1:02d} / {total:02d}", size=11, color=muted)
-        shape("title", 34, 91, 650, 100, segment["title"], size=35, bold=True)
+        shape("title", 34, 91, 650, 100, segment["title"], size=title_size, bold=True)
         shape("rule", 39, 200, 86, 4, fill=cobalt)
-        shape("body", 34, 222, 645, 113, segment["slide_text"], size=23)
-        shape("footer", 34, 365, 650, 23, "FICTIONAL FIXTURE · SYNTHESIZED NARRATION", size=9, color=muted)
+        shape("body", 34, 222, 645, 113, segment["slide_text"], size=body_size)
+        shape("footer", 34, 365, 650, 23, footer, size=9, color=muted)
         return requests
 
     def read_deck(self, presentation_id):
