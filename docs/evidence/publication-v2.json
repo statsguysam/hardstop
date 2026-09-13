@@ -1,0 +1,54 @@
+{
+  "checked_at": "2026-09-13T21:57:47.369542+00:00",
+  "authentication": "none",
+  "resources": [
+    {
+      "url": "https://statsguysam.github.io/hardstop/",
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "sha256": "65b80566f40b9aacefde1db363b921e273a2c73514a8ac804b5302fab379dbe3",
+      "matches_local": true
+    },
+    {
+      "url": "https://statsguysam.github.io/hardstop/demo-captions.vtt",
+      "status": 200,
+      "content_type": "text/vtt; charset=utf-8",
+      "sha256": "7269b8ef2fa62932cc5c9abcb7ad85409bad862143187f63cd375e6becf80c50",
+      "matches_local": true
+    },
+    {
+      "url": "https://statsguysam.github.io/hardstop/images/hardstop.png",
+      "status": 200,
+      "content_type": "image/png",
+      "sha256": "890a433b9d643f8e2f56729f7f057c6660bc182208c1807770f47c776c3d2d08",
+      "matches_local": true
+    }
+  ],
+  "schema_version": 1,
+  "release": "v0.2.0",
+  "source_commit": "90654b77e16710d4dbd7825d94f85d8f16709aa5",
+  "viewing_page_commit": "86b4643f9a6abffe66ad49ba555489eb7c9fde08",
+  "browser_check": {
+    "completed_at": "2026-09-13T22:00:07.326863+00:00",
+    "video_played_to_end": true,
+    "displayed_end_time": "1:50 / 1:50",
+    "english_captions_enabled_and_visibly_displayed": true,
+    "uses_released_v2_video": true
+  },
+  "ci": {
+    "source_run": "https://github.com/statsguysam/hardstop/actions/runs/34784957386",
+    "viewing_page_run": "https://github.com/statsguysam/hardstop/actions/runs/34785269713",
+    "both_completed_successfully": true,
+    "source_test_count": 213,
+    "skipped_tests": 0
+  },
+  "submission": {
+    "original_form_confirmed_at": "2026-09-13T21:06:33+00:00",
+    "same_repository_and_demo_urls": true,
+    "additional_form_submissions": 0
+  },
+  "limitations": [
+    "This is a point-in-time public-access and browser playback check, not a guarantee of future availability.",
+    "Source material is fictional and narration is synthesized."
+  ]
+}

@@ -138,4 +138,4 @@ The original repository release and its assets were fetched without authenticati
 
 The actual public source archive at release commit `90654b7` and the released Harbor ZIP were also fetched without authentication. The downloaded implementation loaded the CLI and independently imported and fully decoded all six Harbor recordings; all measured durations, clip hashes and ten bundle checksums matched. This is a local reproduction from public files, separate from the live three-app run. [Public-source reproduction](evidence/public-source-reproduction-v2.json).
 
-The existing repository and Pages URLs remain the submission entry points. No second form submission was created.
+The existing repository and Pages URLs remain the submission entry points. The revised public video played through to **1:50 / 1:50**, and English captions were enabled and visibly displayed. The page, caption file and poster matched the reviewed local bytes when fetched without authentication. [Final publication check](evidence/publication-v2.json). No second form submission was created.

@@ -1,6 +1,6 @@
 # HardStop submission checklist
 
-The original release was submitted on September 13, 2026. Its public repository, release files, demo playback, English captions, clean sample import and 166-test GitHub CI run were verified. The official form confirmed one solo-team submission at 21:06 UTC, before the 23:00 UTC deadline. The confirmation is retained privately. The strengthened revision adds audience selection, general source onboarding and further evidence; its source, release downloads and 213-test Linux CI result are verified. The final revised viewing-page check is tracked below.
+The original release was submitted on September 13, 2026. Its public repository, release files, demo playback, English captions, clean sample import and 166-test GitHub CI run were verified. The official form confirmed one solo-team submission at 21:06 UTC, before the 23:00 UTC deadline. The confirmation is retained privately. The strengthened revision adds audience selection, general source onboarding and further evidence; its source, release downloads and 213-test Linux CI result are verified. The revised public video played through to the end with visible English captions. [Final publication checks](evidence/publication-v2.json).
 
 The official event page lists a submission deadline of **September 13, 2026, 23:00 UTC**, which is **September 14, 2026, 04:30 IST**. The form was completed before that cutoff; the same submitted URLs continue to identify this entry. The [event page](https://multiappagenthackathon.com/) is the authority if the organizers announce another change.
 
@@ -55,9 +55,9 @@ Connection smoke tests alone do not satisfy this gate. Record results from the c
 - [x] Publish the strengthened source snapshot. Public source and evidence are accessible without authentication; revised viewing-page checks follow below.
 - [x] Verify all 213 tests passed in Linux CI for release commit `90654b7`, with no skipped tests.
 - [x] Publish the revised demo, captions, source bundles and checksums; all eight public downloads match the verified local files without authentication.
-- [ ] Verify the revised Pages video plays with usable English captions and stays within two minutes.
+- [x] Verify the revised public Pages video plays through to 1:50 with visible English captions; the file measures 110.022 seconds.
 - [x] Reproduce CLI loading and six-clip Harbor import from the anonymously downloaded release source and source ZIP. This is a local import check, separate from the live provider deliveries.
-- [ ] Confirm the existing submitted repository/demo links resolve to the reviewed strengthened revision. Preserve the original one-team submission confirmation.
+- [x] Confirm the existing submitted repository/demo URLs serve the strengthened source and V2 video. The original solo-team form confirmation is preserved; no second response was submitted.
 
 ## Original release: repository and reproduction
 
