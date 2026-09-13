@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "result": "passed",
+  "started_at": "2026-09-13T21:52:50.551862+00:00",
+  "completed_at": "2026-09-13T21:52:51.542968+00:00",
+  "release": "v0.2.0",
+  "commit": "90654b77e16710d4dbd7825d94f85d8f16709aa5",
+  "source_archive": {
+    "url": "https://codeload.github.com/statsguysam/hardstop/zip/90654b77e16710d4dbd7825d94f85d8f16709aa5",
+    "sha256": "dd17800cab96b0f298fb8cabf46db96d922c96dbd5d08380056c56552df6bf4a"
+  },
+  "recording_bundle": {
+    "url": "https://github.com/statsguysam/hardstop/releases/download/v0.2.0/hardstop-harbor-source.zip",
+    "sha256": "1bc02ab66a2cd51f5e20b5405f80501a7c5ac6390998aad781fbb21c72ff2d4d",
+    "matches_announced_release_hash": true,
+    "checksum_entries_verified": 10
+  },
+  "download_authentication": "none",
+  "cli_help": "passed",
+  "source_command_help": "passed",
+  "importer_loaded_from_downloaded_public_source": true,
+  "import": {
+    "clip_count": 6,
+    "source_duration_ms": 82469,
+    "all_clip_bytes_match_registered_source": true,
+    "all_measured_durations_match_registered_source": true,
+    "all_clips_fully_decoded": true,
+    "clips": [
+      {
+        "segment_id": "introduction",
+        "duration_ms": 17934,
+        "sha256": "94a81d456ef9c5d077fee6111ffe2219e3cfebb3af4521e9e6538241272e362f",
+        "full_decode_verified": true
+      },
+      {
+        "segment_id": "setting",
+        "duration_ms": 12334,
+        "sha256": "8971e395c65d35f4fa04bf4431e3b60f5dcae725a33aaae7b1b7a612e8235ef7",
+        "full_decode_verified": true
+      },
+      {
+        "segment_id": "finding",
+        "duration_ms": 11300,
+        "sha256": "4ef9e0054473a2c2e0891221875917099e57d7c7c79c653767774ee9b957e7b4",
+        "full_decode_verified": true
+      },
+      {
+        "segment_id": "walkthrough",
+        "duration_ms": 20934,
+        "sha256": "dbfc8cc021da03f6c0d4f51fb4cabb3db1987471384895fdcbc1201243fcacbb",
+        "full_decode_verified": true
+      },
+      {
+        "segment_id": "limitations",
+        "duration_ms": 9967,
+        "sha256": "9953d08a7246ca9d4418d64a5fe8a4053eec5779261ca147c090d39f61d6b790",
+        "full_decode_verified": true
+      },
+      {
+        "segment_id": "next_step",
+        "duration_ms": 10000,
+        "sha256": "9be9fd62d365bcae04aa01c16ab8ab7de776fc8a0d67dcd846311b9307c475d0",
+        "full_decode_verified": true
+      }
+    ]
+  },
+  "provider_api_calls": 0,
+  "credentials_used": false,
+  "scope": "Public-source CLI loading and local recording import were reproduced. This check does not recreate the connected Gmail, Slides, or Dropbox workflow."
+}

@@ -5,10 +5,10 @@ HardStop serves a producer who needs versions of prepared recordings for differe
 | Criterion | Weight | Evidence and practical limit |
 | --- | ---: | --- |
 | Technical execution | 30% | Gmail briefs, runtime model priorities, Dropbox recordings/output, copied Google Slides and FFmpeg participate in completed deliveries. A six-clip Harbor package completed the general source-import path in a separate workspace. |
-| Reliability | 25% | 213 current local tests, a separate 250-catalog planner oracle, source-to-copy checks, uploaded-byte readback, and independent audience/Harbor delivery checks. The new remote CI run is pending. Checks are point-in-time observations across separate services. |
+| Reliability | 25% | 213 current local tests, a separate 250-catalog planner oracle, source-to-copy checks, uploaded-byte readback, and independent audience/Harbor delivery checks. The release revision also passed all 213 tests in Linux CI. Checks are point-in-time observations across separate services. |
 | Usefulness | 20% | The same 90-second cap produced a buyer version emphasizing the problem and an operator version emphasizing the workflow, with matching deliverables. Preparation effort, customer demand and time savings remain unvalidated. |
 | Originality | 15% | Audience-dependent selection, mandatory content, declared prerequisites, actual playback duration, matching deliverables and stale-input handling are combined in one operation. Prompt-based video shortening already exists; it is not claimed as a new category. |
-| Demo clarity | 10% | The original submitted recording is 110.022 seconds. Revised media has also been verified locally and awaits publication. Recorded app states, fictional content, synthesized narration and shortened processing waits are identified. |
+| Demo clarity | 10% | The revised public recording is 110.022 seconds, with the audience comparison, actual deliverables, an impossible request and a second source. Recorded app states, fictional content, synthesized narration and shortened processing waits are identified. |
 
 The weights come from the event requirements recorded in the [submission checklist](SUBMISSION_CHECKLIST.md). They describe how the evidence maps to the rubric; they do not predict a score or an award.
 
@@ -33,4 +33,4 @@ The model interprets wording and ranks optional clips; code checks recognized di
 
 Google Slides checks compare structured source and copied content, not pixel-identical rendering. Cloud operations are not one atomic transaction: a later failure can leave private unpromoted artifacts for reconciliation. An unaddressed handoff draft is created, and no email is sent.
 
-The original release's public access, hashes, video, captions and 166-test Linux CI result were verified. The official form confirmed the original submission at 21:06 UTC on September 13, 2026. The strengthened source has 213 passing local tests; publication, new CI and revised media checks remain separate pending gates in the [submission checklist](SUBMISSION_CHECKLIST.md).
+The original release's public access, hashes, video, captions and 166-test Linux CI result were verified. The official form confirmed the original submission at 21:06 UTC on September 13, 2026. The strengthened source has 213 passing local and Linux CI tests. Its public release files match the local hashes, and the public source reproduced Harbor import without credentials. Final viewing-page checks are tracked in the [submission checklist](SUBMISSION_CHECKLIST.md).

@@ -1,0 +1,70 @@
+{
+  "checked_at": "2026-09-13T21:51:36.666286+00:00",
+  "authentication": "none",
+  "results": [
+    {
+      "name": "SHA256SUMS",
+      "url": "https://github.com/statsguysam/hardstop/releases/download/v0.2.0/SHA256SUMS",
+      "status": 200,
+      "bytes": 618,
+      "sha256": "20e58f0106aae782f53f80ae08b3784a06591b08cbeeaa75aa2a48a20aa8ba2d",
+      "matches_local": true
+    },
+    {
+      "name": "hardstop-buyer-90s.mp4",
+      "url": "https://github.com/statsguysam/hardstop/releases/download/v0.2.0/hardstop-buyer-90s.mp4",
+      "status": 200,
+      "bytes": 1814929,
+      "sha256": "dc680f2bbc49c6e9b3f98183e4f689c9af5a7e3591fdec5e2b36fd1baac38ca2",
+      "matches_local": true
+    },
+    {
+      "name": "hardstop-demo.mp4",
+      "url": "https://github.com/statsguysam/hardstop/releases/download/v0.2.0/hardstop-demo.mp4",
+      "status": 200,
+      "bytes": 3663089,
+      "sha256": "5c27fc98ac6d913511f582b1028e6950e3eb83ee2302405fbffeb0b828975361",
+      "matches_local": true
+    },
+    {
+      "name": "hardstop-demo.vtt",
+      "url": "https://github.com/statsguysam/hardstop/releases/download/v0.2.0/hardstop-demo.vtt",
+      "status": 200,
+      "bytes": 2480,
+      "sha256": "7269b8ef2fa62932cc5c9abcb7ad85409bad862143187f63cd375e6becf80c50",
+      "matches_local": true
+    },
+    {
+      "name": "hardstop-harbor-60s.mp4",
+      "url": "https://github.com/statsguysam/hardstop/releases/download/v0.2.0/hardstop-harbor-60s.mp4",
+      "status": 200,
+      "bytes": 906187,
+      "sha256": "bce94047037044a10de5a7e809e0baf0bf90a8f00c1b5f08e04772ca50cefde2",
+      "matches_local": true
+    },
+    {
+      "name": "hardstop-harbor-source.zip",
+      "url": "https://github.com/statsguysam/hardstop/releases/download/v0.2.0/hardstop-harbor-source.zip",
+      "status": 200,
+      "bytes": 1518393,
+      "sha256": "1bc02ab66a2cd51f5e20b5405f80501a7c5ac6390998aad781fbb21c72ff2d4d",
+      "matches_local": true
+    },
+    {
+      "name": "hardstop-operator-90s.mp4",
+      "url": "https://github.com/statsguysam/hardstop/releases/download/v0.2.0/hardstop-operator-90s.mp4",
+      "status": 200,
+      "bytes": 1824252,
+      "sha256": "6578e7d6c62e9ae0d2405f31de27c900f887ce1a831c1b33ee95a7f3db01e856",
+      "matches_local": true
+    },
+    {
+      "name": "hardstop-source.zip",
+      "url": "https://github.com/statsguysam/hardstop/releases/download/v0.2.0/hardstop-source.zip",
+      "status": 200,
+      "bytes": 3525051,
+      "sha256": "a12705c33c9edd3568eddde13dae85b6aeed62d8589e7966ae0eb08060c57ab5",
+      "matches_local": true
+    }
+  ]
+}

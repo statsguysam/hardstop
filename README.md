@@ -1,16 +1,16 @@
 # HardStop
 
-**The slot is now 90 seconds. The result and disclaimer still have to stay.**
+**One presentation. Two audiences. Both have 90 seconds.**
 
 HardStop helps webinar and product-demo producers turn registered recordings into versions for different audiences and time limits. It reads the brief in Gmail, selects complete recordings from Dropbox, and creates a video with a matching Google Slides deck. It checks required clips, source order, actual runtime, and saved deliverables before preparing the handoff. When a request cannot fit, it explains why and keeps the last verified cut. [Read the producer use case and its evidence](docs/USE_CASE.md).
 
 **[Watch the 1:50 demo](https://statsguysam.github.io/hardstop/)**
 
-[Download the recording](https://github.com/statsguysam/hardstop/releases/download/v0.1.0/hardstop-demo.mp4) | [Read the test evidence](docs/EVIDENCE.md)
+[Download the recording](https://github.com/statsguysam/hardstop/releases/download/v0.2.0/hardstop-demo.mp4) | [Read the test evidence](docs/EVIDENCE.md)
 
 Beyond the presets, a [custom 75-second Gmail brief](docs/evidence/custom-75.json) produced a verified 53.969-second delivery through the real apps. In a separate [controlled live test](docs/evidence/stale-brief.json), changing the real brief after the model responded stopped publication and preserved the previous delivery. Custom text is interpreted at runtime.
 
-![HardStop verified 90-second delivery](docs/images/hardstop.png)
+![HardStop buyer and operator deliveries under the same 90-second limit](docs/images/hardstop.png)
 
 ## Three apps, one delivery
 
@@ -32,9 +32,10 @@ A separate [predeclared six-case evaluation](docs/evidence/audience-evaluation.j
 
 The source is **Relay**, a fictional product presentation with eight recordings and synthesized narration. Its measured source duration is **179.071 seconds**. All example outcomes are invented.
 
-1. **120-second brief:** produce a playable cut, a matching copied deck and an unsent handoff draft.
-2. **90-second amendment:** remove the rollout, favor the workflow explanation, and keep all mandatory content. The live five-clip delivery measures **86.203 seconds**.
-3. **30-second request:** reject the impossible constraint. The mandatory clips and declared prerequisite alone need **53.969 seconds**. Preserve the previous valid delivery.
+1. **Same time, different audience:** a buyer gets the problem explanation; an operator gets the workflow. Both versions retain the same mandatory content and fit within 90 seconds.
+2. **Matching deliverables:** show the actual selected video, copied Slides deck and unaddressed Gmail handoff.
+3. **Impossible revision:** a 30-second request cannot fit the 53.969 seconds of required clips and context. The operator delivery is preserved.
+4. **Another source:** six different Harbor recordings produce a verified 43.601-second delivery after the brief is clarified. Both the initial review outcome and successful run are retained.
 
 The recorded demo is **110.022 seconds**, within the two-minute limit. The scenario buttons are conveniences for repeatable demonstrations.
 
@@ -50,7 +51,7 @@ source .venv/bin/activate
 python3 -m unittest discover -s tests -v
 ```
 
-The current local suite passed **213 tests**, including FFmpeg media and loopback checks; JavaScript syntax also passed. The linked [earlier GitHub Linux CI run](https://github.com/statsguysam/hardstop/actions/runs/34782456480) passed 166 tests for the original release; CI for the strengthened source revision is pending. A separate planner stress check matched an independent combinations-search oracle on **250 generated catalogs**; those cases are not included in the unit-test count. Tests do not need API credentials. They use controlled provider responses and local media fixtures; media tests are skipped when FFmpeg tools are unavailable. A passing unit suite is separate from a successful live API run.
+The local suite and [GitHub Linux CI](https://github.com/statsguysam/hardstop/actions/runs/34784957386) each passed **213 tests**, including FFmpeg media and loopback checks; JavaScript syntax also passed. The remote run tested release source commit `90654b7`, with no skipped tests. A separate planner stress check matched an independent combinations-search oracle on **250 generated catalogs**; those cases are not included in the unit-test count. Tests do not need API credentials. They use controlled provider responses and local media fixtures; media tests are skipped when FFmpeg tools are unavailable. A passing unit suite is separate from a successful live API run.
 
 For a fresh sample on macOS:
 
@@ -62,7 +63,7 @@ python3 scripts/generate_demo_assets.py
 
 This creates labeled recordings and a measured manifest under `.state/demo-assets/`. Generation uses the Mac's speech service; an execution sandbox may need access to that service. Existing generated recordings are reused only after catalog, hash, duration and decode verification.
 
-**Portable source bundle:** [Download hardstop-source.zip](https://github.com/statsguysam/hardstop/releases/download/v0.1.0/hardstop-source.zip). It contains the eight fictional recordings, optional slide cards and a portable manifest; it contains no credentials or cloud account IDs. Download it, compare its SHA-256 with the published release checksum, then import it on macOS or Linux:
+**Portable source bundle:** [Download hardstop-source.zip](https://github.com/statsguysam/hardstop/releases/download/v0.2.0/hardstop-source.zip). It contains the eight fictional recordings, optional slide cards and a portable manifest; it contains no credentials or cloud account IDs. Download it, compare its SHA-256 with the published release checksum, then import it on macOS or Linux:
 
 ```bash
 python3 scripts/import_demo_assets.py /path/to/hardstop-source.zip
@@ -113,6 +114,8 @@ python3 -m hardstop.cli --state-dir .state/my-presentation serve --port 8767
 ```
 
 The `source` command creates dedicated resources in your three app accounts. Existing source workspaces are preserved. Open the local interface on port 8767, revise the Gmail brief through **Write your own brief**, and make the next cut. Imported workspaces do not offer the Relay demo presets. These recordings are copied and verified; no new narration is synthesized.
+
+[Download the complete Harbor source package](https://github.com/statsguysam/hardstop/releases/download/v0.2.0/hardstop-harbor-source.zip), including its six recordings, catalog, clarified brief and original review-triggering brief. Follow the [source guide](docs/SOURCE_GUIDE.md).
 
 An independent six-clip fictional **Harbor** package completed this import-and-delivery path, producing a **43.601-second** cut against a 60-second brief with **24 checks passed**. Its first brief needed review because of an unsupported generic instruction; both that result and the clarified successful brief are retained. An independent post-run readback passed ten checks. This verifies a second prepared source, not adoption by an outside producer. [Harbor evidence](docs/EVIDENCE.md#imported-source-harbor).
 

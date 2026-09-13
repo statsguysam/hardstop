@@ -1,10 +1,10 @@
 # HardStop submission checklist
 
-The original release was submitted on September 13, 2026. Its public repository, release files, demo playback, English captions, clean sample import and 166-test GitHub CI run were verified. The official form confirmed one solo-team submission at 21:06 UTC, before the 23:00 UTC deadline. The confirmation is retained privately. The strengthened revision adds audience selection, general source onboarding and further evidence; its local work is verified, while new publication and media checks remain pending below.
+The original release was submitted on September 13, 2026. Its public repository, release files, demo playback, English captions, clean sample import and 166-test GitHub CI run were verified. The official form confirmed one solo-team submission at 21:06 UTC, before the 23:00 UTC deadline. The confirmation is retained privately. The strengthened revision adds audience selection, general source onboarding and further evidence; its source, release downloads and 213-test Linux CI result are verified. The final revised viewing-page check is tracked below.
 
-The official event page lists a submission deadline of **September 13, 2026, 23:00 UTC**, which is **September 14, 2026, 04:30 IST**. Complete the form before that cutoff; leave time to verify access and the confirmation. The [event page](https://multiappagenthackathon.com/) is the authority if the organizers announce another change.
+The official event page lists a submission deadline of **September 13, 2026, 23:00 UTC**, which is **September 14, 2026, 04:30 IST**. The form was completed before that cutoff; the same submitted URLs continue to identify this entry. The [event page](https://multiappagenthackathon.com/) is the authority if the organizers announce another change.
 
-Public links: [repository](https://github.com/statsguysam/hardstop), [1:50 demo](https://statsguysam.github.io/hardstop/), [release files](https://github.com/statsguysam/hardstop/releases/tag/v0.1.0), [successful Linux CI run](https://github.com/statsguysam/hardstop/actions/runs/34782456480).
+Public links: [repository](https://github.com/statsguysam/hardstop), [1:50 demo](https://statsguysam.github.io/hardstop/), [release files](https://github.com/statsguysam/hardstop/releases/tag/v0.2.0), [successful Linux CI run](https://github.com/statsguysam/hardstop/actions/runs/34784957386).
 
 ## Original submitted package
 
@@ -52,11 +52,11 @@ Connection smoke tests alone do not satisfy this gate. Record results from the c
 
 ## Strengthened revision: publication gates
 
-- [ ] Publish the final strengthened source snapshot and verify the public README and evidence links without authentication.
-- [ ] Inspect the new GitHub Actions run for that source revision. The older 166-test CI result does not establish that the new 213-test source passed remotely.
-- [ ] Publish the revised demo, captions, prepared-source bundles and checksums; fetch and compare the released artifacts without authentication.
+- [x] Publish the strengthened source snapshot. Public source and evidence are accessible without authentication; revised viewing-page checks follow below.
+- [x] Verify all 213 tests passed in Linux CI for release commit `90654b7`, with no skipped tests.
+- [x] Publish the revised demo, captions, source bundles and checksums; all eight public downloads match the verified local files without authentication.
 - [ ] Verify the revised Pages video plays with usable English captions and stays within two minutes.
-- [ ] Reproduce setup from the final clean published source and its newly released source bundles.
+- [x] Reproduce CLI loading and six-clip Harbor import from the anonymously downloaded release source and source ZIP. This is a local import check, separate from the live provider deliveries.
 - [ ] Confirm the existing submitted repository/demo links resolve to the reviewed strengthened revision. Preserve the original one-team submission confirmation.
 
 ## Original release: repository and reproduction
@@ -74,7 +74,7 @@ Connection smoke tests alone do not satisfy this gate. Record results from the c
 
 ## Original release: recording and form
 
-- [x] Follow [DEMO_SCRIPT.md](DEMO_SCRIPT.md) and show the actual 120-second, 90-second and 30-second sequence.
+- [x] Follow the [original demo script](https://github.com/statsguysam/hardstop/blob/v0.1.0/docs/DEMO_SCRIPT.md) and show the actual 120-second, 90-second and 30-second sequence.
 - [x] Keep the fictional fixture and synthesized narration labels readable. Keep a saved-replay label when using recorded run state.
 - [x] Label shortened processing waits rather than implying unrealistically fast execution.
 - [x] Measure the exported recording; target **119.9 seconds or less**. Verify the audio track and measured levels, on-screen legibility, and the ending frame.

@@ -118,7 +118,7 @@ The current local suite passed **213 tests**, including FFmpeg operations and lo
 
 A fresh committed-source export imported the portable release bundle and loaded the CLI without credentials. The [earlier GitHub Linux CI run](https://github.com/statsguysam/hardstop/actions/runs/34782456480) also passed all 166 tests with FFmpeg installed and no media-test skips. That run tested commit `9c8ecf0`, before the general source importer, evaluation harness and additional UI checks. It does not validate those later changes.
 
-Remote CI for the strengthened source revision is pending. The 213-test result above is a local result and must not be substituted for that future CI outcome.
+[GitHub Linux CI for the strengthened release](https://github.com/statsguysam/hardstop/actions/runs/34784957386) passed **213 tests** in 5.541 seconds with FFmpeg installed and no skipped tests. It tested source commit `90654b77e16710d4dbd7825d94f85d8f16709aa5`. JavaScript syntax also passed.
 
 The current suite adds source-import and registration cases, evaluation scoring/failure accounting, and offline interface replay using the recorded audience interpretations. Source tests verify real local media boundaries and use isolated provider responses for registration. The UI tests use synthetic delivery states around the saved model outputs; they are not further live deliveries. Rerun the complete suite for the current source revision.
 
@@ -130,4 +130,12 @@ The CI workflow installs FFmpeg and runs the tests without provider credentials.
 
 ## Original published submission
 
-The original repository release and its assets were fetched without authentication. Downloaded video, captions, output cut, source archive and checksum-file hashes matched the reviewed local files. The GitHub Pages player played through the 110.022-second video, and English captions were enabled and visibly displayed. The official form confirmed one submission at 21:06 UTC on September 13, 2026. The contact address and form confirmation are kept outside public source. [Original public-access receipt](evidence/publication.json). These checks are historical evidence for that release; new source, media and CI publication checks remain tracked separately in the [submission checklist](SUBMISSION_CHECKLIST.md).
+The original repository release and its assets were fetched without authentication. Downloaded video, captions, output cut, source archive and checksum-file hashes matched the reviewed local files. The GitHub Pages player played through the 110.022-second video, and English captions were enabled and visibly displayed. The official form confirmed one submission at 21:06 UTC on September 13, 2026. The contact address and form confirmation are kept outside public source. [Original public-access receipt](evidence/publication.json). The original release remains available; the strengthened release is documented below.
+
+## Strengthened release
+
+[Version 0.2.0](https://github.com/statsguysam/hardstop/releases/tag/v0.2.0) contains the revised **110.022-second** demonstration and English captions, both fictional source packages, and the buyer, operator and Harbor output videos. All eight released assets, including the checksum file, were fetched **without authentication** and matched the verified local bytes. [Anonymous download checks](evidence/public-downloads-v2.json), [artifact hashes](evidence/release-v2.json), [video verification](evidence/demo-recording-v2.json).
+
+The actual public source archive at release commit `90654b7` and the released Harbor ZIP were also fetched without authentication. The downloaded implementation loaded the CLI and independently imported and fully decoded all six Harbor recordings; all measured durations, clip hashes and ten bundle checksums matched. This is a local reproduction from public files, separate from the live three-app run. [Public-source reproduction](evidence/public-source-reproduction-v2.json).
+
+The existing repository and Pages URLs remain the submission entry points. No second form submission was created.
