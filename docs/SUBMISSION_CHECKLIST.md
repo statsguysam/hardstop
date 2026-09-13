@@ -1,16 +1,18 @@
 # HardStop submission checklist
 
-Local implementation, live validation, release media, and clean source-export checks are complete. Public repository contents, release hosting, signed-out access checks, CI results, and official submission are the remaining publication checks.
+Completed on September 13, 2026. The public repository, release files, demo playback, English captions, clean source import and GitHub CI were verified. The official form confirmed one solo-team submission at 21:06 UTC, before the 23:00 UTC deadline. The confirmation is retained privately.
 
 The official event page lists a submission deadline of **September 13, 2026, 23:00 UTC**, which is **September 14, 2026, 04:30 IST**. Complete the form before that cutoff; leave time to verify access and the confirmation. The [event page](https://multiappagenthackathon.com/) is the authority if the organizers announce another change.
 
+Public links: [repository](https://github.com/statsguysam/hardstop), [1:50 demo](https://statsguysam.github.io/hardstop/), [release files](https://github.com/statsguysam/hardstop/releases/tag/v0.1.0), [successful Linux CI run](https://github.com/statsguysam/hardstop/actions/runs/34782456480).
+
 ## Required submission package
 
-- [ ] An accessible GitHub repository containing the actual implementation, fictional source catalog, tests, and setup instructions.
+- [x] An accessible GitHub repository containing the actual implementation, fictional source catalog, tests, and setup instructions.
 - [x] A README with a concise project overview, the three external apps, setup and run instructions, reliability test evidence, and the demo link.
-- [ ] A playable demo recording of **at most two minutes**, with an accessible link in the README. Verify the link while signed out.
-- [ ] The team's email address and GitHub URL entered in the [official submission form](https://docs.google.com/forms/d/e/1FAIpQLSclU5z63xMUenxypmW_PTcgXIGgwnENY_mgX87mPeoAWOTIoA/viewform).
-- [ ] One submission for this solo team/project. Save the actual confirmation or receipt after submitting.
+- [x] A playable demo recording of **at most two minutes**, with an accessible link in the README. Verify the link while signed out.
+- [x] The team's email address and GitHub URL entered in the [official submission form](https://docs.google.com/forms/d/e/1FAIpQLSclU5z63xMUenxypmW_PTcgXIGgwnENY_mgX87mPeoAWOTIoA/viewform).
+- [x] One submission for this solo team/project. Save the actual confirmation or receipt after submitting.
 
 ## What the project must demonstrate
 
@@ -43,13 +45,13 @@ Connection smoke tests alone do not satisfy this gate. Record results from the c
 - [x] Provide exact commands to install prerequisites, configure the approved scoped credentials, run tests, prepare fixtures, launch the interface and execute the demo sequence.
 - [x] Document Python and FFmpeg requirements. Fresh local fixture generation also requires Pillow and macOS `say`; existing verified recordings can be reused. Do not imply fresh speech generation is cross-platform.
 - [x] Keep credentials and raw live state outside committed source. Check tracked files and commit contents before publishing; exclude `.credentials/`, `.env`, private `.state/`, tokens and OAuth client secrets.
-- [ ] Publish only sanitized evidence. Clearly label any saved report as a replay of a real run, with enough information to understand what was checked.
+- [x] Publish only sanitized evidence. Clearly label any saved report as a replay of a real run, with enough information to understand what was checked.
 - [x] Include the fictional catalog, transcripts and dependency declaration. Explain that all sample outcomes are invented and source narration is synthesized.
 - [x] Explain the boundary: HardStop selects complete prerecorded segments and checks explicit constraints and declared dependencies. It does not prove general semantic preservation, arbitrary video editing, or live-speaker timing.
 - [x] Identify any remaining limitations honestly, including the small bounded source catalog and OAuth test-mode requirements.
 - [x] Import the portable source bundle and load the CLI from a clean committed source export without credentials.
-- [ ] Verify public README links and ensure the public demo can play without access to private Google Slides or Dropbox source resources.
-- [ ] Inspect the first GitHub Actions result after publication; local passing tests do not establish the remote CI result.
+- [x] Verify public README links and ensure the public demo can play without access to private Google Slides or Dropbox source resources.
+- [x] Inspect the first GitHub Actions result after publication; local passing tests do not establish the remote CI result.
 
 ## Final recording and form
 
@@ -57,8 +59,8 @@ Connection smoke tests alone do not satisfy this gate. Record results from the c
 - [x] Keep the fictional fixture and synthesized narration labels readable. Keep a saved-replay label when using recorded run state.
 - [x] Label shortened processing waits rather than implying unrealistically fast execution.
 - [x] Measure the exported recording; target **119.9 seconds or less**. Verify the audio track and measured levels, on-screen legibility, and the ending frame.
-- [ ] Open the public repository and demo link while signed out; verify both work without the builder's account session.
-- [ ] Submit the correct solo-builder email and repository URL through the official form.
-- [ ] Verify the form confirmation and record the submission time before the deadline.
+- [x] Open the public repository and demo link while signed out; verify both work without the builder's account session.
+- [x] Submit the correct solo-builder email and repository URL through the official form.
+- [x] Verify the form confirmation and record the submission time before the deadline.
 
 The scoring weights and submission requirements above come from the event page checked during implementation. They are a checklist for the actual submission, not a prediction of a winning result.

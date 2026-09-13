@@ -29,4 +29,4 @@ The model interprets wording and ranks optional clips; code checks recognized di
 
 Google Slides checks compare structured source and copied content, not pixel-identical rendering. Cloud operations are not one atomic transaction: a later failure can leave private unpromoted artifacts for reconciliation. An unaddressed handoff draft is created, and no email is sent.
 
-Public repository access, playable release links, remote CI and the actual submission confirmation are separate checks in the [submission checklist](SUBMISSION_CHECKLIST.md). Local test success does not establish those external results.
+Public repository access, release hashes, video playback, English captions and GitHub CI were verified after publication. The official form confirmed the submission at 21:06 UTC on September 13, 2026. These external checks are recorded in the [submission checklist](SUBMISSION_CHECKLIST.md).

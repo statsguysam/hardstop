@@ -1,0 +1,63 @@
+{
+  "checked_at": "2026-09-13T21:02:03.807957+00:00",
+  "authentication_sent": false,
+  "release_assets": [
+    {
+      "file": "hardstop-demo.mp4",
+      "http_status": 200,
+      "bytes": 4033330,
+      "sha256": "4ad85ce60fd3b6b131a160035315aa6f4179d4b81c8f55db4d5247eae5d7c3d6",
+      "matches_local": true
+    },
+    {
+      "file": "hardstop-demo.vtt",
+      "http_status": 200,
+      "bytes": 2392,
+      "sha256": "775708b8441f454e7605109249cc1cde173d6bb76c60bc5bcf73259b0b2a5217",
+      "matches_local": true
+    },
+    {
+      "file": "hardstop-cut-90s.mp4",
+      "http_status": 200,
+      "bytes": 1824252,
+      "sha256": "6578e7d6c62e9ae0d2405f31de27c900f887ce1a831c1b33ee95a7f3db01e856",
+      "matches_local": true
+    },
+    {
+      "file": "hardstop-source.zip",
+      "http_status": 200,
+      "bytes": 3525051,
+      "sha256": "a12705c33c9edd3568eddde13dae85b6aeed62d8589e7966ae0eb08060c57ab5",
+      "matches_local": true
+    },
+    {
+      "file": "SHA256SUMS",
+      "http_status": 200,
+      "bytes": 341,
+      "sha256": "467de1e1860b0368ef36fd913abbab79086b1fe6b3fc35d1e42d66793f6c9969",
+      "matches_local": true
+    }
+  ],
+  "readme_accessible": true,
+  "demo_link_in_readme": true,
+  "github_ci": {
+    "commit": "9c8ecf04b767c86e1ebf1ec22eea669084e8fee4",
+    "url": "https://github.com/statsguysam/hardstop/actions/runs/34782456480",
+    "conclusion": "success",
+    "tests": 166,
+    "skipped_tests": 0
+  },
+  "pages": {
+    "url": "https://statsguysam.github.io/hardstop/",
+    "build_conclusion": "success",
+    "browser_played_to_end": true,
+    "english_captions_displayed": true,
+    "caption_status": 200,
+    "caption_bytes_match": true
+  },
+  "submission": {
+    "status": "confirmed",
+    "confirmed_at": "2026-09-13T21:06:33.508087+00:00",
+    "responses": 1
+  }
+}

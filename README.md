@@ -44,7 +44,7 @@ source .venv/bin/activate
 python3 -m unittest discover -s tests -v
 ```
 
-The final local suite passed **166 tests** with FFmpeg available. A separate planner stress check matched an independent combinations-search oracle on **250 generated catalogs**; those cases are not included in the 166-test count. Tests do not need API credentials. They use controlled provider responses and local media fixtures; media tests are skipped when FFmpeg tools are unavailable. A passing unit suite is separate from a successful live API run.
+The final local suite and [GitHub Linux CI](https://github.com/statsguysam/hardstop/actions/runs/34782456480) each passed **166 tests** with FFmpeg available. A separate planner stress check matched an independent combinations-search oracle on **250 generated catalogs**; those cases are not included in the 166-test count. Tests do not need API credentials. They use controlled provider responses and local media fixtures; media tests are skipped when FFmpeg tools are unavailable. A passing unit suite is separate from a successful live API run.
 
 For a fresh sample on macOS:
 
